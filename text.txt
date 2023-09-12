@@ -1,0 +1,17 @@
+terminology terminal, prompt, shell, command line
+
+https://www.youtube.com/watch?v=hMSByvFHOro&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW 
+
+command lines:
+                chsh -s /bin/zsh    //changing terminal shell to zsh
+                chsh -s /bin/bash   //changing terminal shell to bash
+                PS1= "else"         //changing prompt name
+                pushd /Downloads    //jumping from a dir to 
+                popd                //come back
+                file .git           //what kind of file
+                locate ....         //search
+                which  ...          //which command is installed
+                cal                 //calender
+                history             //comand lines tiped
+                whatis  ...         //short description of the command
+                apropos  ...        //search for command related to ...
