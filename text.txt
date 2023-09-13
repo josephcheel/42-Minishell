@@ -13,5 +13,24 @@ command lines:
                 which  ...          //which command is installed
                 cal                 //calender
                 history             //comand lines tiped
+                !numberfromhistory  //exec the line from history
                 whatis  ...         //short description of the command
                 apropos  ...        //search for command related to ...
+                find ...            //find
+                printf > xxx.txt    //writes in file
+                echo   > xxx.txt    //writes in file
+                less ...            //print the file like cat but read from the top
+                grep 'abc' ./file/  //search for word in a file
+                sed "s/[ab]/c/g"    //replace every a or b by a c
+                |                   //piping take the result before | to do what is after
+                sort                //sort
+                ./                  //execute a script shell
+                sudo !!             //!! = last command line typed
+                kill                //stops a program running
+                xkill               //to kill a process clicking on it
+                ping google.com     //check if yout connected
+                wget http...        //to download a file on internet
+                date                //date
+                bc                  //calculator
+
+./bashrc  file to edit the settings
