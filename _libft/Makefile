@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ageiser <ageiser@student.42barcelo>        +#+  +:+       +#+         #
+#    By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 11:26:03 by ageiser           #+#    #+#              #
-#    Updated: 2022/10/10 14:20:43 by ageiser          ###   ########.fr        #
+#    Updated: 2023/09/14 21:50:12 by jcheel-n         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC =	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 		ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strtrim.c \
 		ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c \
 		ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_strlen.c \
-		ft_strchr.c  ft_strjoin.c get_next_line.c get_next_line_utils.c \
+		ft_strchr.c  ft_strjoin.c get_next_line.c \
 		ft_putstr.c
 
 #Flags de compilation

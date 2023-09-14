@@ -7,8 +7,10 @@
 #include <stdlib.h>
 #include <signal.h> //minitalk
 #include <dirent.h> //format of directory entries (init of a directory)
-#include "libft.h"
+#include "../42-Libft/inc/libft.h"
 #include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 /* The structure stat (sys/stat.h) contains at least the following members:
 
@@ -45,7 +47,7 @@ int cd_builtin(char **command);
 */
 void exit_shell(void);
 char *parse_home_path(char *path, int reverse_parse);
-void display_prompt_msg(void);
+char *display_prompt_msg(void);
 
 /*
 ** src/echo_builtin.c
