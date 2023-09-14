@@ -32,5 +32,20 @@ command lines:
                 wget http...        //to download a file on internet
                 date                //date
                 bc                  //calculator
+                set | less          //envirronement of bash
+                . .bashrc           //relaod the .bashrc file
 
-./bashrc  file to edit the settings
+directories:
+
+./bashrc                            //file to edit the settings
+        alias   xxx='xxx ls'        //is like #define xvariable (shortcut)
+        function () {}              //function
+
+/etc/bashrc                         //main file of bash
+
+
+script:
+
+#!/bin/sh                           //hashbang
+echo "Hello World!"
+exit
