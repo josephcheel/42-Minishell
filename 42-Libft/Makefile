@@ -12,6 +12,8 @@ SRC_DIR	= src/
 OBJ_DIR	= obj/
 INC_DIR	= inc/
 
+EXTRA_DIR = extra/
+
 INCLUDE	= -I $(INC_DIR)
 
 LIBFT_SRC	= ft_strlcat.c ft_substr.c ft_atoi.c ft_strdup.c \
@@ -26,14 +28,18 @@ LIBFT_SRC	= ft_strlcat.c ft_substr.c ft_atoi.c ft_strdup.c \
 			ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
 			ft_lstiter.c ft_lstmap.c
 
+LIBFT_EXTRA = ft_arraysize.c
+
 SRCS	+=	$(addprefix $(SRC_DIR), $(LIBFT_SRC))
+SRCS	+=	$(addprefix $(EXTRA_DIR), $(LIBFT_EXTRA))
 OBJS	=	$(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 DEPS	=	$(addsuffix .d, $(basename $(OBJS)))
 
 $(OBJ_DIR)%.o: %.c Makefile
 		@$(MD) $(dir $@) 
 		@$(CC) -MT $@ -MMD $(CFLAGS) $(INCLUDE) -c $< -o $@
-		@echo "$(WARN_COLOR)Compiling: $<$(NO_COLOR)"
+		
+#echo "$(WARN_COLOR)Compiling: $<$(NO_COLOR)"
 
 all:		$(NAME) 
 
