@@ -1,32 +1,21 @@
 #include "../inc/minishell.h"
 
-char	*display_prompt_msg(void)
-{
-	char *str;
-	
-	str = readline("Minishell ~ % "); // readline won't compile if you don't use -lreadline flag
-	if (ft_strlen(str) > 0)
-		add_history(str); // to add a history to shell; You can search with up and down arrow keys (↑ ↓) 
-	return (str);
-}
-
-
 int	main(int ac, char **av, char **envv) //env?
 {
 	// char	*input;
 	// int		ret;
-	// char	**commands;
+	char	*raw_command;
 
 	//init_envv(ac, av, envv);
-	if (ac != 1)
+	if (ac != 1 && !av)
 		return (1);
 	while (1)
 	{
-		printf("%s\n", display_prompt_msg());
-	 	(void)av;
-    	(void)envv;
-		//readline("Minishell ~ %% ");
-		//signal(SIGINT, signal_handler);
+		raw_command = display_prompt_msg();
+		ft_commands(raw_command, envv);
+		(void)envv;
+	
+		// signal(SIGINT, signal_handler);
 		//get_input(&input);
 		// if (ft_isemptystr(input, 1))
 		// {

@@ -16,8 +16,9 @@ NAME		=	minishell
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
 CC			=	gcc
-RLFLAGS		= 	-lreadline
-CFLAGS		=	-Wall -Werror -Wextra -g
+RLFLAGS		= 	-lreadline 
+CFLAGS		=	-Wall -Werror -Wextra
+XFLAGS		= -fsanitize=address -g2 -g
 
 AR			=	ar rcs
 RM			=	rm -f
@@ -28,24 +29,28 @@ CP			=	cp -f
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅DIRECTORIES✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
-SRC_DIR		=	src/
-OBJ_DIR		=	build/
-INC_DIR		=	inc/
-LIBFT_INC	= 	42-Libft/
+SRC_DIR			=	src/
+BUILTINS_DIR	=	builtins/
+OBJ_DIR			=	build/
+INC_DIR			=	inc/
 
-LIBFT		=	42-Libft/libft.a
+LIBFT_INC		= 	42-Libft/
+LIBFT			=	42-Libft/libft.a
 
-INCLUDE		+= -I $(INC_DIR) 
+INCLUDE			+= -I $(INC_DIR) 
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─SORCES─✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
-MS_SRCS			=	main.c 	
+MS_SRCS			=	main.c ft_split_quotes.c display_prompt.c commands.c
+BUILTINS	 	=	ft_echo.c
 				
 MS_SRCS_BONUS	=	
 
 SRCS			+=	$(addprefix $(SRC_DIR), $(MS_SRCS))
+SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(BUILTINS_DIR), $(BUILTINS)))
+
 SRCS_BONUS		+=	$(addprefix $(SRC_DIR), $(MS_SRCS_BONUS))
 
 OBJS			=	$(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
@@ -71,7 +76,7 @@ $(OBJ_DIR)%.o : %.c Makefile
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			@$(CC) $(CFLAGS) $(RLFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
+			@$(CC) $(CFLAGS) $(RLFLAGS) $(XFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
 			@echo "$(OK_COLOR)$(NAME) Compiled!$(NO_COLOR)"
 
 bonus:		$(NAME_BONUS)
@@ -92,10 +97,10 @@ fclean:		clean
 re:			fclean all
 
 run:		all
-			@echo "\n"
+			@echo ""
 			@echo "$(OK_COLOR)Launching Minishell...$(NO_COLOR)"
 			@sleep 1
-			@echo "\n"
+			@echo ""
 			@./minishell
 
 

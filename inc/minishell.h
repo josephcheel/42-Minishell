@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <stdbool.h>
 
 /* The structure stat (sys/stat.h) contains at least the following members:
 
@@ -81,5 +82,26 @@ void proc_signal_handler(int signo);
 void print_env(void);
 void init_envv(int ac, char **av, char **envv);
 int unsetenv_builtin(char **command);
+
+/*
+** split command with quotes(check thoroughly) DOES NOT WORK PROPERLY 
+ERRORS:
+> echo "hola" adios
+command[0] = echo 
+command[1] = hola
+command[2] =  adios
+*/
+char	**ft_split_quotes(char *str);
+
+typedef struct s_split
+{
+
+	int	quotes;
+	int	open_quote;	
+	int	nbr_words;
+	int 
+}t_split;
+
+int ft_commands(char *command, char **env);
 #endif
 
