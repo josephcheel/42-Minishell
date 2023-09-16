@@ -24,7 +24,7 @@ command lines:
                 sed "s/[ab]/c/g"    //replace every a or b by a c
                 |                   //piping take the result before | to do what is after
                 sort                //sort
-                ./                  //execute a script shell
+                ./                  //execute a shell script
                 sudo !!             //!! = last command line typed
                 kill                //stops a program running
                 xkill               //to kill a process clicking on it
@@ -34,6 +34,7 @@ command lines:
                 bc                  //calculator
                 set | less          //envirronement of bash
                 . .bashrc           //relaod the .bashrc file
+                >                   //redirection
 
 directories:
 
@@ -49,3 +50,36 @@ script:
 #!/bin/sh                           //hashbang
 echo "Hello World!"
 exit
+
+
+Fonctions externes autorisées:
+        readline, rl_clear_history, rl_on_new_line,
+        rl_replace_line, rl_redisplay, add_history,
+        printf, malloc, free, write, access, open, read,
+        close, fork, wait, waitpid, wait3, wait4, signal,
+        sigaction, sigemptyset, sigaddset, kill, exit,
+        getcwd, chdir, stat, lstat, fstat, unlink, execve,
+        dup, dup2, pipe, opendir, readdir, closedir,
+        strerror, perror, isatty, ttyname, ttyslot, ioctl,
+        getenv, tcsetattr, tcgetattr, tgetent, tgetflag,
+        tgetnum, tgetstr, tgoto, tputs
+
+        receive command
+        read commant 
+        interpret command (search the directory of the command)
+        execute the command
+
+
+MANDATORY:
+          prompt, historic, PATH, ', ", >, >>, <, <<, |, $, $?, ctrl-C, ctrl-D, ctrl-\ 
+            ◦ echo et l’option -n
+            ◦ cd uniquement avec un chemin relatif ou absolu
+            ◦ pwd sans aucune option
+            ◦ export sans aucune option
+            ◦ unset sans aucune option
+            ◦ env sans aucune option ni argument
+            ◦ exit sans aucune option
+
+BONUS:
+         &&, ||, ()
+         wildcards *
