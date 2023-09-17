@@ -1,6 +1,6 @@
 #include "../inc/libft.h"
 
-int	ft_arraysize(char **array)
+int	ft_array_size(char **array)
 {
 	int count;
 	char **ptr;
