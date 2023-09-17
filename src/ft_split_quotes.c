@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:39:00 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/09/17 01:59:33 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/09/17 13:04:27 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,11 @@ char	**alloc_split(char **split, char *str, int x)
 		while (str[start] == ' ' && str[start])
 			start++;
 		len = split_len(&str[start]);
-		printf("LEN : %d\n", len);
 		while ((str[start] == 34 || str[start] == 39) && str[start - 1] != 92)
 			start++;
 		split[j] = ft_substr_free(&str[start], 0, len, 0);
 		if (str[start + len] == '\"' || str[start + len] == '\'')
 			start++;
-		split[j] = ft_strtrim(split[j], " \n");
 		if (!split[j])
 			return (ft_array_free(split, j));
 		start += len;
@@ -109,7 +107,6 @@ char	**ft_split_quotes(char *str)
 	int		x;
 
 	x = ft_count_words(str, 0);
-	printf("word: %d\n", x);
 	split = malloc(sizeof(char *) * x + 1);
 	if (!split)
 		return (NULL);

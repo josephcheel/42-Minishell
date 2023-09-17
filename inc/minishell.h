@@ -54,7 +54,7 @@ char *display_prompt_msg(void);
 /*
 ** src/echo_builtin.c
 */
-int echo_builtin(char **command);
+int echo_builtin(char **command, int n_option);
 
 /*
 ** src/exec_command.c
@@ -94,6 +94,19 @@ command[2] =  adios
 */
 char	**ft_split_quotes(char *str);
 
-int ft_commands(char *command, char **env);
+int		ft_commands(char *command, char **env);
+int		ft_cmdsize(char **command);
+
+typedef struct s_minishell {
+
+	char **env;
+	char **cmd;
+	char *raw_command;
+
+	int last_return_nbr;
+	int cmd_size;
+	int array_size;
+
+}t_minishell;
 #endif
 

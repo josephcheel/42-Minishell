@@ -6,9 +6,9 @@ int	main(int ac, char **av, char **envv) //env?
 	// int		ret;
 	char	*raw_command;
 
-	//init_envv(ac, av, envv);
 	if (ac != 1 && !av)
 		return (1);
+	//init_envv(ac, av, envv);
 	while (1)
 	{
 		raw_command = display_prompt_msg();

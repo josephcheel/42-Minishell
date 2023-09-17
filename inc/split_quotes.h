@@ -1,13 +1,13 @@
 #ifndef SPLIT_QUOTES_H
 # define SPLIT_QUOTES_H
 
-typedef struct s_split
-{
-	int	quotes;
-	int	open_quote;	
-	int	nbr_words;
-	char **split;
-}t_split;
+// typedef struct s_split
+// {
+// 	int	quotes;
+// 	int	open_quote;	
+// 	int	nbr_words;
+// 	char **split;
+// }t_split;
 
 int		ft_has_valid_quotes(char *str);
 
