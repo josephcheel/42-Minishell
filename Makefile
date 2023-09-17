@@ -15,6 +15,8 @@ NAME		=	minishell
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──CMD───✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
+# include ../libft/Makefile
+
 CC			=	gcc
 RLFLAGS		= 	-lreadline 
 CFLAGS		=	-Wall -Werror -Wextra
@@ -33,17 +35,18 @@ SRC_DIR			=	src/
 BUILTINS_DIR	=	builtins/
 OBJ_DIR			=	build/
 INC_DIR			=	inc/
+LIBFT_INC		= 	libft/inc/
 
-LIBFT_INC		= 	42-Libft/
-LIBFT			=	42-Libft/libft.a
+LIBFT_DIR		= 	libft/
+LIBFT			=	libft/libft.a
 
-INCLUDE			+= -I $(INC_DIR) 
+INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─SORCES─✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
-MS_SRCS			=	main.c ft_split_quotes.c display_prompt.c commands.c
+MS_SRCS			=	main.c ft_split_quotes.c display_prompt.c commands.c ft_split_quotes2.c
 BUILTINS	 	=	ft_echo.c
 				
 MS_SRCS_BONUS	=	
@@ -63,9 +66,9 @@ DEPS_BONUS		+=	$(addsuffix .d, $(basename $(OBJS_BONUS)))
 #•❅──────✧❅✦❅✧──────❅••❅───OBJECT DEPENDENCY TARGET───❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
-$(OBJ_DIR)%.o : %.c Makefile
+$(OBJ_DIR)%.o : %.c Makefile 
 	@$(MD) $(dir $@)
-	@make -sC $(LIBFT_INC)
+	@make -sC $(LIBFT_DIR)
 	@echo "$(WARN_COLOR)Compiling: $<$(NO_COLOR)"
 	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) $(INCLUDE) $< -o $@ 
 
@@ -73,9 +76,9 @@ $(OBJ_DIR)%.o : %.c Makefile
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─TARGET─✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
-all:		$(NAME)
+all:		libft_link $(NAME) 
 
-$(NAME):	$(OBJS)
+$(NAME):	$(LIBFT) $(OBJS) 
 			@$(CC) $(CFLAGS) $(RLFLAGS) $(XFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
 			@echo "$(OK_COLOR)$(NAME) Compiled!$(NO_COLOR)"
 
@@ -85,12 +88,12 @@ $(NAME_BONUS): $(OBJS_BONUS)
 			@$(CC) $(CFLAGS) $(LIBFT) $(OBJS_BONUS) -o $(NAME_BONUS)
 			@echo "$(OK_COLOR)$(NAME) Bonus Compiled!$(NO_COLOR)"
 clean:
-			@make clean -sC $(LIBFT_INC)
+			@make clean -sC $(LIBFT_DIR)
 			@$(RM) -r $(OBJ_DIR)
 			@echo "$(ERROR_COLOR)Dependencies and objects removed$(NO_COLOR)"
 
 fclean:		clean
-			@make fclean -sC $(LIBFT_INC)
+			@make fclean -sC $(LIBFT_DIR)
 			@$(RM) $(NAME) $(NAME_BONUS)
 			@echo "$(ERROR_COLOR)Programs removed$(NO_COLOR)"
 
@@ -99,17 +102,18 @@ re:			fclean all
 run:		all
 			@echo ""
 			@echo "$(OK_COLOR)Launching Minishell...$(NO_COLOR)"
-			@sleep 1
 			@echo ""
 			@./minishell
 
+libft_link:	
+			@make -sC $(LIBFT_DIR)
 
 -include $(DEPS)
 -include $(DEPS_BONUS)
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○IGNORE○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
-.PHONY: all bonus clean fclean re 
+.PHONY: all bonus clean fclean re run libft_link
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─COLOR──✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
