@@ -28,7 +28,7 @@ LIBFT_SRC	= ft_strlcat.c ft_substr.c ft_atoi.c ft_strdup.c \
 			ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
 			ft_lstiter.c ft_lstmap.c
 
-LIBFT_EXTRA = ft_array_size.c ft_array_free.c ft_substr_free.c
+LIBFT_EXTRA = ft_array_size.c ft_array_free.c ft_substr_free.c ft_strlwr.c
 
 SRCS	+=	$(addprefix $(SRC_DIR), $(LIBFT_SRC))
 SRCS	+=	$(addprefix $(EXTRA_DIR), $(LIBFT_EXTRA))
