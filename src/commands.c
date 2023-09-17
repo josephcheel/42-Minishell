@@ -10,7 +10,7 @@ int ft_cmdsize(char **command) // counts the index from cmd and flags
 		size++;
 	else 
 		return (size);
-	count = ft_arraysize(command);
+	count = ft_array_size(command);
 	while (size < count)
 	{
 		if (ft_strncmp(command[size], "-", 1) <= 0)
@@ -50,9 +50,11 @@ int ft_one_command(char *raw_command)
 
 	if (ft_strlen(raw_command) == 0)
 		return 0;
+	if (ft_has_valid_quotes(raw_command) == 0)
+		return (write(2, "quote>\n", 8));
 	command = ft_split_quotes(raw_command);
-	int count = ft_arraysize(command);
-	for (int i = 0; i < count; i++)
+	int count = ft_array_size(command);	// DEBUG
+	for (int i = 0; i < count; i++)		
 	{
 		printf("command[%d]: $%s$\n", i, command[i]);
 	}

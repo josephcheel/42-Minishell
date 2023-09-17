@@ -6,47 +6,14 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:39:00 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/09/16 01:06:23 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/09/17 01:59:33 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+#include "../inc/split_quotes.h"
 
-static char	**ft_free(char **ret, int i)
-{
-	while (i > 0)
-		free(ret[--i]);
-	free(ret);
-	return (NULL);
-}
-
-
-static char	*ft_substrfree(char const *s, unsigned int start,
-		size_t len, int freeme)
-{
-	size_t	s_len;
-	size_t	size;
-	char	*str;
-
-	if (!s)
-		return (NULL);
-	s_len = ft_strlen(s);
-	if (start > s_len)
-		return (malloc(sizeof(char)));
-	if (start + len > s_len)
-		len = s_len - start;
-	size = len + 1;
-	str = (char *) malloc(size * sizeof(char));
-	if (!str)
-		return (NULL);
-	ft_memcpy(str, s + start, len);
-	str[len] = '\0';
-	if (freeme == 1)
-		free((void *)s);
-	return (str);
-}
-
-static int	split_len(char *str)
+int	split_len(char *str)
 {
 	int	quote;
 	int	i;
@@ -70,19 +37,17 @@ static int	split_len(char *str)
 	return (i);
 }
 
-static int	isnotquote(char *str, int i, int type)
+int	isnotquote(char *str, int i, int type)
 {
-	if (type == 1)
-		type = 39;
-	else if (type == 2)
-		type = 34;
+	if (str[i +1] == '\"' && str[i] == '\"')
+		return 0;
 	if (str[i] != type || ((str[i] == type && str[i - 1] == 92) && str[i]))
 		return (1);
 	else
 		return (0);
 }
 
-static int	ft_count_words(char *str, int words)
+int	ft_count_words(char *str, int words)
 {
 	int	i;
 
@@ -92,14 +57,14 @@ static int	ft_count_words(char *str, int words)
 		if (str[i] == 39 && str[i - 1] != 92)
 		{
 			i++;
-			while (isnotquote(str, i, 1))
+			while (isnotquote(str, i, '\"'))
 				i++;
 			words++;
 		}
 		else if (str[i] == 34 && str[i - 1] != 92)
 		{
 			i++;
-			while (isnotquote(str, i, 2))
+			while (isnotquote(str, i, '\"'))
 				i++;
 			words++;
 		}
@@ -110,7 +75,7 @@ static int	ft_count_words(char *str, int words)
 	return (words);
 }
 
-static char	**alloc_split(char **split, char *str, int x)
+char	**alloc_split(char **split, char *str, int x)
 {
 	int	start;
 	int	len;
@@ -122,13 +87,16 @@ static char	**alloc_split(char **split, char *str, int x)
 	{
 		while (str[start] == ' ' && str[start])
 			start++;
-		printf("%c", str[start]);
 		len = split_len(&str[start]);
-		if ((str[start] == 34 || str[start] == 39) && str[start - 1] != 92)
+		printf("LEN : %d\n", len);
+		while ((str[start] == 34 || str[start] == 39) && str[start - 1] != 92)
 			start++;
-		split[j] = ft_substrfree(&str[start], 0, len, 0);
+		split[j] = ft_substr_free(&str[start], 0, len, 0);
+		if (str[start + len] == '\"' || str[start + len] == '\'')
+			start++;
+		split[j] = ft_strtrim(split[j], " \n");
 		if (!split[j])
-			return (ft_free(split, j));
+			return (ft_array_free(split, j));
 		start += len;
 	}
 	split[j] = NULL;

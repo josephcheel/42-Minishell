@@ -14,7 +14,7 @@ int echo_builtin(char **command)
 	{
 		int count;
 
-		count = ft_arraysize(command);
+		count = ft_array_size(command);
 		int i = 0;
 		while (++i < count - 1)
 			printf("%s ", command[i]);

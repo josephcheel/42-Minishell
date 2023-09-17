@@ -7,11 +7,12 @@
 #include <stdlib.h>
 #include <signal.h> //minitalk
 #include <dirent.h> //format of directory entries (init of a directory)
-#include "../42-Libft/inc/libft.h"
+#include "../libft/inc/libft.h"
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdbool.h>
+#include "split_quotes.h"
 
 /* The structure stat (sys/stat.h) contains at least the following members:
 
@@ -92,15 +93,6 @@ command[1] = hola
 command[2] =  adios
 */
 char	**ft_split_quotes(char *str);
-
-typedef struct s_split
-{
-
-	int	quotes;
-	int	open_quote;	
-	int	nbr_words;
-	int 
-}t_split;
 
 int ft_commands(char *command, char **env);
 #endif
