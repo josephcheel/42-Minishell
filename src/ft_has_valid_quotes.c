@@ -1,5 +1,7 @@
 #include "../inc/minishell.h"
 
+// NOT WORKING WHEN echo "\\" nos scaping double nackslash
+
 int	ft_has_valid_quotes(char *str) 
 {
 	int i;

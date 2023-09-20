@@ -12,7 +12,7 @@ char	*display_prompt_msg(void)
 	return (line);
 }
 
-// //OPTION 2 SHELL PROMPT
+//OPTION 2 SHELL PROMPT
 // char	*display_prompt_msg(void)
 // {
 // 	char *line;

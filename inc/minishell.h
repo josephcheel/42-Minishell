@@ -120,7 +120,7 @@ char	*find_command_route_env(char **env, char *command);
 
 //builtin 
 int is_builtin(t_minishell *data);
-int echo_builtin(char **command, int n_option);
+int echo_builtin(t_minishell *data, int n_option);
 
 #endif
 

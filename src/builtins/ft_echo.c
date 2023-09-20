@@ -1,27 +1,22 @@
 #include "../../inc/minishell.h"
 
-
-// QUICK ECHO //
-int echo_builtin(char **command, int n_option)
+int echo_builtin(t_minishell *data, int n_option)
 {	
-	int last_return_nbr = 0; // change
 	int i;
 	int count;
 
-	// printf("command[%i]: %s %d\n", 1, command[1], ft_strncmp(command[1], "$?", 3));
-	if (command[1] && ft_strncmp(command[1], "$?", 3) == 0)
-		printf("%d", last_return_nbr);
-	else if (command[1])
+	if (data->cmd[1])
 	{
-		count = ft_array_size(command);
-		i = ft_cmdsize(command) - 1;
-		while (++i < count - 1)
-			printf("%s ", command[i]);
-		if (command[i])
-			printf("%s", command[i]);
+		count = ft_array_size(data->cmd);
+		i = ft_cmdsize(data->cmd) - 1;
+		while (++i < count)
+		{
+			if (ft_strchr(data->cmd[i],'$'))
+				printf("[%s] string has \"$\"\n", data->cmd[i]);
+			printf("%s ", data->cmd[i]);
+		}
 	}
 	if (n_option == 0)
 		printf("\n");
-	// control if string has $() with double quotes
 	return (1);
 }

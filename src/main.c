@@ -9,11 +9,12 @@ int	main(int ac, char **av, char **envv) //env?
 
 	if (ac != 1 && !av)
 		return (1);
-	//init_envv(ac, av, envv);
+	// init_envv(ac, av, envv);
 	while (1)
 	{
 		data.raw_cmd = display_prompt_msg();
-		if (data.raw_cmd)
+		data.last_return_nbr = 0;
+		if (ft_strlen(data.raw_cmd) > 0)
 			ft_commands(&data, envv);
 	
 		// signal(SIGINT, signal_handler);
