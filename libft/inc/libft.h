@@ -80,4 +80,6 @@ char	*ft_substr_free(char const *s, unsigned int start, size_t len, int one_if_f
 
 char	*ft_strlwr(char *str);
 char	*ft_strjoinfree(char *s1, char *s2);
+void	ft_putstr(char *str);
+
 #endif
