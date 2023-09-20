@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:01:53 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/09/17 03:51:20 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/09/19 09:59:20 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,10 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void *));
 
 /* Extra	*/
-int	ft_array_size(char **array);
+int		ft_array_size(char **array);
 char	**ft_array_free(char **Array, int i);
 char	*ft_substr_free(char const *s, unsigned int start, size_t len, int one_if_free_s);
 
-char *ft_strlwr(char *str);
+char	*ft_strlwr(char *str);
+char	*ft_strjoinfree(char *s1, char *s2);
 #endif

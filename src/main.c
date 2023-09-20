@@ -4,16 +4,17 @@ int	main(int ac, char **av, char **envv) //env?
 {
 	// char	*input;
 	// int		ret;
-	char	*raw_command;
+	// char	*raw_command;
+	t_minishell	data;
 
 	if (ac != 1 && !av)
 		return (1);
 	//init_envv(ac, av, envv);
 	while (1)
 	{
-		raw_command = display_prompt_msg();
-		ft_commands(raw_command, envv);
-		(void)envv;
+		data.raw_cmd = display_prompt_msg();
+		if (data.raw_cmd)
+			ft_commands(&data, envv);
 	
 		// signal(SIGINT, signal_handler);
 		//get_input(&input);

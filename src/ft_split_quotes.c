@@ -6,12 +6,12 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:39:00 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/09/17 13:04:27 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:02:53 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
 #include "../inc/split_quotes.h"
+#include "../../libft/inc/libft.h"
 
 int	split_len(char *str)
 {

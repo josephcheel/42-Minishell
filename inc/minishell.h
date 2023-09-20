@@ -14,6 +14,25 @@
 #include <stdbool.h>
 #include "split_quotes.h"
 
+
+
+typedef struct s_minishell{
+
+	char **env;
+	char **cmd;
+	char **mul_cmds;
+	char *raw_cmd;
+
+
+	int cmd_size;
+	int cmd_and_arguments_size;
+	int nbr_of_cmds;
+		
+	int last_return_nbr;
+	
+
+}t_minishell;
+
 /* The structure stat (sys/stat.h) contains at least the following members:
 
 
@@ -38,6 +57,7 @@
 
 char **g_envv;
 
+
 /*
 ** src/cd_builtin.c
 */
@@ -54,7 +74,7 @@ char *display_prompt_msg(void);
 /*
 ** src/echo_builtin.c
 */
-int echo_builtin(char **command, int n_option);
+
 
 /*
 ** src/exec_command.c
@@ -84,29 +104,23 @@ void print_env(void);
 void init_envv(int ac, char **av, char **envv);
 int unsetenv_builtin(char **command);
 
-/*
-** split command with quotes(check thoroughly) DOES NOT WORK PROPERLY 
-ERRORS:
-> echo "hola" adios
-command[0] = echo 
-command[1] = hola
-command[2] =  adios
-*/
 char	**ft_split_quotes(char *str);
 
-int		ft_commands(char *command, char **env);
+// split bultin, one and multiple cmds
+int	ft_commands(t_minishell *data, char **envv);
+
+// Command utils 
 int		ft_cmdsize(char **command);
+int	ft_count_commands(char *raw_command);
 
-typedef struct s_minishell {
+// Parsin one not-builtin command 
+int		commandline(char *str1, char *str2);
+char	**command_add(char **route, char *command);
+char	*find_command_route_env(char **env, char *command);
 
-	char **env;
-	char **cmd;
-	char *raw_command;
+//builtin 
+int is_builtin(t_minishell *data);
+int echo_builtin(char **command, int n_option);
 
-	int last_return_nbr;
-	int cmd_size;
-	int array_size;
-
-}t_minishell;
 #endif
 
