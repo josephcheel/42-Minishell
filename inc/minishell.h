@@ -121,6 +121,6 @@ char	*find_command_route_env(char **env, char *command);
 //builtin 
 int is_builtin(t_minishell *data);
 int echo_builtin(t_minishell *data, int n_option);
-
+int pwd_builtin(t_minishell *data);
 #endif
 

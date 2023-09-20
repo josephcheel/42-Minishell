@@ -12,11 +12,14 @@ int	main(int ac, char **av, char **envv) //env?
 	// init_envv(ac, av, envv);
 	while (1)
 	{
-		signal(SIGINT, signal_handler); //function to handle sinals, SIGINT is ctrl+c, signal_handler is the function to execute
+		
+		//signal(SIGINT, signal_handler); //function to handle sinals, SIGINT is ctrl+c, signal_handler is the function to execute
 		data.raw_cmd = display_prompt_msg();
+		
 		data.last_return_nbr = 0;
 		if (ft_strlen(data.raw_cmd) > 0)
 			ft_commands(&data, envv);
+		
 	
 		 
 		//get_input(&input);
