@@ -46,8 +46,9 @@ INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─SORCES─✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
-MS_SRCS			=	main.c ft_split_quotes.c display_prompt.c commands.c ft_has_valid_quotes.c command_utils.c
-BUILTINS	 	=	is_builtin.c ft_echo.c
+MS_SRCS			=	main.c ft_split_quotes.c display_prompt.c commands.c \
+                    ft_has_valid_quotes.c command_utils.c ft_signal_handler.c
+BUILTINS	 	=	is_builtin.c ft_echo.c 
 				
 MS_SRCS_BONUS	=	
 
