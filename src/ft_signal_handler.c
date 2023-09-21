@@ -1,11 +1,12 @@
 #include "../inc/minishell.h"
 
-void signal_handler(int signo)
+void signal_handler(int sig)
 {
-    if (signo == SIGINT)
+    if (sig == SIGINT)
     {
-        ft_putstr("\n");
-        display_prompt_msg();
-        signal(SIGINT, signal_handler);
+        write(STDERR_FILENO, "\n", 1);
+		//rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
     }
 }

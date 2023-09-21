@@ -1,5 +1,7 @@
-terminology terminal, prompt, shell, command line
+GNU Readline library
+https://tiswww.case.edu/php/chet/readline/readline.html
 
+basics Shell
 https://www.youtube.com/watch?v=hMSByvFHOro&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW 
 
 command lines:
@@ -72,13 +74,13 @@ Fonctions externes autorisées:
 
 MANDATORY:
           prompt, historic, PATH, ', ", >, >>, <, <<, |, $, $?, ctrl-C, ctrl-D, ctrl-\ 
-            ◦ echo et l’option -n
+            ◦ echo with option -n
             ◦ cd uniquement avec un chemin relatif ou absolu
-            ◦ pwd sans aucune option
-            ◦ export sans aucune option
-            ◦ unset sans aucune option
-            ◦ env sans aucune option ni argument
-            ◦ exit sans aucune option
+            ◦ pwd
+            ◦ export
+            ◦ unset
+            ◦ env
+            ◦ exit
 
 BONUS:
          &&, ||, ()
