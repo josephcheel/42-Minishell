@@ -33,7 +33,11 @@ CP			=	cp -f
 
 SRC_DIR			=	src/
 BUILTINS_DIR	=	builtins/
+ENV_DIR			=	env/
+VAR_DIR			= 	variables/
+
 OBJ_DIR			=	build/
+
 INC_DIR			=	inc/
 LIBFT_INC		= 	libft/inc/
 
@@ -48,12 +52,20 @@ INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 
 MS_SRCS			=	main.c ft_split_quotes.c display_prompt.c commands.c \
                     ft_has_valid_quotes.c command_utils.c ft_signal_handler.c
-BUILTINS	 	=	is_builtin.c ft_echo.c ft_pwd.c
+
+BUILTINS	 	=	is_builtin.c ft_echo.c ft_pwd.c ft_cd.c  ft_env.c
+
+ENV				=	set_env.c ft_split_env.c
+
+VARIABLES		= ft_replace_variable.c
 				
 MS_SRCS_BONUS	=	
 
 SRCS			+=	$(addprefix $(SRC_DIR), $(MS_SRCS))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(BUILTINS_DIR), $(BUILTINS)))
+SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(ENV_DIR), $(ENV)))
+SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(VAR_DIR), $(VARIABLES)))
+
 
 SRCS_BONUS		+=	$(addprefix $(SRC_DIR), $(MS_SRCS_BONUS))
 

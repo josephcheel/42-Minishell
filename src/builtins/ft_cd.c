@@ -1,6 +1,8 @@
 #include "../../inc/minishell.h"\
 
-int	ft_change_directory(t_minishell *data)
+int	cd_builtin(t_minishell *data)
 {
-	
+	if (data->cmd[1])
+		chdir(data->cmd[1]);
+	return (1);
 }

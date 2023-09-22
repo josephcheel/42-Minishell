@@ -12,8 +12,8 @@ int is_builtin(t_minishell *data)
 		else
 			return (0);
 	}
-	else if (ft_strncmp(data->cmd[0], "cd", 3) == 0 && ft_array_size(data->cmd) == 2) // only lower caser
-		return (1);
+	else if (ft_strncmp(data->cmd[0], "cd", 3) == 0 && ft_array_size(data->cmd) >= 1) // only lower caser
+		return (cd_builtin(data));
 	else if (ft_strncmp(ft_strlwr(data->cmd[0]), "pwd", 4) == 0 && data->cmd_size == 1) //  ignores case
 		return (pwd_builtin(data));
 	else if (ft_strncmp(data->cmd[0], "export", 7) == 0 && data->cmd_size == 1)
@@ -21,10 +21,8 @@ int is_builtin(t_minishell *data)
 	else if (ft_strncmp(data->cmd[0], "unset", 6) == 0 && data->cmd_size == 1)
 		return (1);
 	else if (ft_strncmp(ft_strlwr(data->cmd[0]), "env", 4) == 0 && data->cmd_size == 1) //  ignores case
-		return (1);
+		return (env_builtin(data));
 	else if (ft_strncmp(data->cmd[0], "exit", 5) == 0 && data->cmd_size >= 1) // only lower caser
-	{
 		exit(EXIT_SUCCESS);
-	}
 	return (0);
 }

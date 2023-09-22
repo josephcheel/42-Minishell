@@ -13,7 +13,7 @@
 #include <readline/history.h>
 #include <stdbool.h>
 #include "split_quotes.h"
-
+#include "environment.h"
 
 
 typedef struct s_minishell{
@@ -29,7 +29,7 @@ typedef struct s_minishell{
 	int nbr_of_cmds;
 		
 	int last_return_nbr;
-	
+	t_list *lstenv;
 
 }t_minishell;
 
@@ -62,7 +62,6 @@ char **g_envv;
 ** src/cd_builtin.c
 */
 void change_dir(char *path, int print_path);
-int cd_builtin(char **command);
 
 /*
 ** src/display_prompt_msg.c
@@ -101,7 +100,6 @@ void proc_signal_handler(int signo);
 ** src/unsetenv_builtin.c
 */
 void print_env(void);
-void init_envv(int ac, char **av, char **envv);
 int unsetenv_builtin(char **command);
 
 char	**ft_split_quotes(char *str);
@@ -122,5 +120,16 @@ char	*find_command_route_env(char **env, char *command);
 int is_builtin(t_minishell *data);
 int echo_builtin(t_minishell *data, int n_option);
 int pwd_builtin(t_minishell *data);
+int	cd_builtin(t_minishell *data);
+
+int	init_env(t_minishell *data, char **env);
+char **ft_split_env(char *line);
+
+t_list	*ft_lstfind_name(t_list **lst, char *find);
+
+char	*ft_replace_variable(t_minishell *data);
+char *ft_return_argument(t_minishell *data);
+
+int	env_builtin(t_minishell *data);
 #endif
 

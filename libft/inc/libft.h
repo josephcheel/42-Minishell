@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:01:53 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/09/19 09:59:20 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/09/21 14:21:50 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void			ft_striteri(char *s, void (*f)(unsigned int, char*));
 typedef struct s_list
 {
 	void			*content;
+	char 			*name;
+	char 			*value;
 	struct s_list	*next;
 }t_list;
 

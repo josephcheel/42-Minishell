@@ -37,25 +37,16 @@ int	ft_commands(t_minishell *data, char **envv)
 		return (write(2, "quote>\n", 8));
 	data->nbr_of_cmds = ft_count_commands(data->raw_cmd);
 	data->cmd = ft_split_quotes(data->raw_cmd);
-	// int count = ft_array_size(data->cmd);	
-	// for (int i = 0; i < count; i++)		
-	// {
-	// 	printf("command[%d]: $%s$\n", i, data->cmd[i]);
-	// }
+	data->cmd_size= ft_cmdsize(data->cmd);
+	data->cmd_and_arguments_size = ft_array_size(data->cmd);
+
 	if (data->nbr_of_cmds  == 1)
 		ft_one_command(data, envv);
 	else
 		ft_multiple_commands(data);
-	(void)envv;
 	return (0);
 }
 
-
-/* TO DEBUG
-// DEBUGG CODE
-int count = ft_array_size(data->cmd);	
-for (int i = 0; i < count; i++)		
-{
-	//printf("command[%d]: $%s$\n", i, command[i]);
-}
-// END DEBUG CODE */
+	
+// if (ft_strrchr(data->raw_cmd, '$'))
+// 		printf("returned: %s\n", ft_replace_variable(data));
