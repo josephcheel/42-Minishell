@@ -53,6 +53,28 @@ typedef struct s_minishell{
 	blkcnt_t  st_blocks  number of blocks allocated for this object
 */
 
+// split bultin, one and multiple cmds
+int	ft_commands(t_minishell *data, char **envv);
+
+// Command utils 
+int		ft_cmdsize(char **command);
+int	ft_count_commands(char *raw_command);
+
+// Parsin one not-builtin command 
+int		commandline(char *str1, char *str2);
+char	**command_add(char **route, char *command);
+char	*find_command_route_env(char **env, char *command);
+
+//builtin 
+int is_builtin(t_minishell *data);
+int echo_builtin(t_minishell *data, int n_option);
+int pwd_builtin(t_minishell *data);
+
+//signals
+void signal_handler(int sig);
+#endif
+
+/*
 #define IS_QUOTE(x) (x == '"' || x == '\'')
 
 char **g_envv;
@@ -60,29 +82,29 @@ char **g_envv;
 
 /*
 ** src/cd_builtin.c
-*/
+
 void change_dir(char *path, int print_path);
 
 /*
 ** src/display_prompt_msg.c
-*/
+
 void exit_shell(void);
 char *parse_home_path(char *path, int reverse_parse);
 char *display_prompt_msg(void);
 
 /*
 ** src/echo_builtin.c
-*/
+
 
 
 /*
 ** src/exec_command.c
-*/
+
 int exec_command(char **command);
 
 /*
 ** src/setenv_builtin.c
-*/
+
 int find_env_var(char *var);
 char *get_env_var(char *var);
 char **realloc_envv(int new_size);
@@ -92,13 +114,13 @@ int setenv_builtin(char **args);
 
 /*
 ** src/signal_handler.c
-*/
-void signal_handler(int signo);
+
+
 void proc_signal_handler(int signo);
 
-/*
+
 ** src/unsetenv_builtin.c
-*/
+
 void print_env(void);
 int unsetenv_builtin(char **command);
 
