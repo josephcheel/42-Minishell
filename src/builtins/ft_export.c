@@ -28,7 +28,7 @@ int	ft_check_export_syntax(char *str) //true == okey ; false == not okey
 		return (0);
 }
 
-int	ft_is_variable(t_minishell *data, char *argument)
+int	ft_is_variable_export(t_minishell *data, char *argument)
 {
 	char	**variable;
 	t_list	*temp;
@@ -59,7 +59,7 @@ int	export_builtin(t_minishell *data) //TODO: remove quote and spaces
 	size =  data->cmd_and_arguments_size;
 	while (start < size)
 	{
-		if (ft_check_export_syntax(data->cmd[start]) && ft_is_variable(data, data->cmd[start]) == 0)
+		if (ft_check_export_syntax(data->cmd[start]) && ft_is_variable_export(data, data->cmd[start]) == 0)
 		{
 			split = ft_split_env(data->cmd[start]);
 			temp = ft_lstnew(data->cmd[start]);

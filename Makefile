@@ -55,9 +55,9 @@ MS_SRCS			=	main.c ft_split_quotes.c display_prompt.c commands.c \
 
 BUILTINS	 	=	is_builtin.c ft_echo.c ft_pwd.c ft_cd.c  ft_env.c ft_export.c ft_unset.c ft_exit.c
 
-ENV				=	set_env.c ft_split_env.c
+ENV				=	set_env.c ft_split_env.c ft_isvariable.c
 
-VARIABLES		= ft_replace_variable.c
+#VARIABLES		= 	ft_replace_variable.c
 				
 MS_SRCS_BONUS	=	
 

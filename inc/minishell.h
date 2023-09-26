@@ -90,7 +90,8 @@ char	*ft_replace_variable(t_minishell *data);
 char *ft_return_argument(t_minishell *data);
 
 
-
+int	ft_is_variable_export(t_minishell *data, char *argument);
+int	ft_isvariable(t_minishell *data, char *argument);
 /*
 #define IS_QUOTE(x) (x == '"' || x == '\'')
 

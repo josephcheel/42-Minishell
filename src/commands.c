@@ -47,6 +47,3 @@ int	ft_commands(t_minishell *data, char **envv)
 	return (0);
 }
 
-	
-// if (ft_strrchr(data->raw_cmd, '$'))
-// 		printf("returned: %s\n", ft_replace_variable(data));
