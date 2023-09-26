@@ -80,7 +80,7 @@ MANDATORY:
             ◦ echo with option -n
             ◦ cd uniquement avec un chemin relatif ou absolu
             ◦ pwd
-            ◦ export
+            ◦ export // add line to envirronement
             ◦ unset
             ◦ env
             ◦ exit
