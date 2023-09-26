@@ -9,9 +9,10 @@ int	main(int ac, char **av, char **env)
 	init_env(&data, env);
 	while (1)
 	{
+		signal(SIGINT, signal_handler); //function to handle signals, SIGINT is ctrl+c, signal_handler is the function to execute
 		data.raw_cmd = display_prompt_msg();
 		data.last_return_nbr = 0;
-		// signal(SIGINT, signal_handler); //function to handle signals, SIGINT is ctrl+c, signal_handler is the function to execute
+		
 		if (ft_strlen(data.raw_cmd) > 0)
 			ft_commands(&data, env);
 		//ft_freemini(commands);

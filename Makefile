@@ -46,6 +46,9 @@ LIBFT			=	libft/libft.a
 
 INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 
+LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
+RFLAGS = /Users/${USER}/.brew/opt/readline/include
+
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─SORCES─✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
@@ -55,7 +58,7 @@ MS_SRCS			=	main.c ft_split_quotes.c display_prompt.c commands.c \
 
 BUILTINS	 	=	is_builtin.c ft_echo.c ft_pwd.c ft_cd.c  ft_env.c ft_export.c ft_unset.c ft_exit.c
 
-ENV				=	set_env.c ft_split_env.c ft_isvariable.c
+ENV				=	set_env.c ft_split_env.c
 
 #VARIABLES		= 	ft_replace_variable.c
 				
@@ -83,7 +86,7 @@ $(OBJ_DIR)%.o : %.c Makefile
 	@$(MD) $(dir $@)
 	@make -sC $(LIBFT_DIR)
 	@echo "$(WARN_COLOR)Compiling: $<$(NO_COLOR)"
-	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) $(INCLUDE) $< -o $@ 
+	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -I$(RFLAGS) $(INCLUDE) $< -o $@ 
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─TARGET─✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
@@ -92,7 +95,7 @@ $(OBJ_DIR)%.o : %.c Makefile
 all:		libft_link $(NAME) 
 
 $(NAME):	$(LIBFT) $(OBJS) 
-			@$(CC) $(CFLAGS) $(RLFLAGS) $(XFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
+			@$(CC) $(CFLAGS) $(RLFLAGS) -L$(LDFLAGS) $(XFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
 			@echo "$(OK_COLOR)$(NAME) Compiled!$(NO_COLOR)"
 
 bonus:		$(NAME_BONUS)
