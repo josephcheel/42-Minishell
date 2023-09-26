@@ -26,8 +26,8 @@ int init_env(t_minishell *data, char **env)
 	data->lstenv = NULL;
 	while (i < count)
 	{
-		split = ft_split_env(env[i]);
 		temp = ft_lstnew(env[i]);
+		split = ft_split_env(env[i]); // split name and value divided by '='		
 		temp->name = split[0];
 		temp->value = split[1];
 		ft_lstadd_back(&data->lstenv, temp);
