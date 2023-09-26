@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:01:53 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/09/21 14:21:50 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/09/26 12:49:43 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 
 //**************** LIBFT FUNCTIONS *******************//
 
@@ -83,5 +84,6 @@ char	*ft_substr_free(char const *s, unsigned int start, size_t len, int one_if_f
 char	*ft_strlwr(char *str);
 char	*ft_strjoinfree(char *s1, char *s2);
 void	ft_putstr(char *str);
-
+long	ft_atol(const char *str);
+int		ft_isnumeric(char *str);
 #endif

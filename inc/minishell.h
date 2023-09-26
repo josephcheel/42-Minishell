@@ -13,7 +13,6 @@
 #include <readline/history.h>
 #include <stdbool.h>
 #include "split_quotes.h"
-#include "environment.h"
 
 
 typedef struct s_minishell{
@@ -69,10 +68,28 @@ char	*find_command_route_env(char **env, char *command);
 int is_builtin(t_minishell *data);
 int echo_builtin(t_minishell *data, int n_option);
 int pwd_builtin(t_minishell *data);
-
+int	cd_builtin(t_minishell *data);
+int	env_builtin(t_minishell *data);
+int export_builtin(t_minishell *data);
+int	unset_builtin(t_minishell *data);
+int	exit_builtin(t_minishell *data);
 //signals
 void signal_handler(int sig);
-#endif
+
+char	**ft_split_quotes(char *str);
+char *display_prompt_msg(void);
+
+
+
+int	init_env(t_minishell *data, char **env);
+char **ft_split_env(char *line);
+
+t_list	*ft_lstfind_name(t_list **lst, char *find);
+
+char	*ft_replace_variable(t_minishell *data);
+char *ft_return_argument(t_minishell *data);
+
+
 
 /*
 #define IS_QUOTE(x) (x == '"' || x == '\'')
@@ -80,29 +97,27 @@ void signal_handler(int sig);
 char **g_envv;
 
 
-/*
 ** src/cd_builtin.c
 
 void change_dir(char *path, int print_path);
 
-/*
 ** src/display_prompt_msg.c
 
 void exit_shell(void);
 char *parse_home_path(char *path, int reverse_parse);
 char *display_prompt_msg(void);
 
-/*
+
 ** src/echo_builtin.c
 
 
 
-/*
+
 ** src/exec_command.c
 
 int exec_command(char **command);
 
-/*
+
 ** src/setenv_builtin.c
 
 int find_env_var(char *var);
@@ -112,7 +127,7 @@ void set_env_var(char *key, char *value);
 int setenv_builtin(char **command);
 int setenv_builtin(char **args);
 
-/*
+
 ** src/signal_handler.c
 
 
@@ -123,7 +138,7 @@ void proc_signal_handler(int signo);
 
 void print_env(void);
 int unsetenv_builtin(char **command);
-
+*/
 char	**ft_split_quotes(char *str);
 
 // split bultin, one and multiple cmds
@@ -154,4 +169,3 @@ char *ft_return_argument(t_minishell *data);
 
 int	env_builtin(t_minishell *data);
 #endif
-

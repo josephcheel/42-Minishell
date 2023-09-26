@@ -53,7 +53,7 @@ INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 MS_SRCS			=	main.c ft_split_quotes.c display_prompt.c commands.c \
                     ft_has_valid_quotes.c command_utils.c ft_signal_handler.c
 
-BUILTINS	 	=	is_builtin.c ft_echo.c ft_pwd.c ft_cd.c  ft_env.c
+BUILTINS	 	=	is_builtin.c ft_echo.c ft_pwd.c ft_cd.c  ft_env.c ft_export.c ft_unset.c ft_exit.c
 
 ENV				=	set_env.c ft_split_env.c
 
