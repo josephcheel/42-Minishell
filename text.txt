@@ -88,3 +88,13 @@ MANDATORY:
 BONUS:
          &&, ||, ()
          wildcards *
+
+
+workflow
+main
+  |->init_env
+  |->signal_handler
+  |->display_prompt_msg  
+  |->ft_commands
+  |->execve 1 or multiple
+  |->waitpid

@@ -25,10 +25,13 @@ int ft_one_command(t_minishell *data, char **envv)
 		int pid = fork();
 		if (pid == 0)
 			execve(find_command_route_env(envv, data->raw_cmd), data->cmd,NULL);
-		waitpid(pid, NULL, 0);
+		waitpid(pid, NULL, 0);//wait for child process to finish???
 	}
 	return (0);
 }
+
+//int execve(const char *pathname, char *const _Nullable argv[],char *const _Nullable envp[]);
+//execve() executes the program referred to by pathname. 
 
 int	ft_commands(t_minishell *data, char **envv)
 {
@@ -45,4 +48,8 @@ int	ft_commands(t_minishell *data, char **envv)
 		ft_multiple_commands(data);
 	return (0);
 }
+
+//checking quotes
+//counting commands
+//capturing what is between quotes
 

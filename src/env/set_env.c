@@ -2,7 +2,7 @@
 
 t_list	*ft_lstfind_name(t_list **lst, char *find)
 {
-	t_list *temp;
+	t_list	*temp;
 
 	temp = *lst;
 	while (temp != NULL)
@@ -14,12 +14,13 @@ t_list	*ft_lstfind_name(t_list **lst, char *find)
 	return (NULL);
 }
 
-int init_env(t_minishell *data, char **env)
+int	init_env(t_minishell *data, char **env)
 {
-	int i;
-	int count;
-	char **split;
-	t_list *temp;
+	int		i;
+	int		count;
+	char	**split;
+	t_list	*temp; //libft.h
+	
 	i = 0;
 	
 	count = ft_array_size(env);
@@ -35,3 +36,6 @@ int init_env(t_minishell *data, char **env)
 	}
 	return 0;
 }
+
+//sorting the environment variables
+//pointers creation per each variable

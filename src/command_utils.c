@@ -1,9 +1,9 @@
 #include "../inc/minishell.h"
 
-char *ft_return_argument(t_minishell *data)
+char	*ft_return_argument(t_minishell *data)
 {
-	int count;
-	char *new_str;
+	int		count;
+	char	*new_str;
 
 	count = data->cmd_size;
 	// printf("COUNT %d\n", count);
@@ -17,9 +17,9 @@ char *ft_return_argument(t_minishell *data)
 
 int	ft_count_commands(char *raw_command)
 {
-	int i;
-	int nbr_cmd;
-	int len_command;
+	int	i;
+	int	nbr_cmd;
+	int	len_command;
 
 	i = -1;
 	nbr_cmd = 1;
@@ -32,8 +32,8 @@ int	ft_count_commands(char *raw_command)
 
 int ft_cmdsize(char **command) // counts the index from cmd and flags
 {
-	int size;
-	int count;
+	int	size;
+	int	count;
 
 	size = 0;
 	if (ft_strlen(command[0]) > 0)
@@ -72,7 +72,7 @@ char	**command_add(char **route, char *command)
 	i = 0;
 	copy = ft_strdup("/");
 	if (!copy)
-		return NULL;		
+		return NULL;
 		// function_errors();
 	copy = ft_strjoinfree(copy, command);
 	if (!copy)
@@ -112,9 +112,11 @@ char	*find_command_route_env(char **env, char *command)
 	temp = ft_split(command, ' ');
 	route = command_add(route, temp[0]);
 	i = 0;
-	while (route[i] && access(route[i], F_OK) == -1)
+	while (route[i] && access(route[i], F_OK) == -1) //access?
 		i++;
 	if (!route[i])
 		return (command);
 	return (route[i]);
+//Don't understand this part
 }
+//PATH
