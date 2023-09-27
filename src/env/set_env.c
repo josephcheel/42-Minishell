@@ -24,6 +24,7 @@ int init_env(t_minishell *data, char **env)
 	
 	count = ft_array_size(env);
 	data->lstenv = NULL;
+	data->env = env;
 	while (i < count)
 	{
 		temp = ft_lstnew(env[i]);

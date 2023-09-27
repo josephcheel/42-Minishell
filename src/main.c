@@ -14,7 +14,7 @@ int	main(int ac, char **av, char **env)
 		data.last_return_nbr = 0;
 		
 		if (ft_strlen(data.raw_cmd) > 0)
-			ft_commands(&data, env);
+			ft_commands(&data);
 		//ft_freemini(commands);
 		// if (ret == -1)
 		// 	break;

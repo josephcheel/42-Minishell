@@ -53,7 +53,7 @@ typedef struct s_minishell{
 */
 
 // split bultin, one and multiple cmds
-int	ft_commands(t_minishell *data, char **envv);
+int	ft_commands(t_minishell *data);
 
 // Command utils 
 int		ft_cmdsize(char **command);
@@ -92,59 +92,10 @@ char *ft_return_argument(t_minishell *data);
 
 int	ft_is_variable_export(t_minishell *data, char *argument);
 int	ft_isvariable(t_minishell *data, char *argument);
-/*
-#define IS_QUOTE(x) (x == '"' || x == '\'')
 
-char **g_envv;
-
-
-** src/cd_builtin.c
-
-void change_dir(char *path, int print_path);
-
-** src/display_prompt_msg.c
-
-void exit_shell(void);
-char *parse_home_path(char *path, int reverse_parse);
-char *display_prompt_msg(void);
-
-
-** src/echo_builtin.c
-
-
-
-
-** src/exec_command.c
-
-int exec_command(char **command);
-
-
-** src/setenv_builtin.c
-
-int find_env_var(char *var);
-char *get_env_var(char *var);
-char **realloc_envv(int new_size);
-void set_env_var(char *key, char *value);
-int setenv_builtin(char **command);
-int setenv_builtin(char **args);
-
-
-** src/signal_handler.c
-
-
-void proc_signal_handler(int signo);
-
-
-** src/unsetenv_builtin.c
-
-void print_env(void);
-int unsetenv_builtin(char **command);
-*/
 char	**ft_split_quotes(char *str);
 
 // split bultin, one and multiple cmds
-int	ft_commands(t_minishell *data, char **envv);
-
 // Command utils 
 int		ft_cmdsize(char **command);
 int	ft_count_commands(char *raw_command);
@@ -169,4 +120,8 @@ char	*ft_replace_variable(t_minishell *data);
 char *ft_return_argument(t_minishell *data);
 
 int	env_builtin(t_minishell *data);
+
+
+// EXECS
+int exec_one(t_minishell *data);
 #endif
