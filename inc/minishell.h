@@ -34,7 +34,7 @@ typedef struct s_minishell{
 
 
 // split bultin, one and multiple cmds
-int	ft_commands(t_minishell *data, char **envv);
+int	ft_commands(t_minishell *data);
 
 // Command utils 
 int		ft_cmdsize(char **command);
@@ -76,8 +76,6 @@ int	ft_isvariable(t_minishell *data, char *argument);
 char	**ft_split_quotes(char *str);
 
 // split bultin, one and multiple cmds
-int	ft_commands(t_minishell *data, char **envv);
-
 // Command utils 
 int		ft_cmdsize(char **command);
 int	ft_count_commands(char *raw_command);
@@ -102,4 +100,8 @@ char	*ft_replace_variable(t_minishell *data);
 char *ft_return_argument(t_minishell *data);
 
 int	env_builtin(t_minishell *data);
+
+
+// EXECS
+int exec_one(t_minishell *data);
 #endif

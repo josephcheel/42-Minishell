@@ -35,6 +35,7 @@ SRC_DIR			=	src/
 BUILTINS_DIR	=	builtins/
 ENV_DIR			=	env/
 VAR_DIR			= 	variables/
+EXEC_DIR		=	exec/
 
 OBJ_DIR			=	build/
 
@@ -64,22 +65,25 @@ BUILTINS	 	=	is_builtin.c ft_echo.c ft_pwd.c ft_cd.c  ft_env.c ft_export.c ft_un
 
 ENV				=	set_env.c ft_split_env.c
 
+EXEC			=	exec_one.c
+
 #VARIABLES		= 	ft_replace_variable.c
-				
-MS_SRCS_BONUS	=	
 
 SRCS			+=	$(addprefix $(SRC_DIR), $(MS_SRCS))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(BUILTINS_DIR), $(BUILTINS)))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(ENV_DIR), $(ENV)))
-SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(VAR_DIR), $(VARIABLES)))
+SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(EXEC_DIR), $(EXEC)))
+#SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(VAR_DIR), $(VARIABLES)))
+
+
+
+OBJS			=	$(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
+DEPS			+=	$(addsuffix .d, $(basename $(OBJS)))
+
 
 
 SRCS_BONUS		+=	$(addprefix $(SRC_DIR), $(MS_SRCS_BONUS))
-
-OBJS			=	$(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 OBJS_BONUS		=	$(addprefix $(OBJ_DIR), $(SRCS_BONUS:.c=.o))
-
-DEPS			+=	$(addsuffix .d, $(basename $(OBJS)))
 DEPS_BONUS		+=	$(addsuffix .d, $(basename $(OBJS_BONUS)))
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
