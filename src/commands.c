@@ -25,7 +25,6 @@ int ft_one_command(t_minishell *data, char **envv)
 		int pid = fork();
 		if (pid == 0)
 			execve(find_command_route_env(envv, data->raw_cmd), data->cmd,NULL);
-			// execve(NULL, command,NULL);
 		waitpid(pid, NULL, 0);
 	}
 	return (0);

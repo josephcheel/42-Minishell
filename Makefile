@@ -46,9 +46,13 @@ LIBFT			=	libft/libft.a
 
 INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 
-LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
-RFLAGS = /Users/${USER}/.brew/opt/readline/include
+# Flags for Campus
+# LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
+# RFLAGS = /Users/${USER}/.brew/opt/readline/include
 
+# Flags for Home
+LDFLAGS	=/opt/homebrew/opt/readline/lib
+RFLAGS	= /opt/homebrew/opt/readline/include
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─SORCES─✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
