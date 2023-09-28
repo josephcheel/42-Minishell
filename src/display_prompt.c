@@ -10,3 +10,5 @@ char	*display_prompt_msg(void)
 	
 	return (line);
 }
+
+//history command necessary?
