@@ -36,7 +36,7 @@ BUILTINS_DIR	=	builtins/
 ENV_DIR			=	env/
 VAR_DIR			= 	variables/
 EXEC_DIR		=	exec/
-
+CMDS_DIR		= 	command/
 OBJ_DIR			=	build/
 
 INC_DIR			=	inc/
@@ -58,8 +58,8 @@ RFLAGS	= /opt/homebrew/opt/readline/include
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─SORCES─✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
-MS_SRCS			=	main.c ft_split_quotes.c display_prompt.c commands.c \
-                    ft_has_valid_quotes.c command_utils.c ft_signal_handler.c
+MS_SRCS			=	main.c display_prompt.c ft_split_quotes.c\
+                    ft_has_valid_quotes.c  ft_signal_handler.c
 
 BUILTINS	 	=	is_builtin.c ft_echo.c ft_pwd.c ft_cd.c  ft_env.c ft_export.c ft_unset.c ft_exit.c
 
@@ -67,24 +67,24 @@ ENV				=	set_env.c ft_split_env.c
 
 EXEC			=	exec_one.c
 
+CMDS 			=	commands.c command_utils.c one_command.c
+
+SIG				=
+
 #VARIABLES		= 	ft_replace_variable.c
 
 SRCS			+=	$(addprefix $(SRC_DIR), $(MS_SRCS))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(BUILTINS_DIR), $(BUILTINS)))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(ENV_DIR), $(ENV)))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(EXEC_DIR), $(EXEC)))
+SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(CMDS_DIR), $(CMDS)))
+
 #SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(VAR_DIR), $(VARIABLES)))
 
 
 
 OBJS			=	$(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 DEPS			+=	$(addsuffix .d, $(basename $(OBJS)))
-
-
-
-SRCS_BONUS		+=	$(addprefix $(SRC_DIR), $(MS_SRCS_BONUS))
-OBJS_BONUS		=	$(addprefix $(OBJ_DIR), $(SRCS_BONUS:.c=.o))
-DEPS_BONUS		+=	$(addsuffix .d, $(basename $(OBJS_BONUS)))
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅───OBJECT DEPENDENCY TARGET───❅••❅──────✧❅✦❅✧──────❅•#
@@ -106,11 +106,6 @@ $(NAME):	$(LIBFT) $(OBJS)
 			@$(CC) $(CFLAGS) $(RLFLAGS) -L$(LDFLAGS) $(XFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
 			@echo "$(OK_COLOR)$(NAME) Compiled!$(NO_COLOR)"
 
-bonus:		$(NAME_BONUS)
-
-$(NAME_BONUS): $(OBJS_BONUS)
-			@$(CC) $(CFLAGS) $(LIBFT) $(OBJS_BONUS) -o $(NAME_BONUS)
-			@echo "$(OK_COLOR)$(NAME) Bonus Compiled!$(NO_COLOR)"
 clean:
 			@make clean -sC $(LIBFT_DIR)
 			@$(RM) -r $(OBJ_DIR)

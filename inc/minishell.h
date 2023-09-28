@@ -121,7 +121,10 @@ char *ft_return_argument(t_minishell *data);
 
 int	env_builtin(t_minishell *data);
 
-
+// cmds
+int ft_one_command(t_minishell *data);
 // EXECS
 int exec_one(t_minishell *data);
+
+
 #endif

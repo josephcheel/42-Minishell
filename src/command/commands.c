@@ -1,4 +1,4 @@
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 char **ft_separate_cmds(t_minishell *data)
 {
@@ -11,15 +11,6 @@ char **ft_separate_cmds(t_minishell *data)
 int	ft_multiple_commands(t_minishell *data)
 {
 	data->mul_cmds = ft_separate_cmds(data);
-	return (0);
-}
-
-int ft_one_command(t_minishell *data)
-{
-	if (is_builtin(data) == 1)
-		return (0);
-	else
-		exec_one(data);
 	return (0);
 }
 
