@@ -11,10 +11,11 @@
 #include <stdio.h>
 # include <readline/readline.h>
 #include <readline/history.h>
-#include <stdbool.h>
+//#include <stdbool.h>
 # include "split_quotes.h"
-# include <termios.h>
+# include <termios.h> //tcsetattr()
  #include <sys/errno.h>
+
 
 typedef struct s_minishell{
 
@@ -37,6 +38,7 @@ typedef struct s_minishell{
 
 }t_minishell;
 
+struct termios old_settings;
 
 // split bultin, one and multiple cmds
 int	ft_commands(t_minishell *data);
