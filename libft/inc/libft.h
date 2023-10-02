@@ -77,13 +77,15 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void *));
 
 /* Extra	*/
-int		ft_array_size(char **array);
-char	**ft_array_free(char **Array, int i);
-char	*ft_substr_free(char const *s, unsigned int start, size_t len, int one_if_free_s);
+int			ft_array_size(char **array);
+char		**ft_array_free(char **Array, int i);
+char		*ft_substr_free(char const *s, unsigned int start, size_t len, int one_if_free_s);
 
-char	*ft_strlwr(char *str);
-char	*ft_strjoinfree(char *s1, char *s2);
-void	ft_putstr(char *str);
-long	ft_atol(const char *str);
-int		ft_isnumeric(char *str);
+char		*ft_strlwr(char *str);
+char		*ft_strjoinfree(char *s1, char *s2);
+void		ft_putstr(char *str);
+long		ft_atol(const char *str);
+int			ft_isnumeric(char *str);
+long long	ft_atoll(const char *str);
+int	ft_strcmp(char *s1, char *s2);
 #endif

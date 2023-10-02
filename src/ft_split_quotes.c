@@ -57,14 +57,14 @@ int	ft_count_words(char *str, int words)
 		if (str[i] == 39 && str[i - 1] != 92)
 		{
 			i++;
-			while (isnotquote(str, i, '\"'))
+			while (isnotquote(str, i, '\"') && isnotquote(str, i, '\''))
 				i++;
 			words++;
 		}
 		else if (str[i] == 34 && str[i - 1] != 92)
 		{
 			i++;
-			while (isnotquote(str, i, '\"'))
+			while (isnotquote(str, i, '\"')  && isnotquote(str, i, '\''))
 				i++;
 			words++;
 		}
