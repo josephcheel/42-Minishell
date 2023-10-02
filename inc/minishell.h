@@ -6,13 +6,24 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <signal.h> //why not usefull?
+#include <sys/types.h> //pthread
+#include <sys/stat.h> //fstat(), lstat(), and stat() struct
+#include <sys/wait.h> // constants for use with waitpid()
+#include <unistd.h>
+#include <stdlib.h>
+#include <signal.h> //why not usefull?
 # include <dirent.h> //format of directory entries (init of a directory)
 # include "../libft/inc/libft.h"
 #include <stdio.h>
+#include <stdio.h>
 # include <readline/readline.h>
+#include <readline/history.h>
+//#include <stdbool.h>
 #include <readline/history.h>
 #include <stdbool.h>
 # include "split_quotes.h"
+# include <termios.h> //tcsetattr()
+ #include <sys/errno.h>
 
 
 typedef struct s_minishell{
@@ -30,8 +41,13 @@ typedef struct s_minishell{
 	int		last_return_nbr;
 	t_list	*lstenv;
 
+	struct termios original_termios;
+	struct termios new_termios;
+	
+
 }t_minishell;
 
+struct termios old_settings;
 
 // split bultin, one and multiple cmds
 int	ft_commands(t_minishell *data);
@@ -105,6 +121,9 @@ int	env_builtin(t_minishell *data);
 int ft_one_command(t_minishell *data);
 // EXECS
 int exec_one(t_minishell *data);
+
+//termios 
+int	init_termios(t_minishell *data);
 
 
 #endif

@@ -11,8 +11,10 @@ int ft_one_command(t_minishell *data)
 		pid = fork();
 		if (pid == 0)
 			exec_one(data);
-		if (waitpid(pid, NULL, 0) == -1)
-			ft_putstr_fd("ERROR", 2);
+		wait(&pid);
+		// kill(0, SIGKILL);
+		// if (waitpid(pid, NULL, 0) == -1)
+		// 	eft_putstr_fd("ERROR", 2);
 	}
 	return (0);
 }

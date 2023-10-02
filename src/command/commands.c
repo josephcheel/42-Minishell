@@ -27,7 +27,9 @@ int	ft_commands(t_minishell *data)
 	if (ft_has_valid_quotes(data->raw_cmd) == 0)
 		return (write(2, "quote>\n", 8));
 	ft_init_data(data);
-	// printf("%s", data->cmd[0]);
+	// printf("$%s$", data->cmd[1]);
+	// return (0);
+	
 	if (data->nbr_of_cmds  == 1)
 		ft_one_command(data);
 	else

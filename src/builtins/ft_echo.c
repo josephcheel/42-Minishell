@@ -13,7 +13,7 @@ int echo_builtin(t_minishell *data, int n_option)
 		{
 			if (ft_strchr(data->cmd[i],'$'))
 				printf("[%s] string has \"$\"\n", data->cmd[i]);
-			printf("%s ", data->cmd[i]);
+			printf("%s", data->cmd[i]);
 		}
 	}
 	if (n_option == 0)
