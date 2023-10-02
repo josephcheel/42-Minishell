@@ -1,17 +1,17 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
-//#include <sys/types.h> //pthread
-//#include <sys/stat.h> //fstat(), lstat(), and stat() struct
-//#include <sys/wait.h> // constants for use with waitpid()
-//#include <unistd.h>
-//#include <stdlib.h>
-//#include <signal.h> //why not usefull?
+#include <sys/types.h> //pthread
+#include <sys/stat.h> //fstat(), lstat(), and stat() struct
+#include <sys/wait.h> // constants for use with waitpid()
+#include <unistd.h>
+#include <stdlib.h>
+#include <signal.h> //why not usefull?
 # include <dirent.h> //format of directory entries (init of a directory)
 # include "../libft/inc/libft.h"
-//#include <stdio.h>
+#include <stdio.h>
 # include <readline/readline.h>
-//#include <readline/history.h>
-//#include <stdbool.h>
+#include <readline/history.h>
+#include <stdbool.h>
 # include "split_quotes.h"
 
 
