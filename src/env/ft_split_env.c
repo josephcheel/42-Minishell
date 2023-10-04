@@ -6,12 +6,9 @@ char **ft_split_env(char *line)
 	char **split;
 
 	find = 0;
-	while (line[find])
-	{
-		if (line[find] == '=')
-			break ;
-		find++;
-	}
+	if (!ft_strchr(line, '='))
+		return (NULL);
+	find = ft_strchr(line, '=') - line;
 	split = malloc(sizeof(char *) * (3));
 	split[0] = ft_substr(line, 0, find);
 	split[1] = ft_substr(line, find + 1, ft_strlen(line));

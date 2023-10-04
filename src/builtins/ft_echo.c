@@ -11,9 +11,10 @@ int echo_builtin(t_minishell *data, int n_option)
 		i = ft_cmdsize(data->cmd) - 1;
 		while (++i < count)
 		{
-			if (ft_strchr(data->cmd[i],'$'))
-				printf("[%s] string has \"$\"\n", data->cmd[i]);
+			// if (ft_strchr(data->cmd[i],'$'))
+				// printf("[%s] string has \"$\"\n", data->cmd[i]);
 			printf("%s", data->cmd[i]);
+			printf(" ");
 		}
 	}
 	if (n_option == 0)

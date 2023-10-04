@@ -13,17 +13,20 @@
 #include <stdlib.h>
 #include <signal.h> //why not usefull?
 # include <dirent.h> //format of directory entries (init of a directory)
-# include "../libft/inc/libft.h"
-#include <stdio.h>
+# include <stddef.h>
 #include <stdio.h>
 # include <readline/readline.h>
 #include <readline/history.h>
-//#include <stdbool.h>
 #include <readline/history.h>
 #include <stdbool.h>
-# include "split_quotes.h"
+
 # include <termios.h> //tcsetattr()
- #include <sys/errno.h>
+#include <sys/errno.h>
+
+# include "../libft/inc/libft.h"
+# include "environment.h"
+# include "variables.h"
+# include "split_quotes.h"
 
 
 typedef struct s_minishell{
@@ -39,7 +42,8 @@ typedef struct s_minishell{
 	int		nbr_of_cmds;
 
 	int		last_return_nbr;
-	t_list	*lstenv;
+	// t_list	*lstenv;
+	t_env	*lstenv;
 
 	struct termios original_termios;
 	struct termios new_termios;
@@ -81,13 +85,13 @@ char *display_prompt_msg(void);
 int	init_env(t_minishell *data, char **env);
 char **ft_split_env(char *line);
 
-t_list	*ft_lstfind_name(t_list **lst, char *find);
+// t_list	*ft_lstfind_name(t_list **lst, char *find);
 
 char	*ft_replace_variable(t_minishell *data);
 char *ft_return_argument(t_minishell *data);
 
 int	ft_is_variable_export(t_minishell *data, char *argument);
-int	ft_isvariable(t_minishell *data, char *argument);
+int	ft_isvariable(t_env *head, char *id);
 
 char	**ft_split_quotes(char *str);
 
@@ -110,7 +114,7 @@ int	cd_builtin(t_minishell *data);
 int	init_env(t_minishell *data, char **env);
 char **ft_split_env(char *line);
 
-t_list	*ft_lstfind_name(t_list **lst, char *find);
+// t_list	*ft_lstfind_name(t_list **lst, char *find);
 
 char	*ft_replace_variable(t_minishell *data);
 char *ft_return_argument(t_minishell *data);

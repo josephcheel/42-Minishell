@@ -37,7 +37,6 @@ ENV_DIR			=	env/
 VAR_DIR			= 	variables/
 EXEC_DIR		=	exec/
 CMDS_DIR		= 	command/
-#TERM_DIR		=	termios/
 
 OBJ_DIR			=	build/
 
@@ -65,12 +64,13 @@ MS_SRCS			=	main.c display_prompt.c ft_split_quotes.c\
 
 BUILTINS	 	=	is_builtin.c ft_echo.c ft_pwd.c ft_cd.c  ft_env.c ft_export.c ft_unset.c ft_exit.c
 
-ENV				=	set_env.c ft_split_env.c
+ENV				=	init_env.c ft_split_env.c env_lstcreate.c env_lstutils.c env_lstprint.c
 
 EXEC			=	exec_one.c
 
 CMDS 			=	commands.c command_utils.c one_command.c
 
+VARIABLES		=	ft_isvar.c ft_addvar.c ft_setvar.c
 #SIG				=
 
 #TERM			= init_termios.c
@@ -82,9 +82,8 @@ SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(BUILTINS_DIR), $(BUILTINS)))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(ENV_DIR), $(ENV)))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(EXEC_DIR), $(EXEC)))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(CMDS_DIR), $(CMDS)))
+SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(VAR_DIR), $(VARIABLES)))
 #SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(TERM_DIR), $(TERM)))
-#SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(VAR_DIR), $(VARIABLES)))
-
 
 
 OBJS			=	$(addprefix $(OBJ_DIR), $(SRCS:.c=.o))

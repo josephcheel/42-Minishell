@@ -2,12 +2,14 @@
 
 int	env_builtin(t_minishell *data)
 {
-	t_list *temp;
+	t_env *temp;
 
 	temp = data->lstenv;
 	while (temp)
 	{
-		printf("%s\n", (char *)temp->content);
+		printf("%s", temp->id);
+		printf("=");
+		printf("%s\n", temp->value);
 		temp = temp->next;
 	}
 	return 1;
