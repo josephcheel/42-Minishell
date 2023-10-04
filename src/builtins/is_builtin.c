@@ -22,7 +22,7 @@ int is_builtin(t_minishell *data)
 		return (unset_builtin(data));
 	else if (ft_strncmp(ft_strlwr(data->cmd[0]), "env", 4) == 0 && data->cmd_size == 1) //  ignores case
 		return (env_builtin(data));
-	else if (ft_strncmp(data->cmd[0], "exit", 5) == 0 && data->cmd_size >= 1) // only lower caser
+	else if (ft_strncmp(data->cmd[0], "exit", 4) == 0 && data->cmd_size >= 1) // only lower caser
 		return(exit_builtin(data));
 	return (0);
 }

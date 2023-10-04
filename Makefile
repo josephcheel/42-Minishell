@@ -32,12 +32,12 @@ CP			=	cp -f
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
 SRC_DIR			=	src/
-BUILTINS_DIR	=	builtins/
+BUILTINS_DIR		=	builtins/
 ENV_DIR			=	env/
 VAR_DIR			= 	variables/
 EXEC_DIR		=	exec/
 CMDS_DIR		= 	command/
-TERM_DIR		=	termios/
+#TERM_DIR		=	termios/
 
 OBJ_DIR			=	build/
 
@@ -50,12 +50,12 @@ LIBFT			=	libft/libft.a
 INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 
 # Flags for Campus
-LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
-RFLAGS = /Users/${USER}/.brew/opt/readline/include
+# LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
+# RFLAGS = /Users/${USER}/.brew/opt/readline/include
 
 # Flags for Home
-# LDFLAGS	=/opt/homebrew/opt/readline/lib
-# RFLAGS	= /opt/homebrew/opt/readline/include
+ LDFLAGS	=/opt/homebrew/opt/readline/lib
+ RFLAGS	= /opt/homebrew/opt/readline/include
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─SORCES─✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
@@ -71,9 +71,9 @@ EXEC			=	exec_one.c
 
 CMDS 			=	commands.c command_utils.c one_command.c
 
-SIG				=
+#SIG				=
 
-TERM			= init_termios.c
+#TERM			= init_termios.c
 
 #VARIABLES		= 	ft_replace_variable.c
 
@@ -82,7 +82,7 @@ SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(BUILTINS_DIR), $(BUILTINS)))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(ENV_DIR), $(ENV)))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(EXEC_DIR), $(EXEC)))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(CMDS_DIR), $(CMDS)))
-SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(TERM_DIR), $(TERM)))
+#SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(TERM_DIR), $(TERM)))
 #SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(VAR_DIR), $(VARIABLES)))
 
 
