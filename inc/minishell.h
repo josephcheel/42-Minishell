@@ -21,7 +21,8 @@
 #include <stdbool.h>
 
 # include <termios.h> //tcsetattr()
-#include <sys/errno.h>
+# include <sys/errno.h>
+# include <fcntl.h>
 
 # include "../libft/inc/libft.h"
 # include "environment.h"

@@ -98,3 +98,12 @@ main
   |->ft_commands
   |->execve 1 or multiple
   |->waitpid
+
+
+  redirections:
+
+  standard input //user keyboard
+  standard output, error output //on screen ouput
+  < write in file
+  > capture from file
+  << >> write or capture to the end of file
