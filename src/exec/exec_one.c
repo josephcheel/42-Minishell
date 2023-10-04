@@ -1,11 +1,10 @@
 #include "../../inc/minishell.h"
 
-int exec_one(t_minishell *data)
+void exec_one(t_minishell *data)
 {
-	if (execve(find_command_route_env(data->env, data->raw_cmd), data->cmd, NULL) == -1)
-	{
-		// perror("");
-		// ft_putstr_fd("command not found\n", 2);
-	}
-	return (0);
+	execve(find_command_route_env(data->env, data->raw_cmd), data->cmd, data->env);
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(data->cmd[0], 2);
+	ft_putstr_fd(": command not found\n", 2);
+	exit (127);
 }

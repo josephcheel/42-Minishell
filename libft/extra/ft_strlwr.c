@@ -2,12 +2,14 @@
 
 char *ft_strlwr(char *str)
 {
-	int i;
+	int		i;
+	char	*new_str;
 
+	new_str = ft_strdup(str);
 	i = -1;
-	if (!str)
+	if (!str || !new_str)
 		return (NULL);
 	while (str[++i])
-		str[i] = ft_tolower(str[i]);
-	return (str);
+		new_str[i] = ft_tolower(str[i]);
+	return (new_str);
 }

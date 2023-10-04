@@ -120,7 +120,7 @@ int	env_builtin(t_minishell *data);
 // cmds
 int ft_one_command(t_minishell *data);
 // EXECS
-int exec_one(t_minishell *data);
+void exec_one(t_minishell *data);
 
 //termios 
 int	init_termios(t_minishell *data);

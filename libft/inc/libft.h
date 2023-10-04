@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:01:53 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/09/26 12:49:43 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/02 20:15:48 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,5 @@ void		ft_putstr(char *str);
 long		ft_atol(const char *str);
 int			ft_isnumeric(char *str);
 long long	ft_atoll(const char *str);
-int	ft_strcmp(char *s1, char *s2);
+int			ft_strcmp(char *s1, char *s2);
 #endif
