@@ -15,7 +15,6 @@
 # include <dirent.h> //format of directory entries (init of a directory)
 # include "../libft/inc/libft.h"
 #include <stdio.h>
-#include <stdio.h>
 # include <readline/readline.h>
 #include <readline/history.h>
 //#include <stdbool.h>
@@ -23,7 +22,8 @@
 #include <stdbool.h>
 # include "split_quotes.h"
 # include <termios.h> //tcsetattr()
- #include <sys/errno.h>
+# include <sys/errno.h>
+# include <fcntl.h>
 
 
 typedef struct s_minishell{
