@@ -17,7 +17,6 @@ int	ft_isstralnum(char *str)
 int	main(int ac, char **av, char **env)
 {
 	t_minishell	data;
-	// char 		*line;
 	// struct termios old_settings;
 	// struct termios new_settings;
 
@@ -44,15 +43,10 @@ int	main(int ac, char **av, char **env)
 		perror("signal");
 		return(1);
 	}
+	
 	while (1)
 	{
-		//line = readline();
-		//if (!line)
-		//	break; //ctrl + d
 		data.raw_cmd = display_prompt_msg();
-		//line = readline(data.raw_cmd);
-		//if (!line)
-		//	break; //ctrl + d
 		data.status = 0;
 		if (!data.raw_cmd)
 		{
@@ -63,7 +57,6 @@ int	main(int ac, char **av, char **env)
 		if (ft_strlen(data.raw_cmd) > 0 && ft_isstralnum(data.raw_cmd))
 			ft_commands(&data);
 		
-		// add_history(line);
 		//free(line);
 	}
 	//restore originial terminal settings

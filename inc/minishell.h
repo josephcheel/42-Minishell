@@ -88,7 +88,7 @@ char **ft_split_env(char *line);
 
 // t_list	*ft_lstfind_name(t_list **lst, char *find);
 
-char	*ft_replace_variable(t_minishell *data);
+char	*ft_replace_variable(t_minishell *data, char *variable);
 char *ft_return_argument(t_minishell *data);
 
 int	ft_is_variable_export(t_minishell *data, char *argument);
@@ -117,7 +117,7 @@ char **ft_split_env(char *line);
 
 // t_list	*ft_lstfind_name(t_list **lst, char *find);
 
-char	*ft_replace_variable(t_minishell *data);
+char	*ft_replace_string(char *str, char *replace, char *replacer);
 char *ft_return_argument(t_minishell *data);
 
 int	env_builtin(t_minishell *data);
@@ -130,5 +130,7 @@ void exec_one(t_minishell *data);
 //termios 
 int	init_termios(t_minishell *data);
 
-
+//variables
+// char *ft_parse_variables(t_minishell *data);
+char	*ft_parse_variables(t_minishell *data);
 #endif

@@ -49,12 +49,12 @@ LIBFT			=	libft/libft.a
 INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 
 # Flags for Campus
-# LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
-# RFLAGS = /Users/${USER}/.brew/opt/readline/include
+LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
+RFLAGS = /Users/${USER}/.brew/opt/readline/include
 
 # Flags for Home
- LDFLAGS	=/opt/homebrew/opt/readline/lib
- RFLAGS	= /opt/homebrew/opt/readline/include
+#  LDFLAGS	=/opt/homebrew/opt/readline/lib
+#  RFLAGS	= /opt/homebrew/opt/readline/include
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─SORCES─✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
@@ -70,7 +70,7 @@ EXEC			=	exec_one.c
 
 CMDS 			=	commands.c command_utils.c one_command.c
 
-VARIABLES		=	ft_isvar.c ft_addvar.c ft_setvar.c
+VARIABLES		=	ft_isvar.c ft_addvar.c ft_setvar.c ft_parsevar.c ft_replacevar.c
 #SIG				=
 
 #TERM			= init_termios.c

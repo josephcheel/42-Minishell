@@ -63,6 +63,6 @@ int	exit_builtin(t_minishell *data)
 			exit(nbr);
 		}
 	}
-	printf("STATUS 2 %d\n", data->status);
+	// printf("STATUS 2 %d\n", data->status);
 	exit(data->status);
 }

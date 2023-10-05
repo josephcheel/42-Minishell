@@ -17,7 +17,7 @@ int ft_one_command(t_minishell *data)
 		if (WIFEXITED(status))
 		{
 			data->status = WEXITSTATUS(status);
-			printf("STATUS %d\n", data->status);
+			// printf("STATUS %d\n", data->status);
 		}
 	}
 	return (0);
