@@ -38,7 +38,6 @@ int	exit_builtin(t_minishell *data)
 		else if (!ft_isnumeric(data->cmd[1]))
 		{
 			ft_putstr_fd("minishell: ", 2);
-			ft_putstr_fd("line 1: ", 2);
 			ft_putstr_fd("exit: ", 2);
 			ft_putstr_fd(data->cmd[1], 2);
 			ft_putstr_fd(": numeric argument required\n", 2);
@@ -49,7 +48,6 @@ int	exit_builtin(t_minishell *data)
 			if (ft_is_bigger_maxll(data->cmd[1]) == 1)
 			{
 				ft_putstr_fd("minishell: ", 2);
-				ft_putstr_fd("line 1: ", 2);
 				ft_putstr_fd("exit: ", 2);
 				ft_putstr_fd(data->cmd[1], 2);
 				ft_putstr_fd(": numeric argument required\n", 2);
@@ -65,5 +63,6 @@ int	exit_builtin(t_minishell *data)
 			exit(nbr);
 		}
 	}
-	exit(EXIT_SUCCESS);
+	printf("STATUS 2 %d\n", data->status);
+	exit(data->status);
 }

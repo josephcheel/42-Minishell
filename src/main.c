@@ -53,7 +53,7 @@ int	main(int ac, char **av, char **env)
 		//line = readline(data.raw_cmd);
 		//if (!line)
 		//	break; //ctrl + d
-		data.last_return_nbr = 0;
+		data.status = 0;
 		if (!data.raw_cmd)
 		{
 			if (isatty(STDIN_FILENO))

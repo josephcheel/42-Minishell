@@ -3,7 +3,7 @@
 int ft_one_command(t_minishell *data)
 {
 	int pid;
-	int code;
+	int status;
 
 	if (is_builtin(data) == 1)
 		return (0);
@@ -12,9 +12,13 @@ int ft_one_command(t_minishell *data)
 		pid = fork();
 		if (pid == 0)
 			exec_one(data);
-		// wait(&pid);
-		if (waitpid(pid, &code, 0) == -1)
+		if (waitpid(pid, &status, 0) == -1)
 			;
+		if (WIFEXITED(status))
+		{
+			data->status = WEXITSTATUS(status);
+			printf("STATUS %d\n", data->status);
+		}
 	}
 	return (0);
 }

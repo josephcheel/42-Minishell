@@ -42,7 +42,7 @@ typedef struct s_minishell{
 	int		cmd_and_arguments_size;
 	int		nbr_of_cmds;
 
-	int		last_return_nbr;
+	int		status;
 	// t_list	*lstenv;
 	t_env	*lstenv;
 
