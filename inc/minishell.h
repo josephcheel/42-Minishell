@@ -28,6 +28,7 @@
 # include "environment.h"
 # include "variables.h"
 # include "split_quotes.h"
+#include <sys/ioctl.h>
 
 
 typedef struct s_minishell{

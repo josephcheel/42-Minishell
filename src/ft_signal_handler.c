@@ -1,13 +1,14 @@
 #include "../inc/minishell.h"
 
+int	g_status;
 
 void signal_handler(int sig)
-{	
-		write(2, "\n", 1);
-		rl_replace_line("", 0);
+{
+	if (sig == SIGINT)
+	{
+		ioctl(STDIN_FILENO, TIOCSTI, "\n"); //Insert the given byte in the input queue.
+		//rl_replace_line("", 0);
 		rl_on_new_line();
-		rl_redisplay(); 
-		 //printf("test");
-
-	(void)sig;
+	}
 }
+
