@@ -6,17 +6,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <signal.h> //why not usefull?
-#include <sys/types.h> //pthread
-#include <sys/stat.h> //fstat(), lstat(), and stat() struct
-#include <sys/wait.h> // constants for use with waitpid()
-#include <unistd.h>
-#include <stdlib.h>
-#include <signal.h> //why not usefull?
 # include <dirent.h> //format of directory entries (init of a directory)
 # include <stddef.h>
 #include <stdio.h>
 # include <readline/readline.h>
-#include <readline/history.h>
 #include <readline/history.h>
 #include <stdbool.h>
 
@@ -46,25 +39,23 @@ typedef struct s_minishell{
 	// t_list	*lstenv;
 	t_env	*lstenv;
 
-	struct termios original_termios;
-	struct termios new_termios;
+	struct termios old_settings;
+	struct termios new_settings;
 	
 
 }t_minishell;
 
-struct termios old_settings;
+// struct termios old_settings;
 
 // split bultin, one and multiple cmds
 int	ft_commands(t_minishell *data);
+int ft_one_command(t_minishell *data);
+int	ft_multiple_commands(t_minishell *data);
 
 // Command utils 
 int		ft_cmdsize(char **command);
 int	ft_count_commands(char *raw_command);
 
-// Parsin one not-builtin command 
-int		commandline(char *str1, char *str2);
-char	**command_add(char **route, char *command);
-char	*find_command_route_env(char **env, char *command);
 
 //builtin 
 int is_builtin(t_minishell *data);
@@ -106,24 +97,12 @@ int		commandline(char *str1, char *str2);
 char	**command_add(char **route, char *command);
 char	*find_command_route_env(char **env, char *command);
 
-//builtin 
-int is_builtin(t_minishell *data);
-int echo_builtin(t_minishell *data, int n_option);
-int pwd_builtin(t_minishell *data);
-int	cd_builtin(t_minishell *data);
-
 int	init_env(t_minishell *data, char **env);
 char **ft_split_env(char *line);
-
-// t_list	*ft_lstfind_name(t_list **lst, char *find);
 
 char	*ft_replace_string(char *str, char *replace, char *replacer);
 char *ft_return_argument(t_minishell *data);
 
-int	env_builtin(t_minishell *data);
-
-// cmds
-int ft_one_command(t_minishell *data);
 // EXECS
 void exec_one(t_minishell *data);
 
