@@ -1,19 +1,5 @@
 #include "../../inc/minishell.h"
 
-char **ft_separate_cmds(t_minishell *data)
-{
-	char **separate_cmds;
-
-	separate_cmds = ft_split(data->raw_cmd, '|');
-	return (separate_cmds);	
-}
-
-int	ft_multiple_commands(t_minishell *data)
-{
-	data->mul_cmds = ft_separate_cmds(data);
-	return (0);
-}
-
 void	ft_init_data_one_cmd(t_minishell *data)
 {
 	data->cmd = ft_split_quotes(data->raw_cmd);
