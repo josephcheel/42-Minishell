@@ -1,7 +1,5 @@
 #include "../inc/minishell.h"
 
-int	g_status;
-
 void signal_handler(int sig)
 {
 	if (sig == SIGINT)

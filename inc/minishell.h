@@ -113,4 +113,7 @@ int	init_termios(t_minishell *data);
 //variables
 // char *ft_parse_variables(t_minishell *data);
 char	*ft_parse_variables(t_minishell *data);
+
+
+void is_redirect(char	*raw_cmd);
 #endif
