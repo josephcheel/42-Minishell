@@ -26,6 +26,8 @@
 
 typedef struct s_minishell{
 
+	pid_t	pid;
+	int 	fd[2];
 	char	**env;
 	char	**cmd;
 	char	**mul_cmds;
@@ -52,14 +54,14 @@ typedef struct s_minishell{
 int	ft_commands(t_minishell *data);
 int ft_one_command(t_minishell *data);
 int	ft_multiple_commands(t_minishell *data);
-
+char **ft_separate_cmds(t_minishell *data);
 // Command utils 
 int		ft_cmdsize(char **command);
 int	ft_count_commands(char *raw_command);
 
 
 //builtin 
-int is_builtin(t_minishell *data);
+int is_builtin(t_minishell *data, char **cmd);
 int echo_builtin(t_minishell *data, int n_option);
 int pwd_builtin(t_minishell *data);
 int	cd_builtin(t_minishell *data);
@@ -106,7 +108,7 @@ char *ft_return_argument(t_minishell *data);
 
 // EXECS
 void exec_one(t_minishell *data);
-
+void exec_multiple(t_minishell *data, char *cmd);
 //termios 
 int	init_termios(t_minishell *data);
 

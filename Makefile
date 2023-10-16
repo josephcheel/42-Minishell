@@ -64,9 +64,9 @@ MS_SRCS			=	main.c display_prompt.c ft_split_quotes.c\
 
 BUILTINS	 	=	is_builtin.c ft_echo.c ft_pwd.c ft_cd.c  ft_env.c ft_export.c ft_unset.c ft_exit.c
 
-ENV				=	init_env.c ft_split_env.c env_lstcreate.c env_lstutils.c env_lstprint.c
+ENV				=	init_env.c ft_split_env.c env_lstcreate.c env_lstutils.c env_lstprint.c ft_env_to_array.c
 
-EXEC			=	exec_one.c
+EXEC			=	exec_one.c exec_multiple.c
 
 CMDS 			=	commands.c command_utils.c one_command.c multiple_commands.c
 

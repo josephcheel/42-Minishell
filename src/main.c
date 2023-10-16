@@ -1,41 +1,41 @@
 #include "../inc/minishell.h"
 
-int	ft_isstralnum(char *str)
-{
-	int i;
 
-	i = 0;
-	while (str[i])
+int init_term(t_minishell *data)
+{
+	//get terminal settings
+	if (tcgetattr(STDIN_FILENO, &data->new_settings) != 0) 
 	{
-		if (ft_isalnum(str[i]))
-			return 1;
-		i++;
+		perror("tcgetattr");
+		return (1);
 	}
+ 	data->old_settings = data->new_settings;
+	data->new_settings.c_lflag &= ~ECHOCTL;
+	if (tcsetattr(STDIN_FILENO, TCSANOW, &data->new_settings) != 0) {
+        perror("tcsetattr");
+        return 1;
+    }
+	return (0);
+}
+
+int	restore_term(t_minishell *data)
+{
+	//restore originial terminal settings
+	if (tcsetattr(STDIN_FILENO, TCSANOW, &data->old_settings) != 0) {
+        perror("tcsetattr");
+        return 1;
+    }
 	return (0);
 }
 
 int	main(int ac, char **av, char **env)
 {
 	t_minishell	data;
-	// char 		*line;
-	// struct termios old_settings;
-	// struct termios new_settings;
 
 	if (ac != 1 && !av)
 		return (1);
 	init_env(&data, env);
-	//get terminal settings
-	// if (tcgetattr(STDIN_FILENO, &new_settings) != 0) 
-	// {
-	// 	perror("tcgetattr");
-	// 	return (1);
-	// }
- 	// old_settings = new_settings;
-	// new_settings.c_lflag &= ~ECHOCTL;
-	// if (tcsetattr(STDIN_FILENO, TCSANOW, &new_settings) != 0) {
-    //     perror("tcsetattr");
-    //     return 1;
-    // }
+	init_term(&data);
 	
 	//for ctrl + c
 	/*	if (signal(SIGINT, signal_handler) == SIG_ERR)
@@ -48,13 +48,7 @@ int	main(int ac, char **av, char **env)
 	{
 		signal(SIGINT, signal_handler);
 		signal(SIGQUIT, SIG_IGN);
-		//line = readline();
-		//if (!line)
-		//	break; //ctrl + d
 		data.raw_cmd = display_prompt_msg();
-		//line = readline(data.raw_cmd);
-		//if (!line)
-		//	break; //ctrl + d
 		data.status = 0;
 		if (!data.raw_cmd)
 		{
@@ -62,16 +56,12 @@ int	main(int ac, char **av, char **env)
 			write(2, "exit\n", 6);
 			exit (EXIT_SUCCESS);
 		}
+		// printf("$%s$\n", data.raw_cmd);
 		if (ft_strlen(data.raw_cmd) > 0 && ft_isstralnum(data.raw_cmd))
 			ft_commands(&data);
-		
 		//free(line);
 	}
-	//restore originial terminal settings
-	// if (tcsetattr(STDIN_FILENO, TCSANOW, &old_settings) != 0) {
-    //     perror("tcsetattr");
-    //     return 1;
-    // }
+	restore_term(&data);
 
 	//ft_freemini(env);
 	return (0);
