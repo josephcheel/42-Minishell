@@ -49,6 +49,8 @@ int	main(int ac, char **av, char **env)
 		signal(SIGINT, signal_handler);
 		signal(SIGQUIT, SIG_IGN);
 		data.raw_cmd = display_prompt_msg();
+		if (!data.raw_cmd)
+			break; //ctrl + d
 		data.status = 0;
 		if (!data.raw_cmd)
 		{
@@ -56,10 +58,12 @@ int	main(int ac, char **av, char **env)
 			write(2, "exit\n", 6);
 			exit (EXIT_SUCCESS);
 		}
-		// printf("$%s$\n", data.raw_cmd);
+		//is_redirect(data.raw_cmd);
 		if (ft_strlen(data.raw_cmd) > 0 && ft_isstralnum(data.raw_cmd))
 			ft_commands(&data);
-		//free(line);
+		
+		
+	
 	}
 	restore_term(&data);
 

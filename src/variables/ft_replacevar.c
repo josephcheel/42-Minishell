@@ -6,6 +6,8 @@
 // 	char *before_rp;
 // 	char *after_rp;
 
+	after_rp = NULL;
+
 	
 // 	find = ft_strchr(str, '$');
 // 	before_rp = ft_substr(str, 0, find - str - 1);

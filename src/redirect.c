@@ -1,5 +1,31 @@
 #include "../inc/minishell.h"
 
+
+
+void is_redirect(char	*raw_cmd)
+{
+    int i;
+    i = 0;
+
+    while(raw_cmd[i])
+    {
+        while((ft_strcmp(&raw_cmd[i], "<") != 0) || ft_strcmp(&raw_cmd[i], ">") != 0)
+            i++;
+        if ((ft_strcmp(&raw_cmd[i], "<") == 0) && ft_strcmp(&raw_cmd[i + 1], "<") != 0)
+            printf("1");
+        else if ((ft_strcmp(&raw_cmd[i], ">") == 0) && ft_strcmp(&raw_cmd[i + 1], ">") != 0)
+            printf("2");
+        else if ((ft_strcmp(&raw_cmd[i], ">") == 0) && ft_strcmp(&raw_cmd[i + 1], ">") == 0)
+            printf("3");
+        else if ((ft_strcmp(&raw_cmd[i], "<") == 0) && ft_strcmp(&raw_cmd[i + 1], "<") == 0)
+            printf("4");
+    }
+}
+
+
+
+//-------------------------------------------------------------------------------
+/*
 void    in_file_top(TEXT, FILE)
 {
     int fd;
@@ -118,17 +144,4 @@ void from_file_bottom
     
     // This code will not be reached if execve is successful
     exit(0);
-}
-
-void redirect_select(XXX)
-{
-    if (>)
-        in_file_top(TEXT, FILE);
-    else if (<)
-        from_file_top(TEXT, FILE);
-    else if (>>)
-        in_file_bottom(TEXT, FILE);
-    else if (<<)
-        from_file_botttom(TEXT, FILE);
-
-}
+}*/
