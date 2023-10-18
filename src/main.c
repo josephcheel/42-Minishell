@@ -35,7 +35,7 @@ int	main(int ac, char **av, char **env)
 	if (ac != 1 && !av)
 		return (1);
 	init_env(&data, env);
-	// init_term(&data);
+	init_term(&data);
 	
 	//for ctrl + c
 	/*	if (signal(SIGINT, signal_handler) == SIG_ERR)
@@ -44,10 +44,10 @@ int	main(int ac, char **av, char **env)
 			return(1);
 			}
 	*/
+	
 	while (1)
 	{
 		signal(SIGINT, signal_handler);
-		signal(SIGQUIT, SIG_IGN);
 		data.raw_cmd = display_prompt_msg();
 		if (!data.raw_cmd)
 			break; //ctrl + d
@@ -63,7 +63,7 @@ int	main(int ac, char **av, char **env)
 			ft_commands(&data);
 
 	}
-	// restore_term(&data);
+	restore_term(&data);
 
 	//ft_freemini(env);
 	return (0);

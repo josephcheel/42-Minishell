@@ -22,6 +22,12 @@ int ft_export(t_minishell *data, char **cmd) //TODO: remove quote and spaces
 			variable = ft_split_env(cmd[i]);
 			if (ft_check_var_rules(variable[0]))
 				ft_set_variable(&data->lstenv, variable[0], variable[1]);
+			else
+			{
+				ft_putstr_fd("minishell: export: `", 2);
+				ft_putstr_fd(cmd[i], 2);
+				ft_putstr_fd("': not a valid identifier\n", 2);
+			}
 		}
 		else
 		{

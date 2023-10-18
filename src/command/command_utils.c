@@ -100,7 +100,7 @@ char	**command_add(char **route, char *command)
 	return (route);
 }
 
-char	*find_command_route_env(char **env, char *command)
+char	*find_command_route_env(t_env *lstenv, char **env, char *command)
 {
 	char	**route;
 	char	*line;
@@ -116,7 +116,10 @@ char	*find_command_route_env(char **env, char *command)
 	// while (!commandline("PATH", *env))
 	// 	env++;
 	// line = *env;
-	line = getenv("PATH");
+	if (ft_isvariable(lstenv, "PATH"))
+		line = getenv("PATH");
+	else
+		return (NULL);
 	// ft_putstr_fd(line, 2);
 	// ft_putstr_fd("\n", 2);
 	while (*line != '/')

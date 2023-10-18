@@ -100,7 +100,7 @@ int	ft_count_commands(char *raw_command);
 // Parsin one not-builtin command 
 int		commandline(char *str1, char *str2);
 char	**command_add(char **route, char *command);
-char	*find_command_route_env(char **env, char *command);
+char	*find_command_route_env(t_env *lstenv, char **env, char *command);
 
 int	init_env(t_minishell *data, char **env);
 char **ft_split_env(char *line);
