@@ -48,6 +48,22 @@
 // 	return (0);
 // }
 
+int ft_check_var_rules(char *var)
+{
+	int i;
+
+	i = 0;
+	if (ft_isdigit(var[i]))
+		return (0);
+	while (var[i])
+	{
+		if (ft_isalnum(var[i]) == 0 || var[i] != '_')
+			return (0);
+		i++;	
+	}
+	return (1);
+}
+
 int	export_builtin(t_minishell *data) //TODO: remove quote and spaces
 {
 	(void)data;
@@ -70,5 +86,21 @@ int	export_builtin(t_minishell *data) //TODO: remove quote and spaces
 // 		}
 // 		start++;
 // 	}
+	// t_env *temp;
+	
+
+	// while ()
+	// {
+	// 	if (ft_check_var_rules());
+	// 	{
+	// 		ft_split_env()
+	// 		ft_
+	// 		temp =ft_create_new_node();
+	// 		ft_insert_at_end(data->lstenv, temp);
+	// 	}
+	// }
+	
+	// data->cmd[1]
+	data->env = ft_env_to_array(data->lstenv);
  	return (1);	
 }

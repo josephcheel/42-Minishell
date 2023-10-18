@@ -25,8 +25,6 @@ int	exit_builtin(t_minishell *data)
 	long long	nbr;
 
 	ft_putstr_fd("exit\n", 2);
-	// if (data->cmd[1]) 
-	// 	data->cmd[1] = ft_strtrim(data->cmd[1], " ");
 	if (data->cmd_and_arguments_size >= 2)
 	{
 		if (ft_isnumeric(data->cmd[1]) && data->cmd_and_arguments_size >= 3)
