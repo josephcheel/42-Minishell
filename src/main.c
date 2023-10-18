@@ -35,7 +35,7 @@ int	main(int ac, char **av, char **env)
 	if (ac != 1 && !av)
 		return (1);
 	init_env(&data, env);
-	init_term(&data);
+	// init_term(&data);
 	
 	//for ctrl + c
 	/*	if (signal(SIGINT, signal_handler) == SIG_ERR)
@@ -58,14 +58,12 @@ int	main(int ac, char **av, char **env)
 			write(2, "exit\n", 6);
 			exit (EXIT_SUCCESS);
 		}
-		//is_redirect(data.raw_cmd);
+		// is_redirect(data.raw_cmd);
 		if (ft_strlen(data.raw_cmd) > 0 && ft_isstralnum(data.raw_cmd))
 			ft_commands(&data);
-		
-		
-	
+
 	}
-	restore_term(&data);
+	// restore_term(&data);
 
 	//ft_freemini(env);
 	return (0);

@@ -20,7 +20,7 @@ NAME		=	minishell
 CC			=	gcc
 RLFLAGS		= 	-lreadline 
 CFLAGS		=	-Wall -Werror -Wextra
-XFLAGS		= -fsanitize=address -g2 -g
+XFLAGS		=	-fsanitize=address -g2 -g
 
 AR			=	ar rcs
 RM			=	rm -f
@@ -71,7 +71,7 @@ EXEC			=	exec_one.c exec_multiple.c
 
 CMDS 			=	commands.c command_utils.c one_command.c multiple_commands.c
 
-VARIABLES		=	ft_isvar.c ft_addvar.c ft_setvar.c ft_parsevar.c ft_replacevar.c
+VARIABLES		=	ft_isvar.c ft_addvar.c ft_setvar.c ft_parsevar.c ft_replacevar.c ft_get_variable.c
 #SIG				=
 
 #TERM			= init_termios.c

@@ -5,7 +5,7 @@ int ft_one_command(t_minishell *data)
 	int pid;
 	int status;
 
-	if (is_builtin(data) == 1)
+	if (is_builtin(data, data->cmd) == 1)
 		return (0);
 	else
 	{

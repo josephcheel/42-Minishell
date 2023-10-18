@@ -62,10 +62,12 @@ int	ft_count_commands(char *raw_command);
 
 //builtin 
 int is_builtin(t_minishell *data, char **cmd);
-int echo_builtin(t_minishell *data, int n_option);
-int pwd_builtin(t_minishell *data);
-int	cd_builtin(t_minishell *data);
-int	env_builtin(t_minishell *data);
+int ft_echo(char **cmd, int n_option);
+// int echo_builtin(t_minishell *data, int n_option);
+int ft_pwd(char **cmd);
+int	ft_cd(t_minishell *data, char **cmd);
+// int	cd_builtin(t_minishell *data);
+int	ft_env(t_env *lstenv);
 int export_builtin(t_minishell *data);
 int	unset_builtin(t_minishell *data);
 int	exit_builtin(t_minishell *data);

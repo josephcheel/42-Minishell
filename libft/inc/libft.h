@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:01:53 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/04 20:15:56 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/17 18:10:04 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,20 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void *));
 
 /* Extra	*/
-int			ft_array_size(char **array);
-char		**ft_array_free(char **Array, int i);
-char		*ft_substr_free(char const *s, unsigned int start, size_t len, int one_if_free_s);
 
-char		*ft_strlwr(char *str);
-char		*ft_strjoinfree(char *s1, char *s2);
-void		ft_putstr(char *str);
-long		ft_atol(const char *str);
-int			ft_isnumeric(char *str);
-long long	ft_atoll(const char *str);
-int			ft_strcmp(char *s1, char *s2);
+int				ft_array_size(char **array);
+char			**ft_array_free(char **Array, int i);
+char			*ft_substr_free(char const *s, unsigned int start,
+					size_t len, int one_if_free_s);
+
+char			*ft_strlwr(char *str);
+char			*ft_strjoinfree(char *s1, char *s2);
+void			ft_putstr(char *str);
+long			ft_atol(const char *str);
+int				ft_isnumeric(char *str);
+long long		ft_atoll(const char *str);
+int				ft_strcmp(char *s1, char *s2);
+int				ft_isstralnum(char *str);
+int				ft_isupper(int c);
+int				ft_isstrupper(char *str);
 #endif

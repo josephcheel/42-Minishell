@@ -25,6 +25,8 @@ int	ft_has_valid_quotes(char *str)
 		return (1);
 	if (double_q % 2 == 0 && simple_q == 0)
 		return (1);
+	if (double_q % 2 == 0 && simple_q % 2 == 0)
+		return (1);
 	else
 		return 0;
 }
