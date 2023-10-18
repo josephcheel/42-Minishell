@@ -68,8 +68,8 @@ int ft_pwd(char **cmd);
 int	ft_cd(t_minishell *data, char **cmd);
 // int	cd_builtin(t_minishell *data);
 int	ft_env(t_env *lstenv);
-int export_builtin(t_minishell *data);
-int	unset_builtin(t_minishell *data);
+int ft_export(t_minishell *data, char **cmd);
+int	ft_unset(t_minishell *data, char **cmd);
 int	exit_builtin(t_minishell *data);
 //signals
 void signal_handler(int sig);
