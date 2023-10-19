@@ -4,11 +4,6 @@ char	*ft_replace_string(char *str, char *replace, char *replacer)
 {
 	char *result;
 	char *find;
-	char *before_rp;
-	char *after_rp;
-
-	after_rp = NULL;
-
 	
 	find = ft_strchr(str, '$');
 

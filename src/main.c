@@ -60,7 +60,7 @@ int	main(int ac, char **av, char **env)
 			write(2, "exit\n", 6);
 			exit (EXIT_SUCCESS);
 		}
-		// is_redirect(data.raw_cmd);
+	
 		if (ft_strlen(data.raw_cmd) > 0 && ft_isstralnum(data.raw_cmd))
 			ft_commands(&data);
 		dup2(data.std_in, STDIN_FILENO);

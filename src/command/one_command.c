@@ -4,8 +4,9 @@ int ft_one_command(t_minishell *data)
 {
 	int pid;
 	int status;
+	int redir_type;
 	// int code;
-
+		redir_type = is_redirect(data->raw_cmd);
 	if (is_builtin(data, data->cmd) == 1)
 		return (0);
 	else
