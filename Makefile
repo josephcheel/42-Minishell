@@ -52,9 +52,20 @@ INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 # LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
 # RFLAGS = /Users/${USER}/.brew/opt/readline/include
 
+#flags alex
+LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
+RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
+
+
+
 # Flags for Home
- LDFLAGS	=/opt/homebrew/opt/readline/lib
- RFLAGS	= /opt/homebrew/opt/readline/include
+ #LDFLAGS	=/opt/homebrew/opt/readline/lib
+ #RFLAGS	= /opt/homebrew/opt/readline/include
+
+ #flags alex home
+ #
+ LDFLAGS=/usr/local/opt/readline/lib
+ RFLAGS=/usr/local/opt/readline/include
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─SORCES─✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
