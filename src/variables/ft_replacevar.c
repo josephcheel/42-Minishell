@@ -4,12 +4,7 @@ char	*ft_replace_string(char *str, char *replace, char *replacer)
 {
 	char *result;
 	char *find;
-	char *before_rp;
-	char *after_rp;
 
-	after_rp = NULL;
-
-	
 	find = ft_strchr(str, '$');
 
 	size_t before_len = find - str;
@@ -45,8 +40,8 @@ char	*ft_replace_string(char *str, char *replace, char *replacer)
 			return(before_rp);
 		}
 	}
-	// free(before_rp);
-    // free(after_rp);
+	free(before_rp);
+    free(after_rp);
 
 	return (result);
 }

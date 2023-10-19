@@ -37,6 +37,7 @@ ENV_DIR			=	env/
 VAR_DIR			= 	variables/
 EXEC_DIR		=	exec/
 CMDS_DIR		= 	command/
+TERM_DIR		= 	terminal/
 
 OBJ_DIR			=	build/
 
@@ -49,34 +50,21 @@ LIBFT			=	libft/libft.a
 INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 
 # Flags for Campus Joseph
-# LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
-# RFLAGS = /Users/${USER}/.brew/opt/readline/include
+LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
+RFLAGS = /Users/${USER}/.brew/opt/readline/include
 
-#flags alex
-LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
-RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
-
-
-
-#flags alex Campus
-LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
-RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
-
-
+#Flags for Campus Alex
+# LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
+# RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
 
 # Flags for Home Joseph
-#  ##LDFLAGS	=/opt/homebrew/opt/readline/lib
-#  ##RFLAGS	= /opt/homebrew/opt/readline/include
+# LDFLAGS	=/opt/homebrew/opt/readline/lib
+# RFLAGS	= /opt/homebrew/opt/readline/include
 
- #flags alex home
- #
- LDFLAGS=/usr/local/opt/readline/lib
- RFLAGS=/usr/local/opt/readline/include
+ #Flags for Home alex
+#  LDFLAGS=/usr/local/opt/readline/lib
+#  RFLAGS=/usr/local/opt/readline/include
 
- #flags alex home
- #
- LDFLAGS=/usr/local/opt/readline/lib
- RFLAGS=/usr/local/opt/readline/include
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─SORCES─✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
@@ -94,9 +82,8 @@ EXEC			=	exec_one.c exec_multiple.c
 CMDS 			=	commands.c command_utils.c one_command.c multiple_commands.c
 
 VARIABLES		=	ft_isvar.c ft_addvar.c ft_setvar.c ft_parsevar.c ft_replacevar.c ft_get_variable.c ft_check_var_rules.c
-#SIG				=
 
-#TERM			= init_termios.c
+TERM			=	term_setting.c term_fd.c
 
 #VARIABLES		= 	ft_replace_variable.c
 
@@ -106,7 +93,7 @@ SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(ENV_DIR), $(ENV)))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(EXEC_DIR), $(EXEC)))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(CMDS_DIR), $(CMDS)))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(VAR_DIR), $(VARIABLES)))
-#SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(TERM_DIR), $(TERM)))
+SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(TERM_DIR), $(TERM)))
 
 
 OBJS			=	$(addprefix $(OBJ_DIR), $(SRCS:.c=.o))

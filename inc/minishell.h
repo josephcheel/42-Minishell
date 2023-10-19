@@ -61,14 +61,11 @@ char **ft_separate_cmds(t_minishell *data);
 int		ft_cmdsize(char **command);
 int	ft_count_commands(char *raw_command);
 
-
 //builtin 
 int is_builtin(t_minishell *data, char **cmd);
-int ft_echo(t_minishell *data, char **cmd, int n_option);
-// int echo_builtin(t_minishell *data, int n_option);
+int ft_echo(char **cmd, int n_option);
 int ft_pwd(char **cmd);
 int	ft_cd(t_minishell *data, char **cmd);
-// int	cd_builtin(t_minishell *data);
 int	ft_env(t_env *lstenv);
 int ft_export(t_minishell *data, char **cmd);
 int	ft_unset(t_minishell *data, char **cmd);
@@ -114,10 +111,13 @@ char *ft_return_argument(t_minishell *data);
 void exec_one(t_minishell *data);
 void exec_multiple(t_minishell *data, char *cmd);
 //termios 
-int	init_termios(t_minishell *data);
+int init_term(t_minishell *data);
+int	restore_term(t_minishell *data);
+int init_term_fd(t_minishell *data);
+int reset_term_fd(t_minishell *data);
 
+int	close_term_fd(t_minishell *data);
 //variables
-// char *ft_parse_variables(t_minishell *data);
 char	*ft_parse_variables(t_minishell *data);
 
 
