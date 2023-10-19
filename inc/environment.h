@@ -22,4 +22,5 @@ t_env	*ft_find_id(t_env *head, char *id);
 t_env	*ft_find_value(t_env *head, char *value);
 int		ft_listsize(t_env *head);
 
+char	**ft_env_to_array(t_env *head);
 #endif

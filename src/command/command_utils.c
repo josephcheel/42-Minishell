@@ -20,13 +20,41 @@ int	ft_count_commands(char *raw_command)
 	int	i;
 	int	nbr_cmd;
 	int	len_command;
-
+	int in_single;
+	int in_double;
 	i = -1;
+	
+	in_single = 0;
+	in_double = 0;
 	nbr_cmd = 1;
 	len_command = ft_strlen(raw_command);
 	while (++i < len_command)
-		if (raw_command[i] == '|')
+	{
+		if (raw_command[i] == '\"' || raw_command[i] == '\'')
+		{
+			if (raw_command[i] == '\"' && in_single == 0)
+				in_double++;
+			else if (raw_command[i] == '\'' && in_double == 0)
+				in_single++;
+			if (in_single == 2)
+			{
+				in_single = 0;
+			}
+			else if	(in_double == 2)
+			{
+				in_double = 0;
+			}
+		}
+		if (raw_command[i] == '|' && in_double == 0 && in_single == 0)
+		{
+			if (raw_command[i+1] == '|')
+			{
+				ft_putstr_fd("minishell: syntax error near unexpected token `|'\n",2);
+				return (0);
+			}
 			nbr_cmd++;
+		}
+	}
 	return (nbr_cmd);
 }
 
@@ -91,31 +119,43 @@ char	**command_add(char **route, char *command)
 	return (route);
 }
 
-char	*find_command_route_env(char **env, char *command)
+char	*find_command_route_env(t_env *lstenv, char **env, char *command)
 {
 	char	**route;
 	char	*line;
 	char	**temp;
 	int		i;
 
-	if (ft_strnstr(command, ".sh", ft_strlen(command))
-		&& !ft_strchr(command, '/'))
+	(void)env;
+	// if (ft_strnstr(command, ".sh", ft_strlen(command))
+	// 	&& !ft_strchr(command, '/'))
+	// 	return (NULL);
+	// if (ft_strnstr(command, ".sh", ft_strlen(command)))
+	// 	return (command);
+	// while (!commandline("PATH", *env))
+	// 	env++;
+	// line = *env;
+	if (ft_isvariable(lstenv, "PATH"))
+		line = getenv("PATH");
+	else
 		return (NULL);
-	if (ft_strnstr(command, ".sh", ft_strlen(command)))
-		return (command);
-	while (!commandline("PATH", *env))
-		env++;
-	line = *env;
+	// ft_putstr_fd(line, 2);
+	// ft_putstr_fd("\n", 2);
 	while (*line != '/')
 		line++;
 	route = ft_split(line, ':');
 	temp = ft_split(command, ' ');
+	// char *ret = ft_strtrim(temp[0], " ");
+	// ft_putstr_fd(ret, 2);
+	// ft_putstr_fd("\n", 2);
 	route = command_add(route, temp[0]);
+	// ft_putstr_fd(*route, 2);
+	// ft_putstr_fd("\n", 2);
 	i = 0;
 	while (route[i] && access(route[i], F_OK) == -1) //access?
 		i++;
 	if (!route[i])
-		return (command);
+		return (ft_strtrim(command, " "));
 	return (route[i]);
 //Don't understand this part
 }

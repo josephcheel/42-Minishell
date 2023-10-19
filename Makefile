@@ -20,7 +20,7 @@ NAME		=	minishell
 CC			=	gcc
 RLFLAGS		= 	-lreadline 
 CFLAGS		=	-Wall -Werror -Wextra
-XFLAGS		= -fsanitize=address -g2 -g
+XFLAGS		=	-fsanitize=address -g2 -g
 
 AR			=	ar rcs
 RM			=	rm -f
@@ -65,13 +65,13 @@ MS_SRCS			=	main.c display_prompt.c ft_split_quotes.c\
 
 BUILTINS	 	=	is_builtin.c ft_echo.c ft_pwd.c ft_cd.c  ft_env.c ft_export.c ft_unset.c ft_exit.c
 
-ENV				=	init_env.c ft_split_env.c env_lstcreate.c env_lstutils.c env_lstprint.c
+ENV				=	init_env.c ft_split_env.c env_lstcreate.c env_lstutils.c env_lstprint.c ft_env_to_array.c
 
-EXEC			=	exec_one.c
+EXEC			=	exec_one.c exec_multiple.c
 
 CMDS 			=	commands.c command_utils.c one_command.c multiple_commands.c
 
-VARIABLES		=	ft_isvar.c ft_addvar.c ft_setvar.c ft_parsevar.c ft_replacevar.c
+VARIABLES		=	ft_isvar.c ft_addvar.c ft_setvar.c ft_parsevar.c ft_replacevar.c ft_get_variable.c ft_check_var_rules.c
 #SIG				=
 
 #TERM			= init_termios.c

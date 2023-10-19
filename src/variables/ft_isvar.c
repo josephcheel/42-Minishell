@@ -8,7 +8,7 @@ int	ft_isvariable(t_env *head, char *id)
 	temp = head;
 	while (temp)
 	{
-		if (ft_strncmp(temp->id, id, ft_strlen(id)) == 0)
+		if (ft_strcmp(temp->id, id) == 0)
 			return (1);
 		temp = temp->next;
 	}

@@ -26,6 +26,10 @@
 
 typedef struct s_minishell{
 
+	pid_t	pid;
+	int 	fd[2];
+	int 	std_in;
+	int		std_out;
 	char	**env;
 	char	**cmd;
 	char	**mul_cmds;
@@ -52,20 +56,22 @@ typedef struct s_minishell{
 int	ft_commands(t_minishell *data);
 int ft_one_command(t_minishell *data);
 int	ft_multiple_commands(t_minishell *data);
-
+char **ft_separate_cmds(t_minishell *data);
 // Command utils 
 int		ft_cmdsize(char **command);
 int	ft_count_commands(char *raw_command);
 
 
 //builtin 
-int is_builtin(t_minishell *data);
-int echo_builtin(t_minishell *data, int n_option);
-int pwd_builtin(t_minishell *data);
-int	cd_builtin(t_minishell *data);
-int	env_builtin(t_minishell *data);
-int export_builtin(t_minishell *data);
-int	unset_builtin(t_minishell *data);
+int is_builtin(t_minishell *data, char **cmd);
+int ft_echo(t_minishell *data, char **cmd, int n_option);
+// int echo_builtin(t_minishell *data, int n_option);
+int ft_pwd(char **cmd);
+int	ft_cd(t_minishell *data, char **cmd);
+// int	cd_builtin(t_minishell *data);
+int	ft_env(t_env *lstenv);
+int ft_export(t_minishell *data, char **cmd);
+int	ft_unset(t_minishell *data, char **cmd);
 int	exit_builtin(t_minishell *data);
 //signals
 void signal_handler(int sig);
@@ -96,7 +102,7 @@ int	ft_count_commands(char *raw_command);
 // Parsin one not-builtin command 
 int		commandline(char *str1, char *str2);
 char	**command_add(char **route, char *command);
-char	*find_command_route_env(char **env, char *command);
+char	*find_command_route_env(t_env *lstenv, char **env, char *command);
 
 int	init_env(t_minishell *data, char **env);
 char **ft_split_env(char *line);
@@ -106,7 +112,7 @@ char *ft_return_argument(t_minishell *data);
 
 // EXECS
 void exec_one(t_minishell *data);
-
+void exec_multiple(t_minishell *data, char *cmd);
 //termios 
 int	init_termios(t_minishell *data);
 

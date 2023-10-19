@@ -1,10 +1,10 @@
 #include "../../inc/minishell.h"
 
-int	env_builtin(t_minishell *data)
+int	ft_env(t_env *lstenv)
 {
 	t_env *temp;
 
-	temp = data->lstenv;
+	temp = lstenv;
 	while (temp)
 	{
 		printf("%s", temp->id);
@@ -12,5 +12,5 @@ int	env_builtin(t_minishell *data)
 		printf("%s\n", temp->value);
 		temp = temp->next;
 	}
-	return 1;
+	return (1);
 }
