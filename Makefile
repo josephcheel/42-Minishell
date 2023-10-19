@@ -48,13 +48,24 @@ LIBFT			=	libft/libft.a
 
 INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 
-# Flags for Campus
-LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
-RFLAGS = /Users/${USER}/.brew/opt/readline/include
+# Flags for Campus Joseph
+# LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
+# RFLAGS = /Users/${USER}/.brew/opt/readline/include
 
-# Flags for Home
-#  LDFLAGS	=/opt/homebrew/opt/readline/lib
-#  RFLAGS	= /opt/homebrew/opt/readline/include
+#flags alex Campus
+LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
+RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
+
+
+
+# Flags for Home Joseph
+#  #LDFLAGS	=/opt/homebrew/opt/readline/lib
+#  #RFLAGS	= /opt/homebrew/opt/readline/include
+
+ #flags alex home
+ #
+ LDFLAGS=/usr/local/opt/readline/lib
+ RFLAGS=/usr/local/opt/readline/include
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─SORCES─✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
