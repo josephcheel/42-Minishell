@@ -1,5 +1,23 @@
 #include "../../inc/minishell.h"
 
+// void	close_init_redirs(t_master *master)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	j = 0;
+// 	if (master->std_in != -1)
+// 		i = close(master->std_in);
+// 	if (master->std_out != -1)
+// 		j = close(master->std_out);
+// 	if (i == -1 || j == -1)
+// 	{
+// 		free_master(master);
+// 		exit(1);
+// 	}
+// }
+
 void exec_multiple(t_minishell *data, char *cmd)
 {
 	char *path;
@@ -7,6 +25,8 @@ void exec_multiple(t_minishell *data, char *cmd)
 
 	splitted_cmd = ft_split_quotes(cmd);
 	if (is_builtin(data, splitted_cmd))
+		exit(0);
+	else if (!cmd[0])
 		exit(0);
 	else
 	{	

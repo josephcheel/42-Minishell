@@ -42,34 +42,35 @@ char **ft_separate_cmds(t_minishell *data)
 
 void	child_process(t_minishell *data, int nbr)
 {
-	pipe(data->fd);
-	data->pid = fork();
-	if (data->pid  == 0)
-	{
-		close(data->fd[0]);
-		dup2(data->fd[1], 1);
-		close(data->fd[1]);
-		exec_multiple(data, data->mul_cmds[nbr]);
 
-	}
-	else if (data->pid  > 0)
-	{
+	// if (data->pid  == 0)
+	// {
+		if (nbr != data->nbr_of_cmds - 1)
+			dup2(data->fd[1], STDOUT_FILENO);
 		close(data->fd[1]);
-		dup2(data->fd[0], 0);
 		close(data->fd[0]);
-	}
-	waitpid(data->pid , NULL, 0); 
+		
+		// exec_multiple(data, data->mul_cmds[nbr]);
+
+	// }
+	// else if (data->pid  > 0)
+	// {
+	// 	close(data->fd[1]);
+	// 	dup2(data->fd[0], 0);
+	// 	close(data->fd[0]);
+	// }
+	// waitpid(data->pid , NULL, 0); 
 }
 
-int type_of_cmd(t_minishell *data, char *raw_cmd)
-{
-	char **cmd;
+// int type_of_cmd(t_minishell *data, char *raw_cmd)
+// {
+// 	char **cmd;
 
-	cmd = ft_split_quotes(raw_cmd);
-	if (is_builtin(data, cmd))
-		printf("ONE_COMMAND\n");
-	return (0);
-}
+// 	cmd = ft_split_quotes(raw_cmd);
+// 	if (is_builtin(data, cmd))
+// 		printf("ONE_COMMAND\n");
+// 	return (0);
+// }
 
 int ft_check_pipe_sytax(t_minishell *data)
 {
@@ -86,9 +87,60 @@ int ft_check_pipe_sytax(t_minishell *data)
 	return (0);
 }
 
+static void	parent(t_minishell *master)
+{
+	int	i;
+
+	i = 0;
+	if (dup2(master->fd[0], STDIN_FILENO) == -1)
+		i = 1;
+	if (close(master->fd[0]) == -1)
+		i = 1;
+	if (close(master->fd[1]) == -1)
+		i = 1;
+	(void)i;
+	// if (i)
+	// 	clean_free(master, 1);
+}
+static void	aux_wait_childs(int code)
+{
+	if (code == 130)
+		ft_putendl_fd("^C", STDOUT_FILENO);
+	if (code == 131)
+		ft_putstr_fd("^\\", STDOUT_FILENO);
+}
+
+static void	wait_childs(t_minishell *data)
+{
+	int	i;
+	int	pid;
+	int	j;
+
+	i = data->nbr_of_cmds;
+	// init_signal(1);
+	if (i == 1)
+		return ;
+	while (i--)
+	{
+		j = 0;
+		pid = waitpid(-1, &j, 0);
+		// if (pid == -1)
+		// 	clean_free(master, 1);
+		if (i == 0 && WIFSIGNALED(j))
+		{
+			j += 128;
+			aux_wait_childs(j);
+		}
+		else if (pid == data->pid)
+			if (WIFEXITED(j))
+				data->status = WEXITSTATUS(j);
+	}
+}
+
 int	ft_multiple_commands(t_minishell *data)
 {
 	int nbr;
+	
 
 	nbr = -1;
 	if (ft_check_pipe_sytax(data))
@@ -96,14 +148,25 @@ int	ft_multiple_commands(t_minishell *data)
 	data->mul_cmds = ft_separate_cmds(data);
 	if (data->mul_cmds == NULL)
 		return (0);
-	data->pid = fork();
-	if (data->pid  == 0)
+	
+	while (++nbr < data->nbr_of_cmds)
 	{
-		while (++nbr < data->nbr_of_cmds - 1)
+		pipe(data->fd);
+		data->pid = fork();
+		// signal(SIGINT, SIG_IGN);
+		if (data->pid < 0)
+		{
+			close(data->fd[1]);
+			close(data->fd[0]);
+			exit (0);
+		}
+		if (data->pid  == 0)
+		{
 			child_process(data, nbr);
-		exec_multiple(data, data->mul_cmds[nbr]);
+			exec_multiple(data, data->mul_cmds[nbr]);
+		}
+		parent(data);
 	}
-	waitpid(data->pid , NULL, 0);
-
+	wait_childs(data);
 	return (0);
 }

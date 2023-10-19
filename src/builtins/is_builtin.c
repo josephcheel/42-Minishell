@@ -6,9 +6,9 @@ int is_builtin(t_minishell *data, char **cmd)
 	if (ft_strncmp(ft_strlwr(cmd[0]), "echo", 5) == 0) // ignores case
 	{
 		if (data->cmd_size == 1)
-			return (ft_echo(cmd, 0));
+			return (ft_echo(data, cmd, 0));
 		else if (data->cmd_size == 2 && ft_strncmp(cmd[1], "-n", 3) == 0)
-			return (ft_echo(cmd, 1));
+			return (ft_echo(data, cmd, 1));
 		else
 			return (0);
 	}

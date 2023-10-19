@@ -1,6 +1,6 @@
 #include "../../inc/minishell.h"
 
-int ft_echo(char **cmd, int n_option)
+int ft_echo(t_minishell *data, char **cmd, int n_option)
 {	
 	int i;
 	int count;
@@ -11,8 +11,22 @@ int ft_echo(char **cmd, int n_option)
 		i = ft_cmdsize(cmd) - 1;
 		while (++i < count - 1)
 		{
-			printf("%s", cmd[i]);
-			printf(" ");
+			if (ft_strcmp(cmd[i], "$?") == 0)
+			{
+				printf("HOLA");
+				printf("%d ", data->status);
+				i++;
+			}
+			else
+			{
+				printf("%s", cmd[i]);
+				printf(" ");
+			}
+		}
+		if (ft_strcmp(cmd[i], "$?") == 0)
+		{
+			printf("%d", data->status);
+			i++;
 		}
 		if (cmd[i])
 			printf("%s", cmd[i]);

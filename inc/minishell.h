@@ -28,6 +28,8 @@ typedef struct s_minishell{
 
 	pid_t	pid;
 	int 	fd[2];
+	int 	std_in;
+	int		std_out;
 	char	**env;
 	char	**cmd;
 	char	**mul_cmds;
@@ -62,7 +64,7 @@ int	ft_count_commands(char *raw_command);
 
 //builtin 
 int is_builtin(t_minishell *data, char **cmd);
-int ft_echo(char **cmd, int n_option);
+int ft_echo(t_minishell *data, char **cmd, int n_option);
 // int echo_builtin(t_minishell *data, int n_option);
 int ft_pwd(char **cmd);
 int	ft_cd(t_minishell *data, char **cmd);

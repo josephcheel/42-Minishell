@@ -47,6 +47,8 @@ int	main(int ac, char **av, char **env)
 	
 	while (1)
 	{
+		data.std_in = dup(STDIN_FILENO);
+		data.std_out = dup(STDOUT_FILENO);
 		signal(SIGINT, signal_handler);
 		data.raw_cmd = display_prompt_msg();
 		if (!data.raw_cmd)
@@ -61,8 +63,11 @@ int	main(int ac, char **av, char **env)
 		// is_redirect(data.raw_cmd);
 		if (ft_strlen(data.raw_cmd) > 0 && ft_isstralnum(data.raw_cmd))
 			ft_commands(&data);
-
+		dup2(data.std_in, STDIN_FILENO);
+		dup2(data.std_out, STDOUT_FILENO);
 	}
+	close(data.std_in);
+	close(data.std_out);
 	restore_term(&data);
 
 	//ft_freemini(env);

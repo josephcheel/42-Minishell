@@ -19,21 +19,27 @@ char *ft_parse_variables(t_minishell *data)
 
 
 	variable = ft_strchr(data->raw_cmd, '$');
-	if (!ft_has_valid_quotes(variable) && ft_strchr(variable, '\'') && (ft_strchr(variable, '\'') < ft_strchr(variable, '\"') || !ft_strchr(variable, '\"')))
-		return (data->raw_cmd);
 	if (variable && ft_strlen(variable) > 1)
 	{
 		variable = ft_get_export_id(variable);
-		if (ft_isvariable(data->lstenv, variable))
+		if (ft_strcmp(variable, "?") == 0)
 		{
-			temp = ft_find_id(data->lstenv, variable);
-			result = ft_replace_string(data->raw_cmd, temp->id, temp->value);
-			return (result);		
+			result = ft_replace_string(data->raw_cmd, variable, ft_itoa(data->status));
+			return (result);
 		}
 		else
-		{	
-			result = ft_replace_string(data->raw_cmd, variable, "");
-			return (result);
+		{
+			if (ft_isvariable(data->lstenv, variable))
+			{
+				temp = ft_find_id(data->lstenv, variable);
+				result = ft_replace_string(data->raw_cmd, temp->id, temp->value);
+				return (result);		
+			}
+			else
+			{	
+				result = ft_replace_string(data->raw_cmd, variable, "");
+				return (result);
+			}
 		}
 	}
 	return (data->raw_cmd);

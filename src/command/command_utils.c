@@ -20,13 +20,32 @@ int	ft_count_commands(char *raw_command)
 	int	i;
 	int	nbr_cmd;
 	int	len_command;
-
+	int in_single;
+	int in_double;
 	i = -1;
+	
+	in_single = 0;
+	in_double = 0;
 	nbr_cmd = 1;
 	len_command = ft_strlen(raw_command);
 	while (++i < len_command)
 	{
-		if (raw_command[i] == '|')
+		if (raw_command[i] == '\"' || raw_command[i] == '\'')
+		{
+			if (raw_command[i] == '\"' && in_single == 0)
+				in_double++;
+			else if (raw_command[i] == '\'' && in_double == 0)
+				in_single++;
+			if (in_single == 2)
+			{
+				in_single = 0;
+			}
+			else if	(in_double == 2)
+			{
+				in_double = 0;
+			}
+		}
+		if (raw_command[i] == '|' && in_double == 0 && in_single == 0)
 		{
 			if (raw_command[i+1] == '|')
 			{
