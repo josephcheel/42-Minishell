@@ -121,5 +121,5 @@ int	close_term_fd(t_minishell *data);
 char	*ft_parse_variables(t_minishell *data);
 
 
-void is_redirect(char	*raw_cmd);
+int is_redirect(char	*raw_cmd);
 #endif

@@ -2,25 +2,41 @@
 
 
 
-void is_redirect(char	*raw_cmd)
+int is_redirect(char	*raw_cmd) // return int 
 {
     int i;
     i = 0;
 
     while(raw_cmd[i])
     {
-        while((ft_strcmp(&raw_cmd[i], "<") != 0) || ft_strcmp(&raw_cmd[i], ">") != 0)
-            i++;
-        if ((ft_strcmp(&raw_cmd[i], "<") == 0) && ft_strcmp(&raw_cmd[i + 1], "<") != 0)
-            printf("1");
-        else if ((ft_strcmp(&raw_cmd[i], ">") == 0) && ft_strcmp(&raw_cmd[i + 1], ">") != 0)
-            printf("2");
-        else if ((ft_strcmp(&raw_cmd[i], ">") == 0) && ft_strcmp(&raw_cmd[i + 1], ">") == 0)
-            printf("3");
-        else if ((ft_strcmp(&raw_cmd[i], "<") == 0) && ft_strcmp(&raw_cmd[i + 1], "<") == 0)
-            printf("4");
+        //while((ft_strcmp(&raw_cmd[i], "<") != 0) || ft_strcmp(&raw_cmd[i], ">") != 0)
+        //    i++;
+        if (raw_cmd[i] == '<' && raw_cmd[i + 1] != '<')
+            {
+            ft_putstr_fd("1", 2);
+            return(1);
+            }
+        else if (raw_cmd[i] == '>' && raw_cmd[i + 1] != '>')
+            {
+            ft_putstr_fd("2", 2);
+            return(2);
+            }
+        else if (raw_cmd[i] == '>' && raw_cmd[i + 1] == '>')
+            {
+            ft_putstr_fd("3", 2);
+            return(3);
+            }
+        else if (raw_cmd[i] == '<'&& raw_cmd[i + 1] == '<')
+            {
+            ft_putstr_fd("4", 2);
+            return(4);
+            }
+        
+        i++;
     }
+    return(0);
 }
+
 
 
 
