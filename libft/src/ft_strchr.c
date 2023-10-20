@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.co  +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:20:04 by jcheel-n          #+#    #+#             */
-/*   Updated: 2022/02/17 20:38:26 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 13:25:44 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../inc/libft.h"
 
 char	*ft_strchr(const char *s, int c)
@@ -28,6 +29,6 @@ char	*ft_strchr(const char *s, int c)
 			return (str);
 		str++;
 		len--;
-	}	
+	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:31:25 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 03:34:08 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 12:55:21 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ int	exit_builtin(t_minishell *data)
 			exit(nbr);
 		}
 	}
-	exit(global_status.status);
+	exit(g_status.status);
 }

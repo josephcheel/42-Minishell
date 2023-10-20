@@ -138,7 +138,7 @@ static void	wait_childs(t_minishell *data)
 		}
 		else if (pid == data->pid)
 			if (WIFEXITED(j))
-				global_status.status = WEXITSTATUS(j);
+				g_status.status = WEXITSTATUS(j);
 	}
 }
 

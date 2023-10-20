@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.co  +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:50:16 by jcheel-n          #+#    #+#             */
-/*   Updated: 2022/02/17 20:33:52 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 13:29:52 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../inc/libft.h"
 
 size_t	ft_intlenght(int c)
@@ -23,7 +24,7 @@ size_t	ft_intlenght(int c)
 	while (c)
 	{
 		c = c / 10;
-			ret++;
+		ret++;
 	}
 	return (ret);
 }

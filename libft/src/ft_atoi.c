@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.co  +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 17:42:52 by jcheel-n          #+#    #+#             */
-/*   Updated: 2022/02/08 19:19:59 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 13:29:03 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../inc/libft.h"
 
 int	ft_atoi(const char *str)
@@ -37,4 +38,4 @@ int	ft_atoi(const char *str)
 	else if (result > 2147483647)
 		return (0);
 	return (result * sign);
-}	
+}

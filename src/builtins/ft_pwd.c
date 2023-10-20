@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:11:28 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 02:46:19 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 12:55:21 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_pwd_error_msg(char *arg, char *msg)
 
 static int	ft_pwd_errors(char **cmd)
 {
-	global_status.status = 1;
+	g_status.status = 1;
 	if (ft_isstrupper(cmd[0]) && ft_array_size(cmd) > 1)
 	{
 		if (ft_strlen(cmd[1]) >= 1)
@@ -52,6 +52,6 @@ int	ft_pwd(char **cmd)
 	path = (char *)malloc(sizeof(char) * 200);
 	getcwd(path, 200);
 	printf("%s\n", path);
-	global_status.status = 0;
+	g_status.status = 0;
 	return (1);
 }

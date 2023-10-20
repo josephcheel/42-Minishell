@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:24:31 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 01:53:51 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 12:55:21 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int	ft_echo(char **cmd, int n_option)
 	}
 	if (n_option == 0)
 		printf("\n");
-	global_status.status = 0;
+	g_status.status = 0;
 	return (1);
 }

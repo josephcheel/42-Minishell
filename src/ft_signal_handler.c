@@ -7,7 +7,7 @@ void	catch_signal(int status, int set_status)
 	if (status == 131)
 		ft_putstr_fd("Quit: 3\n", STDOUT_FILENO);
 	if (set_status)
-		global_status.status = status;
+		g_status.status = status;
 }
 
 

@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.co  +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 19:16:35 by jcheel-n          #+#    #+#             */
-/*   Updated: 2022/04/07 15:38:00 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 13:26:50 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../inc/libft.h"
 
 int	wordcounter(char const *s, char c)
@@ -25,7 +26,7 @@ int	wordcounter(char const *s, char c)
 		if (s[i] != c && s[i])
 			words++;
 		while (s[i] != c && s[i])
-				i++;
+			i++;
 	}
 	return (words);
 }
@@ -39,7 +40,7 @@ char	*stringreturn(char const *s, char c)
 	if (!s)
 		return (NULL);
 	while (s[i] && s[i] != c)
-			i++;
+		i++;
 	str = malloc(sizeof(char) * (i + 1));
 	if (!str)
 		return (NULL);

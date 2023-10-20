@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 02:45:10 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 03:17:12 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 12:55:21 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_cd_error_msg(char *arg, char *msg)
 	ft_putstr_fd("minishell: cd: ", 2);
 	ft_putstr_fd(arg, 2);
 	ft_putstr_fd(msg, 2);
-	global_status.status = 1;
+	g_status.status = 1;
 	return (0);
 }
 

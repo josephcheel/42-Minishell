@@ -1,47 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_replacevar.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/20 12:21:38 by jcheel-n          #+#    #+#             */
+/*   Updated: 2023/10/20 12:46:29 by jcheel-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/minishell.h"
+
+// static void ft_replace_string_free(char *before, char *after, char *new_str)
+// {
+// 	if (after)
+// 		free(after);
+// }
 
 char	*ft_replace_string(char *str, char *replace, char *replacer)
 {
-	char *result;
-	char *find;
+	char	*before_rp;
+	char	*after_rp;
+	char	*new_str;
+	size_t	before_len;
+	size_t	after_len;
 
-	find = ft_strchr(str, '$');
-
-	size_t before_len = find - str;
-    size_t after_len = ft_strlen(find + ft_strlen(replace));
-
-    char *before_rp = ft_substr(str, 0, before_len);
-    char *after_rp = ft_substr(str, before_len + ft_strlen(replace) + 1, after_len);
-
-	// printf("before $%s$\n", before_rp);
-	// printf("after $%s$\n", after_rp);
-	char *new_str;
-
+	before_len = ft_strchr(str, '$') - str;
+	after_len = ft_strlen(ft_strchr(str, '$') + ft_strlen(replace));
+	before_rp = ft_substr(str, 0, before_len);
+	after_rp = ft_substr(str, before_len + ft_strlen(replace) + 1, after_len);
 	new_str = NULL;
 	if (ft_strlen(replacer))
 	{
 		new_str = ft_strjoin(before_rp, replacer);
-		result = ft_strjoin(new_str, after_rp);
-		free(new_str);
+		new_str = ft_strjoinfree(new_str, after_rp);
 	}
 	else
 	{
 		if (ft_strlen(after_rp))
-		{
-   			result = ft_strjoin(before_rp, after_rp);
-			return (result);
-			// printf("RES %s\n", result);
-		}
+			new_str = ft_strjoin(before_rp, after_rp);
 		else
-		{
-			// printf("before $%s$\n", before_rp);
-			// printf("2\n");
-			// return (NULL);
-			return(before_rp);
-		}
+			return (before_rp);
 	}
+	free(after_rp);
 	free(before_rp);
-    free(after_rp);
-
-	return (result);
+	return (new_str);
 }

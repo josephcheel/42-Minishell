@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:00:04 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 03:12:11 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 12:55:21 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_export_error_invalid_option(char *option)
 	ft_putstr_fd(": invalid option\n", 2);
 	ft_putstr_fd("export: usage: export [-nf]", 2);
 	ft_putstr_fd("[name[=value] ...] or export -p\n", 2);
-	global_status.status = 2;
+	g_status.status = 2;
 }
 
 static void	ft_export_error_not_valid_id(char *arg)
@@ -27,7 +27,7 @@ static void	ft_export_error_not_valid_id(char *arg)
 	ft_putstr_fd("minishell: export: `", 2);
 	ft_putstr_fd(arg, 2);
 	ft_putstr_fd("': not a valid identifier\n", 2);
-	global_status.status = 1;
+	g_status.status = 1;
 }
 
 int	ft_export(t_minishell *data, char **cmd)

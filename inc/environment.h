@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   environment.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/20 12:59:16 by jcheel-n          #+#    #+#             */
+/*   Updated: 2023/10/20 13:00:08 by jcheel-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ENVIRONMENT_H
 # define ENVIRONMENT_H
 
@@ -6,8 +18,8 @@
 
 typedef struct s_env
 {
-	char		*id;
-	char		*value;
+	char			*id;
+	char			*value;
 	struct s_env	*next;
 }t_env;
 
