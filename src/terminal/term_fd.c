@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   term_fd.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/20 03:35:33 by jcheel-n          #+#    #+#             */
+/*   Updated: 2023/10/20 03:36:15 by jcheel-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/minishell.h"
 
-int init_term_fd(t_minishell *data)
+int	init_term_fd(t_minishell *data)
 {
 	data->std_in = dup(STDIN_FILENO);
 	data->std_out = dup(STDOUT_FILENO);
@@ -12,7 +24,7 @@ int init_term_fd(t_minishell *data)
 	return (0);
 }
 
-int reset_term_fd(t_minishell *data)
+int	reset_term_fd(t_minishell *data)
 {
 	if (dup2(data->std_in, STDIN_FILENO) == -1)
 		return (1);

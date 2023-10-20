@@ -40,7 +40,7 @@ int	ft_count_commands(char *raw_command)
 			{
 				in_single = 0;
 			}
-			else if	(in_double == 2)
+			if	(in_double == 2)
 			{
 				in_double = 0;
 			}

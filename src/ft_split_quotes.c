@@ -6,12 +6,12 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:39:00 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/13 13:05:14 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/19 21:33:50 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/split_quotes.h"
-#include "../../libft/inc/libft.h"
+#include "../libft/inc/libft.h"
 #include <stdio.h>
 
 int	split_len(char *str)
@@ -114,3 +114,4 @@ char	**ft_split_quotes(char *str)
 	split = alloc_split(split, str, x);
 	return (split);
 }
+

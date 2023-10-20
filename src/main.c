@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 19:00:06 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/19 19:27:39 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 01:44:38 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	init_minishell(t_minishell *data, char **env)
 		return (1);
 	if (init_term_fd(data))
 		return (1);
-	data->status = 0;
+	global_status.status = 0;
 	return (0);
 }
 
@@ -49,6 +49,7 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		signal(SIGINT, signal_handler);
+		signal(SIGQUIT, SIG_IGN);
 		data.raw_cmd = display_prompt_msg();
 		if (!data.raw_cmd)
 			ft_ctrl_d();

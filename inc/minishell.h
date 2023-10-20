@@ -24,6 +24,14 @@
 #include <sys/ioctl.h>
 
 
+
+
+typedef struct s_status{
+
+	int status;
+
+}t_status;
+
 typedef struct s_minishell{
 
 	pid_t	pid;
@@ -50,7 +58,7 @@ typedef struct s_minishell{
 
 }t_minishell;
 
-// struct termios old_settings;
+t_status global_status;
 
 // split bultin, one and multiple cmds
 int	ft_commands(t_minishell *data);
@@ -65,13 +73,19 @@ int	ft_count_commands(char *raw_command);
 int is_builtin(t_minishell *data, char **cmd);
 int ft_echo(char **cmd, int n_option);
 int ft_pwd(char **cmd);
-int	ft_cd(t_minishell *data, char **cmd);
 int	ft_env(t_env *lstenv);
 int ft_export(t_minishell *data, char **cmd);
 int	ft_unset(t_minishell *data, char **cmd);
 int	exit_builtin(t_minishell *data);
+int	ft_cd(t_minishell *data, char **cmd);
+
+//cd utils
+int	ft_cd_error_msg(char *arg, char *msg);
+int	ft_is_mode_permission_ok(char *file);
+void	ft_set_directory(t_env **lstenv, char *variable);
 //signals
-void signal_handler(int sig);
+void	signal_handler(int sig);
+void	catch_signal(int status, int set_status);
 
 char	**ft_split_quotes(char *str);
 char *display_prompt_msg(void);

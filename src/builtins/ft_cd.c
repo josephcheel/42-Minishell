@@ -3,82 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcel>       +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:14:54 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/19 18:21:12 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 02:44:42 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	ft_cd_error_msg(char *arg, char *msg)
+static void	ft_chdir(t_minishell *data, char *dir)
 {
-	ft_putstr_fd("minishell: cd: ", 2);
-	ft_putstr_fd(arg, 2);
-	ft_putstr_fd(msg, 2);
-	return (0);
-}
-
-int	ft_is_mode_permission_ok(char *file)
-{
-	struct stat	buffer;
-
-	if (ft_strlen(file) > 255)
-		return (ft_cd_error_msg(file, ": File name too long\n"));
-	if (access(file, F_OK) != -1)
-	{
-		if (access(file, R_OK) != -1 && access(file, X_OK) != -1)
-		{
-			if (stat(file, &buffer) == 0)
-			{
-				if (S_ISDIR(buffer.st_mode))
-					return (1);
-				else
-					ft_cd_error_msg(file, ": Not a directory\n");
-			}
-			else
-				perror("stat");
-		}
-		else
-			ft_cd_error_msg(file, ": Permission denied\n");
-	}
-	else
-		ft_cd_error_msg(file, ": No such file or directory\n");
-	return (0);
-}
-
-void	ft_set_pwd(t_env **lstenv)
-{
-	char	*path;
-
-	path = (char *)malloc(sizeof(char) * 200);
-	getcwd(path, 200);
-	ft_set_variable(lstenv, "PWD", path);
-}
-
-void	ft_set_oldpwd(t_env **lstenv)
-{
-	char	*path;
-
-	path = (char *)malloc(sizeof(char) * 200);
-	getcwd(path, 200);
-	ft_set_variable(lstenv, "OLDPWD", path);
-}
-
-void	ft_chdir(t_minishell *data, char *dir)
-{
-	ft_set_oldpwd(&data->lstenv);
+	ft_set_directory(&data->lstenv, "OLDPWD");
 	if (ft_is_mode_permission_ok(dir))
 	{
 		if (chdir(dir) == 0)
-			ft_set_pwd(&data->lstenv);
+			ft_set_directory(&data->lstenv, "PWD");
 		else
 			perror("chdir");
 	}
 }
 
-void	ft_change_home(t_minishell *data)
+static void	ft_change_home(t_minishell *data)
 {
 	char	*value;
 
@@ -91,7 +37,7 @@ void	ft_change_home(t_minishell *data)
 		ft_cd_error_msg("", "HOME not set\n");
 }
 
-void	ft_change_oldpwd(t_minishell *data)
+static void	ft_change_oldpwd(t_minishell *data)
 {
 	char	*value;
 
@@ -105,7 +51,7 @@ void	ft_change_oldpwd(t_minishell *data)
 		ft_cd_error_msg("", "OLDPWD not set\n");
 }
 
-int	ft_cd_flags(t_minishell *data, char *flag)
+static int	ft_cd_flags(t_minishell *data, char *flag)
 {
 	if (ft_strcmp(flag, "-") == 0)
 	{

@@ -24,7 +24,7 @@ char *ft_parse_variables(t_minishell *data)
 		variable = ft_get_export_id(variable);
 		if (ft_strcmp(variable, "?") == 0)
 		{
-			result = ft_replace_string(data->raw_cmd, variable, ft_itoa(data->status));
+			result = ft_replace_string(data->raw_cmd, variable, ft_itoa(global_status.status));
 			return (result);
 		}
 		else

@@ -72,6 +72,17 @@ void	child_process(t_minishell *data, int nbr)
 // 	return (0);
 // }
 
+void	signal_handler_mul(int sig)
+{
+	if (sig == SIGQUIT)
+	{
+		// rl_replace_line("", 0);
+		// ft_putstr_fd("Quit: 3\n", STDOUT_FILENO);
+		rl_on_new_line();
+		rl_redisplay();
+	}
+}
+
 int ft_check_pipe_sytax(t_minishell *data)
 {
 	if (data->raw_cmd[0] == '|')
@@ -102,13 +113,7 @@ static void	parent(t_minishell *master)
 	// if (i)
 	// 	clean_free(master, 1);
 }
-static void	aux_wait_childs(int code)
-{
-	if (code == 130)
-		ft_putendl_fd("^C", STDOUT_FILENO);
-	if (code == 131)
-		ft_putstr_fd("^\\", STDOUT_FILENO);
-}
+
 
 static void	wait_childs(t_minishell *data)
 {
@@ -117,23 +122,23 @@ static void	wait_childs(t_minishell *data)
 	int	j;
 
 	i = data->nbr_of_cmds;
-	// init_signal(1);
+	// signal(SIGINT, SIG_IGN);
+	// signal(SIGQUIT, SIG_IGN);
 	if (i == 1)
 		return ;
 	while (i--)
 	{
-		j = 0;
 		pid = waitpid(-1, &j, 0);
 		// if (pid == -1)
 		// 	clean_free(master, 1);
 		if (i == 0 && WIFSIGNALED(j))
 		{
 			j += 128;
-			aux_wait_childs(j);
+			catch_signal(j, 1);
 		}
 		else if (pid == data->pid)
 			if (WIFEXITED(j))
-				data->status = WEXITSTATUS(j);
+				global_status.status = WEXITSTATUS(j);
 	}
 }
 
@@ -141,7 +146,6 @@ int	ft_multiple_commands(t_minishell *data)
 {
 	int nbr;
 	
-
 	nbr = -1;
 	if (ft_check_pipe_sytax(data))
 		return (0);
@@ -152,8 +156,8 @@ int	ft_multiple_commands(t_minishell *data)
 	while (++nbr < data->nbr_of_cmds)
 	{
 		pipe(data->fd);
+		signal(SIGINT, SIG_IGN);
 		data->pid = fork();
-		// signal(SIGINT, SIG_IGN);
 		if (data->pid < 0)
 		{
 			close(data->fd[1]);
@@ -162,6 +166,8 @@ int	ft_multiple_commands(t_minishell *data)
 		}
 		if (data->pid  == 0)
 		{
+			signal(SIGINT, signal_handler);
+			signal(SIGQUIT, signal_handler);
 			child_process(data, nbr);
 			exec_multiple(data, data->mul_cmds[nbr]);
 		}

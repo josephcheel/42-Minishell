@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/20 03:31:25 by jcheel-n          #+#    #+#             */
+/*   Updated: 2023/10/20 03:34:08 by jcheel-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/minishell.h"
 
 int ft_is_bigger_maxll(char *str)
@@ -61,6 +73,5 @@ int	exit_builtin(t_minishell *data)
 			exit(nbr);
 		}
 	}
-	// printf("STATUS 2 %d\n", data->status);
-	exit(data->status);
+	exit(global_status.status);
 }

@@ -6,36 +6,38 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 18:18:52 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/04 20:54:01 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 03:46:31 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/environment.h"
 
-t_env *ft_find_id(t_env *head, char *id)
+t_env	*ft_find_id(t_env *head, char *id)
 {
-	t_env *tmp;
+	t_env	*tmp;
+
 	tmp = head;
-	while(tmp != NULL)
+	while (tmp != NULL)
 	{
 		if (ft_strcmp(tmp->id, id) == 0)
-			return tmp;
+			return (tmp);
 		tmp = tmp->next;
 	}
-	return NULL;
+	return (NULL);
 }
 
-t_env *ft_find_value(t_env *head, char *value)
+t_env	*ft_find_value(t_env *head, char *value)
 {
-	t_env *tmp;
+	t_env	*tmp;
+
 	tmp = head;
-	while(tmp != NULL)
+	while (tmp != NULL)
 	{
 		if (ft_strcmp(tmp->value, value) == 0)
-			return tmp;
+			return (tmp);
 		tmp = tmp->next;
 	}
-	return NULL;
+	return (NULL);
 }
 
 int	ft_listsize(t_env *head)
@@ -52,4 +54,3 @@ int	ft_listsize(t_env *head)
 	}
 	return (len);
 }
-
