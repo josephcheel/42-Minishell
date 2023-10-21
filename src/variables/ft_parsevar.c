@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:36:04 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 12:55:21 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 23:33:56 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,48 @@
 
 char	*ft_get_export_id(char *variable)
 {
-	char	**split;
-
+	char	*result;
+	char	*non_alphanum;
+	char	*size;
+	
 	if (variable[0] == '$')
 		variable++;
-	split = ft_split(variable, ' ');
-	return (ft_strtrim(split[0], "\""));
+	if (variable[0] == '?')
+		return ("?");
+	non_alphanum = ft_strdup(" !\"#$%%&\\\'()*+,-./:;<=>@[]^_`{|}~");
+	size = ft_strpbrk(variable, non_alphanum);
+	result = ft_substr(variable, 0, size - variable);
+	return (ft_strtrim(result, "\"|"));
 }
+
+char	*ft_strchr_variable(char *raw_cmd)
+{
+	int i;
+	int s_quote;
+	char *variable;
+	
+	i = 0;
+	s_quote = 0;
+	while (raw_cmd[i])
+	{
+		if (raw_cmd[i] == '\'')
+			s_quote++;
+		if ((raw_cmd[i] == '$' && ft_isalnum(raw_cmd[i+1]) && s_quote == 0))
+		{
+			variable = ft_get_export_id(&raw_cmd[i + 1]);
+			ft_check_var_rules(variable);
+			return (&raw_cmd[i]);
+		}
+		else if ((raw_cmd[i] == '$' && raw_cmd[i+1] == '?') && s_quote == 0)
+			return (&raw_cmd[i]);
+		if (s_quote == 2)
+			s_quote = 0;
+		i++;
+	}
+	return (NULL);
+}
+
+
 
 char	*ft_parse_variables(t_minishell *data)
 {
@@ -28,7 +63,7 @@ char	*ft_parse_variables(t_minishell *data)
 	char	*variable;
 	t_env	*tmp;
 
-	variable = ft_strchr(data->raw_cmd, '$');
+	variable = ft_strchr_variable(data->raw_cmd);
 	if (variable && ft_strlen(variable) > 1)
 	{
 		variable = ft_get_export_id(variable);

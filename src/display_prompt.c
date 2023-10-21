@@ -2,11 +2,10 @@
 
 char	*display_prompt_msg(void)
 {
-	char *line;
+	char	*line;
 
-	line = readline("\e[38;5;113m42-Minishell ~ % \e[0m"); // readline won't compile if you don't use -lreadline flag
+	line = readline("\e[38;5;113m42-Minishell ~ % \e[0m");
 	if (ft_strlen(line) > 0)
-		add_history(line); // to add a history to shell; You can search with up and down arrow keys (↑ ↓) 
-	
+		add_history(line);
 	return (line);
 }

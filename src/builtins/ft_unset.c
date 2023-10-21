@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:18:03 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 12:55:21 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 21:14:35 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	ft_unset(t_minishell *data, char **cmd)
 		else
 		{
 			ft_unset_error_invalid_id(cmd[i]);
-		}	
+		}
 		i++;
 	}
 	if (g_status.status != 1)

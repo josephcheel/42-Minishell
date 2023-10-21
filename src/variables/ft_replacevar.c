@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:21:38 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 12:46:29 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 18:55:59 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ char	*ft_replace_string(char *str, char *replace, char *replacer)
 	size_t	before_len;
 	size_t	after_len;
 
-	before_len = ft_strchr(str, '$') - str;
-	after_len = ft_strlen(ft_strchr(str, '$') + ft_strlen(replace));
+	before_len = ft_strchr_variable(str) - str;
+	after_len = ft_strlen(ft_strchr_variable(str) + ft_strlen(replace));
 	before_rp = ft_substr(str, 0, before_len);
 	after_rp = ft_substr(str, before_len + ft_strlen(replace) + 1, after_len);
 	new_str = NULL;

@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:47:45 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 12:58:53 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 15:45:32 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ int		ft_cmdsize(char **command);
 int		ft_count_commands(char *raw_command);
 
 //builtin 
-int		is_builtin(t_minishell *data, char **cmd);
+int		is_builtin(t_minishell *data, char **cmd, int multiple_cmd);
 int		ft_echo(char **cmd, int n_option);
 int		ft_pwd(char **cmd);
 int		ft_env(t_env *lstenv);
 int		ft_export(t_minishell *data, char **cmd);
 int		ft_unset(t_minishell *data, char **cmd);
-int		exit_builtin(t_minishell *data);
+int		ft_exit(char **cmd, int multiple_cmd);
 int		ft_cd(t_minishell *data, char **cmd);
 
 //cd utils
@@ -124,6 +124,7 @@ int		reset_term_fd(t_minishell *data);
 int		close_term_fd(t_minishell *data);
 /* Variables */
 char	*ft_parse_variables(t_minishell *data);
+char	*ft_strchr_variable(char *raw_cmd);
 
 /* Redirections */
 int		is_redirect(char	*raw_cmd);

@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:11:28 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 12:55:21 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 13:40:34 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	ft_pwd(char **cmd)
 
 	if (ft_pwd_errors(cmd))
 		return (1);
-	path = (char *)malloc(sizeof(char) * 200);
-	getcwd(path, 200);
+	path = (char *)malloc(sizeof(char) * 4097);
+	getcwd(path, 4097);
 	printf("%s\n", path);
 	g_status.status = 0;
 	return (1);

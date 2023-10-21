@@ -6,7 +6,6 @@ char	*ft_return_argument(t_minishell *data)
 	char	*new_str;
 
 	count = data->cmd_size;
-	// printf("COUNT %d\n", count);
 	while (++count < data->cmd_and_arguments_size - 1)
 	{
 		new_str = ft_strjoinfree(new_str, data->cmd[count]);
@@ -71,7 +70,7 @@ int ft_cmdsize(char **command) // counts the index from cmd and flags
 	count = ft_array_size(command);
 	while (size < count)
 	{
-		if (ft_strncmp(command[size], "-", 1) <= 0)
+		if (command[size][0] == '-')
 			size++;
 		else
 			break;
@@ -127,30 +126,18 @@ char	*find_command_route_env(t_env *lstenv, char **env, char *command)
 	int		i;
 
 	(void)env;
-	// if (ft_strnstr(command, ".sh", ft_strlen(command))
-	// 	&& !ft_strchr(command, '/'))
-	// 	return (NULL);
-	// if (ft_strnstr(command, ".sh", ft_strlen(command)))
-	// 	return (command);
-	// while (!commandline("PATH", *env))
-	// 	env++;
-	// line = *env;
+	if (!ft_isstralnum(command))
+		return (NULL);
 	if (ft_isvariable(lstenv, "PATH"))
 		line = getenv("PATH");
 	else
 		return (NULL);
-	// ft_putstr_fd(line, 2);
-	// ft_putstr_fd("\n", 2);
 	while (*line != '/')
 		line++;
 	route = ft_split(line, ':');
 	temp = ft_split(command, ' ');
-	// char *ret = ft_strtrim(temp[0], " ");
-	// ft_putstr_fd(ret, 2);
-	// ft_putstr_fd("\n", 2);
 	route = command_add(route, temp[0]);
-	// ft_putstr_fd(*route, 2);
-	// ft_putstr_fd("\n", 2);
+	free(temp);
 	i = 0;
 	while (route[i] && access(route[i], F_OK) == -1) //access?
 		i++;
@@ -159,4 +146,3 @@ char	*find_command_route_env(t_env *lstenv, char **env, char *command)
 	return (route[i]);
 //Don't understand this part
 }
-//PATH

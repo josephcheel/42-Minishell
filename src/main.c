@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 19:00:06 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 12:55:21 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/21 14:12:14 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	init_minishell(t_minishell *data, char **env)
 {
 	if (init_env(data, env))
 		return (1);
-	if (init_term(data))
-		return (1);
+	// if (init_term(data))
+	// 	return (1);
 	if (init_term_fd(data))
 		return (1);
 	g_status.status = 0;
@@ -27,7 +27,7 @@ int	init_minishell(t_minishell *data, char **env)
 int	finish_minishell(t_minishell *data)
 {
 	close_term_fd(data);
-	restore_term(data);
+	// restore_term(data);
 	return (0);
 }
 
@@ -35,7 +35,7 @@ int	ft_ctrl_d(void)
 {
 	if (isatty(STDIN_FILENO))
 		write(2, "exit\n", 6);
-	exit (EXIT_SUCCESS);
+	exit (g_status.status);
 }
 
 int	main(int ac, char **av, char **env)
@@ -53,11 +53,12 @@ int	main(int ac, char **av, char **env)
 		data.raw_cmd = display_prompt_msg();
 		if (!data.raw_cmd)
 			ft_ctrl_d();
-		if (ft_strlen(data.raw_cmd) > 0 && ft_isstralnum(data.raw_cmd))
+		if (ft_strlen(data.raw_cmd) > 0 && ft_isstrprint(data.raw_cmd) && !ft_isallspace(data.raw_cmd))
 			ft_commands(&data);
 		reset_term_fd(&data);
 	}
-	if (finish_minishell(&data))
-		;
-	return (0);
+	// printf("BYEE!");
+	// if (
+	// 	;
+	return (g_status.status);
 }

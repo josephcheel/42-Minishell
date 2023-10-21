@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:31:25 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 12:55:21 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 15:08:44 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,39 +32,45 @@ int ft_is_bigger_maxll(char *str)
 	return (0);
 }
 
-int	exit_builtin(t_minishell *data)
+// static void ft_exit_error_numeric_req();
+// {
+	
+// }
+
+int	ft_exit(char **cmd, int multiple_cmd)
 {
 	long long	nbr;
 
-	ft_putstr_fd("exit\n", 2);
-	if (data->cmd_and_arguments_size >= 2)
+	if (!multiple_cmd)
+		ft_putstr_fd("exit\n", 2);
+	if (ft_array_size(cmd) >= 2)
 	{
-		if (ft_isnumeric(data->cmd[1]) && data->cmd_and_arguments_size >= 3)
+		if (ft_isnumeric(cmd[1]) && ft_array_size(cmd) >= 3)
 		{
 			// ft_putstr_fd("exit\n", 2);
 			ft_putstr_fd("minishell: exit: too many arguments\n", 2);
 			return (1);
 		}
-		else if (!ft_isnumeric(data->cmd[1]))
+		else if (!ft_isnumeric(cmd[1]))
 		{
 			ft_putstr_fd("minishell: ", 2);
 			ft_putstr_fd("exit: ", 2);
-			ft_putstr_fd(data->cmd[1], 2);
+			ft_putstr_fd(cmd[1], 2);
 			ft_putstr_fd(": numeric argument required\n", 2);
 			exit(255);
 		}
-		else if (ft_isnumeric(data->cmd[1]))
+		else if (ft_isnumeric(cmd[1]))
 		{
-			if (ft_is_bigger_maxll(data->cmd[1]) == 1)
+			if (ft_is_bigger_maxll(cmd[1]) == 1)
 			{
 				ft_putstr_fd("minishell: ", 2);
 				ft_putstr_fd("exit: ", 2);
-				ft_putstr_fd(data->cmd[1], 2);
+				ft_putstr_fd(cmd[1], 2);
 				ft_putstr_fd(": numeric argument required\n", 2);
 				exit (255);
 			}
 			else 
-				nbr = ft_atoll(data->cmd[1]);
+				nbr = ft_atoll(cmd[1]);
 			// printf("NBR: %lld", nbr);
 			if (nbr == 0)
 				exit (0);
@@ -72,6 +78,11 @@ int	exit_builtin(t_minishell *data)
 				nbr = nbr - 256;
 			exit(nbr);
 		}
+	}
+	if (multiple_cmd)
+	{
+		g_status.status = 0;
+		return (1);
 	}
 	exit(g_status.status);
 }

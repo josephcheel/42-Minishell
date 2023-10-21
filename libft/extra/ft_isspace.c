@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_array_free.c                                    :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 13:10:40 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/21 14:19:17 by jcheel-n         ###   ########.fr       */
+/*   Created: 2023/10/20 19:53:05 by jcheel-n          #+#    #+#             */
+/*   Updated: 2023/10/20 19:59:31 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-char	**ft_array_free(char **Array, int len)
+int	ft_isspace(int c)
 {
-	while (len > 0)
-		free(Array[--len]);
-	free(Array);
-	return (NULL);
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == '\f' || c == '\v');
 }

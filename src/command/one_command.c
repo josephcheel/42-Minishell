@@ -3,11 +3,12 @@
 int ft_one_command(t_minishell *data)
 {
 	int status;
-	// int redir_type;
+	int redir_type;
 	// int code;
-		// redir_type = is_redirect(data->raw_cmd);
+		redir_type = is_redirect(data->raw_cmd);
+	(void)redir_type;
 	signal(SIGINT, SIG_IGN);
-	if (is_builtin(data, data->cmd) == 1)
+	if (is_builtin(data, data->cmd, 0) == 1)
 		return (0);
 	else
 	{
@@ -18,7 +19,6 @@ int ft_one_command(t_minishell *data)
 			signal(SIGQUIT, signal_handler);
 			exec_one(data);
 		}
-		
 		if (waitpid(data->pid, &status, 0) == -1)
 			;
 		if (WIFSIGNALED(status))

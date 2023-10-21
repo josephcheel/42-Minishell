@@ -2,7 +2,7 @@
 
 
 
-int is_redirect(char	*raw_cmd) // return int 
+int is_redirect(char	*raw_cmd) // return int // control this case 'ls <<<' or 'ls >>>'
 {
     int i;
     i = 0;

@@ -117,28 +117,26 @@ static void	parent(t_minishell *master)
 
 static void	wait_childs(t_minishell *data)
 {
-	int	i;
+	int	nbr;
 	int	pid;
-	int	j;
+	int	status;
 
-	i = data->nbr_of_cmds;
-	// signal(SIGINT, SIG_IGN);
-	// signal(SIGQUIT, SIG_IGN);
-	if (i == 1)
+	nbr = data->nbr_of_cmds;
+	if (nbr == 1)
 		return ;
-	while (i--)
+	while (nbr--)
 	{
-		pid = waitpid(-1, &j, 0);
+		pid = waitpid(-1, &status, 0);
 		// if (pid == -1)
 		// 	clean_free(master, 1);
-		if (i == 0 && WIFSIGNALED(j))
+		if (nbr == 0 && WIFSIGNALED(status))
 		{
-			j += 128;
-			catch_signal(j, 1);
+			status += 128;
+			catch_signal(status, 0);
 		}
 		else if (pid == data->pid)
-			if (WIFEXITED(j))
-				g_status.status = WEXITSTATUS(j);
+			if (WIFEXITED(status))
+				g_status.status = WEXITSTATUS(status);
 	}
 }
 
@@ -152,7 +150,8 @@ int	ft_multiple_commands(t_minishell *data)
 	data->mul_cmds = ft_separate_cmds(data);
 	if (data->mul_cmds == NULL)
 		return (0);
-	
+	// printf("mutl %s\n", data->mul_cmds[0]);
+	// printf("nbr cmds %d\n", data->nbr_of_cmds);
 	while (++nbr < data->nbr_of_cmds)
 	{
 		pipe(data->fd);

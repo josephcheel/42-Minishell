@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:24:31 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 12:55:21 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 19:11:18 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	ft_echo(char **cmd, int n_option)
 		i = ft_cmdsize(cmd) - 1;
 		while (++i < count - 1)
 		{
-			printf("%s", cmd[i]);
+			if (ft_strlen(cmd[i]))
+				printf("%s", cmd[i]);
 			printf(" ");
 		}
 		if (cmd[i])

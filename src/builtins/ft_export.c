@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:00:04 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 12:55:21 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/20 21:04:46 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,49 @@ static void	ft_export_error_not_valid_id(char *arg)
 	g_status.status = 1;
 }
 
+static void	ft_declare_export(t_env *lstenv)
+{
+	t_env	*temp;
+
+	temp = lstenv;
+	while (temp)
+	{
+		printf("declare -x ");
+		printf("%s", temp->id);
+		printf("=");
+		printf("\"%s\"\n", temp->value);
+		temp = temp->next;
+	}
+	g_status.status = 0;
+}
+
+static int	ft_check_cases(char **cmd, int cmdsize, t_env *lstenv)
+{
+	if (cmdsize == 1 && ft_array_size(cmd) == 1)
+	{
+		ft_declare_export(lstenv);
+		return (0);
+	}
+	else if (cmdsize == 2 && cmd[1][0] == '-')
+	{
+		ft_export_error_invalid_option(cmd[1]);
+		return (0);
+	}
+	return (1);
+}
+
 int	ft_export(t_minishell *data, char **cmd)
 {
 	int		i;
 	char	**variable;
 
-	i = ft_cmdsize(cmd) - 1;
-	if (i >= 1)
-	{
-		ft_export_error_invalid_option(cmd[1]);
+	i = ft_cmdsize(cmd);
+	if (!ft_check_cases(cmd, i, data->lstenv))
 		return (1);
-	}
-	while (cmd[++i])
+	while (cmd[i])
 	{
 		if (ft_strchr(cmd[i], '='))
-		{	
+		{
 			variable = ft_split_env(cmd[i]);
 			if (ft_check_var_rules(variable[0]))
 				ft_set_variable(&data->lstenv, variable[0], variable[1]);
@@ -54,7 +82,9 @@ int	ft_export(t_minishell *data, char **cmd)
 		else
 			if (!ft_check_var_rules(cmd[i]))
 				ft_export_error_not_valid_id(cmd[i]);
+		i++;
 	}
+	g_status.status = 0;
 	data->env = ft_env_to_array(data->lstenv);
 	return (1);
 }

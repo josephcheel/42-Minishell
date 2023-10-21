@@ -29,7 +29,8 @@ LIBFT_SRC	= ft_strlcat.c ft_substr.c ft_atoi.c ft_strdup.c \
 			ft_lstiter.c ft_lstmap.c
 
 LIBFT_EXTRA = ft_array_size.c ft_array_free.c ft_substr_free.c ft_strlwr.c ft_strjoin_free.c ft_putstr.c \
-				ft_atol.c ft_atoll.c ft_isnumeric.c ft_strcmp.c ft_isstralnum.c ft_isupper.c ft_isstrupper.c
+				ft_atol.c ft_atoll.c ft_isnumeric.c ft_strcmp.c ft_isstralnum.c ft_isupper.c ft_isstrupper.c \
+				ft_strpbrk.c ft_isstrprint.c ft_isspace.c ft_isstrspace.c ft_isallspace.c
 
 SRCS	+=	$(addprefix $(SRC_DIR), $(LIBFT_SRC))
 SRCS	+=	$(addprefix $(EXTRA_DIR), $(LIBFT_EXTRA))
