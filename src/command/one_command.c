@@ -5,7 +5,7 @@ int ft_one_command(t_minishell *data)
 	int status;
 	int redir_type;
 	// int code;
-		redir_type = is_redirect(data->raw_cmd);
+		redir_type = is_redirect(data->raw_cmd, *data);
 	(void)redir_type;
 	signal(SIGINT, SIG_IGN);
 	if (is_builtin(data, data->cmd, 0) == 1)

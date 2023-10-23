@@ -49,6 +49,8 @@ typedef struct s_minishell{
 	int				status;
 	t_env			*lstenv;
 
+	char 			*filename;
+
 	struct termios	old_settings;
 	struct termios	new_settings;
 
@@ -127,5 +129,11 @@ char	*ft_parse_variables(t_minishell *data);
 char	*ft_strchr_variable(char *raw_cmd);
 
 /* Redirections */
-int		is_redirect(char	*raw_cmd);
+int		is_redirect(char	*raw_cmd, t_minishell data);
+void	in_file_top(char *filename);
+void	in_file_bottom(char *filename);
+void	from_file_top(char *filename);
+void	from_file_bottom(char *filename);
+char	*get_filename(char *raw_cmd, size_t max_length, t_minishell data);
+
 #endif
