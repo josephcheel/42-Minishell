@@ -4,7 +4,7 @@ char *get_filename(char *raw_cmd, size_t max_length, t_minishell data)
 {
 
 char *filename;
-filename = NULL;
+filename = (char *)malloc(max_length);
 const char *start;
 start = NULL;
 int i;
@@ -32,6 +32,7 @@ j = 0;
     filename[j] = '\0';
     
     data.filename = filename;  
+    free(filename);
     return (0);
 }
 

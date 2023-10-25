@@ -76,6 +76,10 @@ int is_redirect(char	*raw_cmd, t_minishell data) // return int // control this c
 {
     int i;
     i = 0;
+    ft_putstr_fd("is_redirect", 2);
+    get_filename(raw_cmd, 100, data);
+    printf("%s", data.filename);
+    
 
     
 
