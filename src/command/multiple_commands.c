@@ -8,16 +8,21 @@ char **ft_separate_cmds(t_minishell *data)
 	
 
 	i = -1;
-	separate_cmds = ft_split(data->raw_cmd, '|');
+	separate_cmds = ft_split_pipe(data->raw_cmd, '|');
 	len = ft_array_size(separate_cmds);
 	while (separate_cmds[++i])
 	{
-		if (ft_isstralnum(separate_cmds[i]) == 0 && separate_cmds[len - 1] == separate_cmds[i])
+		// if (separate_cmds[i])
+		// 	printf("[%d] %s\n", i, separate_cmds[i]);
+		if (ft_isstralnum(separate_cmds[i]) == 0 &&
+				(separate_cmds[len - 1] == separate_cmds[i]))
 		{
 			ft_putstr_fd("pipe>\n", 2);
 			return (NULL);
 		}
-		else if (ft_isstralnum(separate_cmds[i]) == 0)
+		else if (ft_isstralnum(separate_cmds[i]) == 0
+				|| (ft_isstralnum(separate_cmds[i]) == 0
+				&& separate_cmds[0] == separate_cmds[i]))
 		{
 			ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
 			return (NULL);
@@ -25,6 +30,7 @@ char **ft_separate_cmds(t_minishell *data)
 	}
 	// printf("SIZE: OF: %d\n", ft_array_size(separate_cmds));
 	// // printf("CMD NOT EXIST: %s$\n", separate_cmds[1]);
+	// return (NULL);
 	return (separate_cmds);	
 }
 

@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:39:00 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/19 21:33:50 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/26 02:50:03 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	split_len(char *str)
 int	isnotquote(char *str, int i, int type)
 {
 	if (str[i +1] == '\"' && str[i] == '\"')
-		return 0;
+		return (0);
 	if (str[i] != type || ((str[i] == type && str[i - 1] == 92) && str[i]))
 		return (1);
 	else
@@ -65,7 +65,7 @@ int	ft_count_words(char *str, int words)
 		else if (str[i] == 34 && str[i - 1] != 92)
 		{
 			i++;
-			while (isnotquote(str, i, '\"')  && isnotquote(str, i, '\''))
+			while (isnotquote(str, i, '\"') && isnotquote(str, i, '\''))
 				i++;
 			words++;
 		}
@@ -114,4 +114,3 @@ char	**ft_split_quotes(char *str)
 	split = alloc_split(split, str, x);
 	return (split);
 }
-

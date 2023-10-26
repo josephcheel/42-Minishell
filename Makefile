@@ -58,12 +58,12 @@ INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 # RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
 
 # Flags for Home Joseph
-#LDFLAGS	=/opt/homebrew/opt/readline/lib
-#RFLAGS	= /opt/homebrew/opt/readline/include
+LDFLAGS	=/opt/homebrew/opt/readline/lib
+RFLAGS	= /opt/homebrew/opt/readline/include
 
  #Flags for Home alex
-  LDFLAGS=/usr/local/opt/readline/lib
-  RFLAGS=/usr/local/opt/readline/include
+#   LDFLAGS=/usr/local/opt/readline/lib
+#   RFLAGS=/usr/local/opt/readline/include
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─SORCES─✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
@@ -71,7 +71,7 @@ INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 
 MS_SRCS			=	main.c display_prompt.c ft_split_quotes.c\
                     ft_has_valid_quotes.c  ft_signal_handler.c \
-					redirect.c redirect_utils.c
+					redirect.c redirect_utils.c ft_split_pipe.c
 
 BUILTINS	 	=	is_builtin.c ft_echo.c ft_pwd.c ft_cd.c  ft_cd_utils.c ft_env.c ft_export.c ft_unset.c ft_exit.c
 

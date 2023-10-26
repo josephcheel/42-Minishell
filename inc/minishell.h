@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:47:45 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 15:45:32 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/26 02:14:52 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,7 @@ void	in_file_bottom(char *filename);
 void	from_file_top(char *filename);
 void	from_file_bottom(char *filename);
 char	*get_filename(char *raw_cmd, size_t max_length, t_minishell data);
+
+char	**ft_split_pipe(char const *s, int c);
 
 #endif
