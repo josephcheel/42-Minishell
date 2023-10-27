@@ -7,13 +7,14 @@ void	ft_init_data_one_cmd(t_minishell *data)
 	data->cmd_and_arguments_size = ft_array_size(data->cmd);
 }
 
-static void	ft_freeme(t_minishell *data)
+static void	ft_free_one(t_minishell *data)
 {
 	if (data->raw_cmd)
 		free(data->raw_cmd);
 	if (data->cmd)
 		ft_array_free(data->cmd, ft_array_size(data->cmd));
 }
+
 int	ft_commands(t_minishell *data)
 {
 	if (ft_has_valid_quotes(data->raw_cmd) == 0)
@@ -30,12 +31,11 @@ int	ft_commands(t_minishell *data)
 	{
 		ft_init_data_one_cmd(data);
 		ft_one_command(data);
-		ft_freeme(data);
+		ft_free_one(data);
 	}
 	else
 	{
 		ft_multiple_commands(data);
-		
 	}
 	return (0);
 }
