@@ -53,19 +53,20 @@ script:
 echo "Hello World!"
 exit
 
-Functions used:
-        signal, fork, malloc, free, write, execve, waitpid, 
-        rl_on_new_line, rl_redisplay,
+Functions used: add_history, malloc, rl_on_new_line, rl_redisplay,
+        signal, fork, free, write, execve, waitpid, rl_replace_line,
+        isatty, getenv, readline, open, perror,
+        
 
 Functions autorised:
-        readline, rl_clear_history, 
-        rl_replace_line,  add_history,
-        printf, access, open, read,
+         rl_clear_history, 
+        
+        printf, access,  read,
         close, wait, wait3, wait4, 
         sigaction, sigemptyset, sigaddset, kill, exit,
         getcwd, chdir, stat, lstat, fstat, unlink, 
         dup, dup2, pipe, opendir, readdir, closedir,
-        strerror, perror, isatty, ttyname, ttyslot, ioctl,
+        strerror,   ttyname, ttyslot, ioctl,
         getenv, tcsetattr, tcgetattr, tgetent, tgetflag,
         tgetnum, tgetstr, tgoto, tputs
 
@@ -89,17 +90,6 @@ BONUS:
          &&, ||, ()
          wildcards *
 
-
-workflow
-main
-  |->init_env
-  |->signal_handler
-  |->display_prompt_msg  
-  |->ft_commands
-  |->execve 1 or multiple
-  |->waitpid
-
-
   redirections:
 
   standard input //user keyboard
@@ -107,3 +97,95 @@ main
   < write in file
   > capture from file
   << >> write or capture to the end of file
+
+
+  -what is a node? the line, a art of the line? from env
+  -what is g_status?
+  -what is isatty?
+  -explain $?
+  -ft_isvariable not understand
+  -child process finished?
+
+
+                                              
+                                              workflow
+main
+ |->t_minishell	data;
+ |->init_minishell
+       |->init env
+            |->ft_array_size
+            |->ft_split_env
+                    |->ft_strchr(line, '=')
+            |->ft_create_new_node
+                  t_env	*result;
+            |->ft_insert_at_end
+       |->init_term_fd
+            |->data->std_in = dup(STDIN_FILENO);
+	        |->data->std_out = dup(STDOUT_FILENO);
+  while
+  {
+    signal_handler
+    display_prompt_msg
+           |->readline
+           |->add_history
+    |->ft_ctrl_d
+         |->isatty
+    ft_commands
+         |->ft_has_valid_quotes
+         |->ft_count_commands
+         |->ft_strchr_variable
+                |->if ((raw_cmd[i] == '$' && ft_isalnum(raw_cmd[i+1]) && s_quote == 0))
+                |->ft_get_export_id
+                |->ft_check_var_rules
+         |->ft_parse_variables
+                |->ft_strchr_variable
+                |->ft_get_export_id
+                	if (ft_strcmp(variable, "?") == 0)
+			            return (ft_replace_string(data->raw_cmd, variable, ft_itoa(g_status.status)));
+                    else
+		                {
+			            if (ft_isvariable(data->lstenv, variable))
+			            {
+				        tmp = ft_find_id(data->lstenv, variable);
+				        result = ft_replace_string(data->raw_cmd, tmp->id, tmp->value);
+			            }
+			            else
+				        result = ft_replace_string(data->raw_cmd, variable, "");
+			        return (result);
+		            }
+          |->ft_init_data_one_cmd
+                 |->ft_redirect
+                      |->get_filename
+                            in_or_from_file
+                 |->signal
+                 |->is_builtin
+                 |->fork
+                 |->signal
+                 |->exec_one
+                      |->find_command_route_env
+                             |->ft_isvariable
+                             |->getenv
+                             |->command_add
+                             |->access
+                 |->execve
+           |->ft_free_one
+           |->ft_multiple_commands
+                |->ft_check_pipe_sytax
+                |->ft_separate_cmds
+                |->pipe
+                |->signal
+                |->fork
+                |->signal
+                |->child_process       ?
+                |->exec_multiple
+                     ->find_command_route_env
+                             |->ft_isvariable
+                             |->getenv
+                             |->command_add
+                             |->access
+                 |->execve
+    |->reset_term_fd
+  }
+  return (g_status.status);
+  
+            
