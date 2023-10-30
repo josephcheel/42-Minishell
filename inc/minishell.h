@@ -129,12 +129,12 @@ char	*ft_parse_variables(t_minishell *data);
 char	*ft_strchr_variable(char *raw_cmd);
 
 /* Redirections */
-int		is_redirect(char	*raw_cmd, t_minishell data);
+int		ft_redirect(char	*raw_cmd, t_minishell data);
 void	in_file_top(char *filename);
 void	in_file_bottom(char *filename);
 void	from_file_top(char *filename);
 void	from_file_bottom(char *filename);
-char	*get_filename(char *raw_cmd, size_t max_length, t_minishell data);
+char	*get_filename(char *raw_cmd, t_minishell *data);
 
 char	**ft_split_pipe(char const *s, int c);
 

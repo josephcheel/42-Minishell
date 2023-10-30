@@ -1,16 +1,22 @@
 #include "../inc/minishell.h"
 
-char *get_filename(char *raw_cmd, size_t max_length, t_minishell data) 
+char *get_filename(char *raw_cmd, t_minishell *data) 
 {
-
-char *filename;
-filename = (char *)malloc(max_length);
 const char *start;
 start = NULL;
+char *filename;
+filename = malloc(sizeof(ft_strlen(start)) + 1 );
+
 int i;
 i = 0;
 unsigned long j;
 j = 0;
+
+if (filename == NULL)
+{
+    perror("malloc filname");
+    exit(1);
+}
     
     while (raw_cmd[i]) 
     {
@@ -24,15 +30,15 @@ j = 0;
     {
         return (NULL);
     }
-    while (start[j] && j < max_length - 1) 
+    while (start[j]) 
     {
         filename[j] = start[j];
         j++;
     }
     filename[j] = '\0';
     
-    data.filename = filename;  
-    free(filename);
-    return (0);
+    data->filename = filename;  
+    //printf("%s", data->filename);
+    return (filename);
 }
 

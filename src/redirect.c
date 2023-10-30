@@ -72,13 +72,15 @@ void from_file_bottom(char *filename)
     close(fd);
 }
 
-int is_redirect(char	*raw_cmd, t_minishell data) // return int // control this case 'ls <<<' or 'ls >>>'
+int ft_redirect(char	*raw_cmd, t_minishell data) // return int // control this case 'ls <<<' or 'ls >>>'
 {
     int i;
     i = 0;
-    ft_putstr_fd("is_redirect", 2);
-    get_filename(raw_cmd, 100, data);
-    printf("%s", data.filename);
+    //ft_putstr_fd("is_redirect", 2);
+    char *filename;
+    filename = get_filename(raw_cmd, &data);
+    data.filename = filename;  
+    //printf("%s", data.filename);
     
 
     
@@ -87,31 +89,31 @@ int is_redirect(char	*raw_cmd, t_minishell data) // return int // control this c
     {
         if (raw_cmd[i] == '>' && raw_cmd[i + 1] != '>')
             {
-            in_file_top(get_filename(raw_cmd, 100, data)); //file only 100 character
+            in_file_top(filename);
             ft_putstr_fd("1", 2);
             return(1);
             }
         else if (raw_cmd[i] == '>' && raw_cmd[i + 1] == '>')
             {
-            in_file_bottom(get_filename(raw_cmd, 100, data));
+            in_file_bottom(filename);
             ft_putstr_fd("2", 2);
-            return(3);
+            return(2);
             }
         else if (raw_cmd[i] == '<' && raw_cmd[i + 1] != '<')
             {
-            from_file_top(get_filename(raw_cmd, 100, data));
+            from_file_top(filename);
             ft_putstr_fd("3", 2);
-            return(2);
+            return(3);
             }
         
         else if (raw_cmd[i] == '<'&& raw_cmd[i + 1] == '<')
             {
-            from_file_bottom(get_filename(raw_cmd, 100, data));
+            from_file_bottom(filename);
             ft_putstr_fd("4", 2);
             return(4);
             }
         
         i++;
     }
-    return(0);
+    return(i);
 }
