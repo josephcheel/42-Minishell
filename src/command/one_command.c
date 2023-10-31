@@ -3,10 +3,10 @@
 int ft_one_command(t_minishell *data)
 {
 	int status;
-	// int redir_type;
+	int redir_type;
 	// int code;
-	// 	redir_type = ft_redirect(data->raw_cmd, *data);
-	// (void)redir_type;
+		redir_type = ft_redirect(data->raw_cmd, *data);
+	(void)redir_type;
 	signal(SIGINT, SIG_IGN);
 	if (is_builtin(data, data->cmd, 0) == 1)
 		return (0);

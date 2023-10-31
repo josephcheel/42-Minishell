@@ -5,7 +5,7 @@ char *get_filename(char *raw_cmd, t_minishell *data)
 const char *start;
 start = NULL;
 char *filename;
-filename = malloc(sizeof(ft_strlen(start)) + 1 );
+// filename = malloc(sizeof(ft_strlen(start)) + 1 );
 
 int i;
 i = 0;
@@ -26,16 +26,18 @@ if (filename == NULL)
         }
         i++;
     }
+
     if (start == NULL) 
     {
         return (NULL);
     }
-    while (start[j]) 
-    {
-        filename[j] = start[j];
-        j++;
-    }
-    filename[j] = '\0';
+	filename = ft_substr(raw_cmd, start, ft_strlen(raw_cmd));
+    // while (start[j]) 
+    // {
+    //     filename[j] = start[j];
+    //     j++;
+    // }
+    // filename[j] = '\0';
     
     data->filename = filename;  
     //printf("%s", data->filename);
