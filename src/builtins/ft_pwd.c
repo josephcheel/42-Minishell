@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:11:28 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 13:40:34 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/31 16:47:51 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	ft_pwd(char **cmd)
 	path = (char *)malloc(sizeof(char) * 4097);
 	getcwd(path, 4097);
 	printf("%s\n", path);
+	free(path);
 	g_status.status = 0;
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 19:00:06 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/31 14:28:40 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:44:56 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,10 @@ int	finish_minishell(t_minishell *data)
 int	ft_ctrl_d(void)
 {
 	if (isatty(STDIN_FILENO))
+	{	
 		write(2, "exit\n", 6);
-	exit (g_status.status);
-}
-
-void	ft_free_env(t_env *head)
-{
-	t_env	*temporary;
-
-	temporary = head;
-	while (temporary != NULL)
-	{
-		
-		free(temporary->id);
-		free(temporary->value);
-		temporary = temporary->next;
 	}
+	exit (g_status.status);
 }
 
 int	main(int ac, char **av, char **env)
@@ -72,8 +60,6 @@ int	main(int ac, char **av, char **env)
 		reset_term_fd(&data);
 	}
 	ft_free_env(data.lstenv);
-	// printf("BYEE!");
-	// if (
-	// 	;
+	ft_array_free(data.env, ft_array_size(data.env));
 	return (g_status.status);
 }

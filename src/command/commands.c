@@ -26,7 +26,6 @@ int	ft_commands(t_minishell *data)
 		data->raw_cmd = ft_parse_variables(data);
 	if (ft_isallspace(data->raw_cmd))
 		return (0);
-	
 	if (data->nbr_of_cmds  == 1)
 	{
 		ft_init_data_one_cmd(data);
@@ -36,6 +35,7 @@ int	ft_commands(t_minishell *data)
 	else
 	{
 		ft_multiple_commands(data);
+		free(data->raw_cmd);
 	}
 	return (0);
 }

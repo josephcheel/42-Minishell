@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:00:04 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 21:04:46 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:43:33 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	ft_export(t_minishell *data, char **cmd)
 				ft_set_variable(&data->lstenv, variable[0], variable[1]);
 			else
 				ft_export_error_not_valid_id(cmd[i]);
+			free(variable);
 		}
 		else
 			if (!ft_check_var_rules(cmd[i]))
@@ -85,6 +86,9 @@ int	ft_export(t_minishell *data, char **cmd)
 		i++;
 	}
 	g_status.status = 0;
+
+	if (data->lstenv)
+		ft_free_env(data->lstenv);
 	data->env = ft_env_to_array(data->lstenv);
 	return (1);
 }

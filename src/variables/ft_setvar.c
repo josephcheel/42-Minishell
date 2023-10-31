@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_setvar.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:16:09 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 12:14:59 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:38:49 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	ft_set_variable(t_env **head, char *id, char *value)
 	if (ft_isvariable(*head, id))
 	{
 		temp = ft_find_id(*head, id);
+		free(temp->id);
+		free(temp->value);
+		temp->id = id;
 		temp->value = value;
 	}
 	else
