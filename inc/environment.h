@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:59:16 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 13:00:08 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:21:11 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ t_env	*ft_find_value(t_env *head, char *value);
 int		ft_listsize(t_env *head);
 
 char	**ft_env_to_array(t_env *head);
+void	ft_free_env(t_env *head);
 #endif
