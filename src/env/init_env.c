@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:39:12 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 03:44:15 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/31 14:31:00 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ int	init_env(t_minishell *data, char **env)
 	{
 		split = ft_split_env(env[i]);
 		temp = ft_create_new_node(split[0], split[1]);
-		ft_insert_at_end(&data->lstenv, temp);
+		free(split);
+		ft_insert_at_end(&data->lstenv, temp);	
 		i++;
 	}
+	
 	return (0);
 }

@@ -20,7 +20,7 @@ NAME		=	minishell
 CC			=	gcc
 RLFLAGS		= 	-lreadline 
 CFLAGS		=	-Wall -Werror -Wextra
-XFLAGS		=	-fsanitize=address -g2 -g
+#XFLAGS		=	-fsanitize=address -g2 -g
 
 AR			=	ar rcs
 RM			=	rm -f
@@ -58,12 +58,12 @@ INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 # RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
 
 # Flags for Home Joseph
-#LDFLAGS	=/opt/homebrew/opt/readline/lib
-#RFLAGS	= /opt/homebrew/opt/readline/include
+LDFLAGS	=/opt/homebrew/opt/readline/lib
+RFLAGS	= /opt/homebrew/opt/readline/include
 
-# Flags for Home alex
-   LDFLAGS=/usr/local/opt/readline/lib
-   RFLAGS=/usr/local/opt/readline/include
+# # Flags for Home alex
+#    LDFLAGS=/usr/local/opt/readline/lib
+#    RFLAGS=/usr/local/opt/readline/include
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─SORCES─✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
