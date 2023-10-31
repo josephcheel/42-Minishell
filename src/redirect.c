@@ -4,6 +4,7 @@ void    in_file_top(char *filename)
 {
     int fd;
 
+    printf("FILENAME $%s$\n", filename);
     fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (fd == -1) 
 	{
@@ -40,6 +41,7 @@ void from_file_top(char *filename)
 {
     int fd;
 
+    printf("FILENAME $%s$\n", filename);
     fd = open(filename, O_RDONLY);
     if (fd == -1) 
     {
@@ -82,7 +84,7 @@ int ft_redirect(char	*raw_cmd, t_minishell data) // return int // control this c
     data.filename = filename;  
     //printf("%s", data.filename);
     
-	access(filename, W_OK);
+	// access(filename, W_OK);
     while(raw_cmd[i])
     {
         if (raw_cmd[i] == '>' && raw_cmd[i + 1] != '>')
