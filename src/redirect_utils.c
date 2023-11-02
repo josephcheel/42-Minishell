@@ -5,8 +5,8 @@ char *get_filename(char *raw_cmd, t_minishell *data)
 unsigned int start;
 unsigned int stop;
 unsigned int res;
-char *infile;
-char *outfile;
+// char *infile;
+// char *outfile;
 start = 0;
 stop = 0;
 res = 0;
@@ -27,9 +27,9 @@ int i = 0;
                 stop++;
             res = stop - start + 1;
             if (raw_cmd[i] == '<' )
-                infile = ft_substr(raw_cmd, start, res);
+                data->infile = ft_substr(raw_cmd, start, res);
             else if (raw_cmd[i] == '>') 
-                outfile = ft_substr(raw_cmd, start, res);
+               data->outfile = ft_substr(raw_cmd, start, res);
         }
         i++;
     }
@@ -41,16 +41,16 @@ int i = 0;
 	
     //  data->infile = NULL 
     //  data->outfile = NULL
-    if (infile)
-        printf("INFILE %s\n", infile);
-     if (outfile)
-     printf("OUTFILE %s\n", outfile);
+    if (data->infile)
+        printf("INFILE %s\n", data->infile);
+     if (data->outfile)
+     printf("OUTFILE %s\n", data->outfile);
 //     if (filename == NULL)
 // {
 //     perror("malloc filename");
 //     exit(1);
 // }
-(void)data;
+// (void)data;
     // while (start[j] != ) 
     // {
     //     filename[j] = start[j];

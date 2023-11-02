@@ -4,7 +4,7 @@ void    in_file_top(char *filename)
 {
     int fd;
 
-    printf("FILENAME $%s$\n", filename);
+    // printf("FILENAME $%s$\n", filename);
     fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (fd == -1) 
 	{
