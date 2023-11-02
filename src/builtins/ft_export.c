@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:00:04 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/02 16:55:59 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/02 23:05:15 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ int	ft_export(t_minishell *data, char **cmd)
 		i++;
 	}
 	g_status.status = 0;
-
-	// if (data->lstenv)
-	// 	ft_free_env(data->lstenv);
+	if (data->is_env_malloc)
+		ft_array_free(data->env, ft_array_size(data->env));
+	data->is_env_malloc = 1;
 	data->env = ft_env_to_array(data->lstenv);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:39:09 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 03:43:12 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/02 21:59:42 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	**ft_env_to_array(t_env *head)
 	i = 0;
 	lstsize = ft_listsize(head);
 	array = malloc(sizeof(char *) * lstsize + 1);
+	if (!array)
+		return (NULL);
 	temp = head;
 	while (i < lstsize)
 	{
