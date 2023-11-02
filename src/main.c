@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 19:00:06 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/31 17:44:56 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/31 19:16:48 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ int	main(int ac, char **av, char **env)
 		data.raw_cmd = display_prompt_msg();
 		if (!data.raw_cmd)
 			ft_ctrl_d();
-		if (ft_strlen(data.raw_cmd) > 0 && ft_isstrprint(data.raw_cmd) && !ft_isallspace(data.raw_cmd))
-			ft_commands(&data);
+		if (!(ft_strlen(data.raw_cmd) > 0 && ft_isstrprint(data.raw_cmd) && !ft_isallspace(data.raw_cmd)))
+			free(data.raw_cmd);
+		ft_commands(&data);
 		reset_term_fd(&data);
 	}
 	ft_free_env(data.lstenv);

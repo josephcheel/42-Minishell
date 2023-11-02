@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:36:04 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/31 17:14:04 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/10/31 19:29:25 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ char	*ft_strchr_variable(char *raw_cmd)
 		{
 			variable = ft_get_export_id(&raw_cmd[i + 1]);
 			ft_check_var_rules(variable);
+			free(variable);
 			return (&raw_cmd[i]);
 		}
 		else if ((raw_cmd[i] == '$' && raw_cmd[i+1] == '?') && s_quote == 0)
@@ -83,6 +84,8 @@ char	*ft_parse_variables(t_minishell *data)
 			}
 			else
 				result = ft_replace_string(data->raw_cmd, variable, "");
+			free(variable);
+			free(data->raw_cmd);
 			return (result);
 		}
 	}
