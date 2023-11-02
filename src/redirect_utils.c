@@ -2,45 +2,64 @@
 
 char *get_filename(char *raw_cmd, t_minishell *data) 
 {
-const char *start;
-start = NULL;
-char *filename;
+unsigned int start;
+unsigned int stop;
+unsigned int res;
+char *infile;
+char *outfile;
+start = 0;
+stop = 0;
+res = 0;
+int i = 0;
+// filename = NULL;
+
 // filename = malloc(sizeof(ft_strlen(start)) + 1 );
 
-int i;
-i = 0;
-unsigned long j;
-j = 0;
-
-if (filename == NULL)
-{
-    perror("malloc filname");
-    exit(1);
-}
-    
     while (raw_cmd[i]) 
     {
-        if (raw_cmd[i] == '<' || raw_cmd[i] == '>') {
-            start = &raw_cmd[i + 1];
-            break;
+        if (raw_cmd[i] == '<' || raw_cmd[i] == '>') 
+        {
+            start = i +1;
+            while(raw_cmd[start] == ' ') // start + 1 // echo hola > ./text.txt
+                start++;
+            stop = start;
+            while(raw_cmd[stop + 1] != ' ')
+                stop++;
+            res = stop - start + 1;
+            if (raw_cmd[i] == '<' )
+                infile = ft_substr(raw_cmd, start, res);
+            else if (raw_cmd[i] == '>') 
+                outfile = ft_substr(raw_cmd, start, res);
         }
         i++;
     }
-
-    if (start == NULL) 
-    {
-        return (NULL);
-    }
-	filename = ft_substr(raw_cmd, start, ft_strlen(raw_cmd));
-    // while (start[j]) 
+    // printf("%s\n", raw_cmd);
+    // printf("%s\n", &raw_cmd[start]);
+    // printf("$%d$\n", start);
+    // printf("$%d$\n", stop);
+    // printf("$%d$\n", res);
+	
+    //  data->infile = NULL 
+    //  data->outfile = NULL
+    if (infile)
+        printf("INFILE %s\n", infile);
+     if (outfile)
+     printf("OUTFILE %s\n", outfile);
+//     if (filename == NULL)
+// {
+//     perror("malloc filename");
+//     exit(1);
+// }
+(void)data;
+    // while (start[j] != ) 
     // {
     //     filename[j] = start[j];
     //     j++;
     // }
     // filename[j] = '\0';
     
-    data->filename = filename;  
+    // data->filename = filename;  
     //printf("%s", data->filename);
-    return (filename);
+    return (NULL);
 }
 
