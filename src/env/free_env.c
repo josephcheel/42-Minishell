@@ -8,8 +8,10 @@ void	ft_free_env(t_env *head)
 	while (temporary != NULL)
 	{
 		
-		free(temporary->id);
-		free(temporary->value);
+		if (temporary->id)
+			free(temporary->id);
+		if (temporary->value)
+			free(temporary->value);
 		temporary = temporary->next;
 	}
 }

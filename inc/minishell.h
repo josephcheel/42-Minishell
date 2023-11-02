@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:47:45 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/26 02:14:52 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:50:20 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_minishell{
 	int				nbr_of_cmds;
 	int				status;
 	t_env			*lstenv;
+	int 			is_env_malloc;
 
 	char 			*filename;
 

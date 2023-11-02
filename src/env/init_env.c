@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:39:12 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/31 14:31:00 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:51:53 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	init_env(t_minishell *data, char **env)
 		ft_insert_at_end(&data->lstenv, temp);	
 		i++;
 	}
+	data->is_env_malloc = 1;
 	
 	return (0);
 }
