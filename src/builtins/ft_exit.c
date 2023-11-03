@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:31:25 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 15:08:44 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/03 03:03:18 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	ft_exit(char **cmd, int multiple_cmd)
 	{
 		if (ft_isnumeric(cmd[1]) && ft_array_size(cmd) >= 3)
 		{
-			// ft_putstr_fd("exit\n", 2);
 			ft_putstr_fd("minishell: exit: too many arguments\n", 2);
 			return (1);
 		}
@@ -76,6 +75,7 @@ int	ft_exit(char **cmd, int multiple_cmd)
 				exit (0);
 			while (nbr > 256)
 				nbr = nbr - 256;
+			ft_array_free(cmd, ft_array_size(cmd));
 			exit(nbr);
 		}
 	}

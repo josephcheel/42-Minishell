@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsevar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:36:04 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/31 19:29:25 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/03 01:52:36 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,17 @@ char	*ft_strchr_variable(char *raw_cmd)
 	return (NULL);
 }
 
+char *ft_status_variable(t_minishell *data, char * variable)
+{
+	char *status;
+	char *result;
 
+	status = ft_itoa(g_status.status);
+	result = ft_replace_string(data->raw_cmd, variable, status);
+	free(status);
+	free(data->raw_cmd);
+	return (result);
+}
 
 char	*ft_parse_variables(t_minishell *data)
 {
@@ -73,8 +83,7 @@ char	*ft_parse_variables(t_minishell *data)
 	{
 		variable = ft_get_export_id(variable);
 		if (ft_strcmp(variable, "?") == 0)
-			return (ft_replace_string(data->raw_cmd, variable,
-					ft_itoa(g_status.status)));
+			return (ft_status_variable(data, variable));
 		else
 		{
 			if (ft_isvariable(data->lstenv, variable))

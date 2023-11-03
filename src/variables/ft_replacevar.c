@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:21:38 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 18:55:59 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/03 01:45:34 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ char	*ft_replace_string(char *str, char *replace, char *replacer)
 		if (ft_strlen(after_rp))
 			new_str = ft_strjoin(before_rp, after_rp);
 		else
+		{
+			free(after_rp);
 			return (before_rp);
+		}
 	}
 	free(after_rp);
 	free(before_rp);

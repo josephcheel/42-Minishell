@@ -44,7 +44,7 @@ int i = 0;
     if (data->infile)
         printf("INFILE %s\n", data->infile);
      if (data->outfile)
-     printf("OUTFILE %s\n", data->outfile);
+         printf("OUTFILE %s\n", data->outfile);
 //     if (filename == NULL)
 // {
 //     perror("malloc filename");

@@ -18,12 +18,14 @@ char **ft_separate_cmds(t_minishell *data)
 				(separate_cmds[len - 1] == separate_cmds[i]))
 		{
 			ft_putstr_fd("pipe>\n", 2);
+			ft_array_free(separate_cmds, len);
 			return (NULL);
 		}
 		else if (ft_isstralnum(separate_cmds[i]) == 0
 				|| (ft_isstralnum(separate_cmds[i]) == 0
 				&& separate_cmds[0] == separate_cmds[i]))
 		{
+			ft_array_free(separate_cmds, len);
 			ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
 			return (NULL);
 		}
@@ -178,6 +180,7 @@ int	ft_multiple_commands(t_minishell *data)
 		}
 		parent(data);
 	}
+	ft_array_free(data->mul_cmds, ft_array_size(data->mul_cmds));
 	wait_childs(data);
 	return (0);
 }
