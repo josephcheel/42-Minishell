@@ -6,25 +6,24 @@
 /*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:39:12 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/04 17:07:11 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/04 17:31:28 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-char **ft_malloc_env_array(char **env)
+char	**ft_malloc_env_array(char **env)
 {
-	int i;
-	char **array;
+	int		i;
+	char	**array;
 
 	i = -1;
 	array = malloc(sizeof(char *) * ft_array_size(env) + 1);
 	while (env[++i])
 		array[i] = ft_strdup(env[i]);
 	array[i] = NULL;
-	return(array);
+	return (array);
 }
-
 
 int	init_env(t_minishell *data, char **env)
 {
