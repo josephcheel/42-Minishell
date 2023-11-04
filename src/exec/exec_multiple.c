@@ -20,12 +20,19 @@
 
 void	exec_multiple(t_minishell *data, char *cmd)
 {
+	int		builtin;
 	char	*path;
 	char	**splitted_cmd;
 
 	splitted_cmd = ft_split_quotes(cmd);
-	if (is_builtin(data, splitted_cmd, 1))
+	// if (is_builtin(data, splitted_cmd, 1))
+	// 	exit(0);
+	builtin = is_builtin(splitted_cmd);
+	if (builtin)
+	{
+		exec_builtin(data, splitted_cmd, 1, builtin);
 		exit(0);
+	}
 	else if (!cmd[0])
 		exit(0);
 	else
