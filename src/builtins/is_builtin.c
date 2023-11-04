@@ -58,3 +58,5 @@ int	is_builtin(t_minishell *data, char **cmd, int multiple_cmd)
 	free(decapitalize);
 	return (i);
 }
+
+//exec_builtin()

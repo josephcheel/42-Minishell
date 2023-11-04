@@ -5,31 +5,58 @@ char *get_filename(char *raw_cmd, t_minishell *data)
 unsigned int start;
 unsigned int stop;
 unsigned int res;
+int s_quote;
+int d_quote;
+int i;
 
+i = 0;
+s_quote = 0;
+d_quote = 0;
 start = 0;
 stop = 0;
 res = 0;
-int i = 0;
+
 // filename = NULL;
 
 // filename = malloc(sizeof(ft_strlen(start)) + 1 );
 // Avoid interpreting redirection in QUOTES  
     while (raw_cmd[i]) 
-    {
-        if (raw_cmd[i] == '<' || raw_cmd[i] == '>') // add >>
-        {
-            start = i +1;
-            while(raw_cmd[start] == ' ') // start + 1 // echo hola > ./text.txt
+    {   
+        if (raw_cmd[i] == '\"' && !s_quote)
+			d_quote++;
+		if (raw_cmd[i] == '\'' && !d_quote)
+			s_quote++;
+		if (raw_cmd[i] == '\"' && d_quote == 2)
+			d_quote = 0;
+		if (raw_cmd[i] == '\'' && s_quote == 2)
+			s_quote = 0;
+        if (raw_cmd[i] == '<' || raw_cmd[i] == '>') // << >>
+            {
+            start = i + 1;
+            if (raw_cmd[i] == '<' && raw_cmd[i + 1] == '<')    
+                start++;
+            else if (raw_cmd[i] == '>' && raw_cmd[i + 1] == '>')
+                start++;
+            while(raw_cmd[start] == ' ')
                 start++;
             stop = start;
-            while(raw_cmd[stop + 1] != ' ')
+            while(raw_cmd[stop] != ' ' && raw_cmd[stop] != '\0')
                 stop++;
-            res = stop - start + 1;
-            if (raw_cmd[i] == '<' )
-            	data->infile = ft_substr(raw_cmd, start, res);
+            res = stop - start;
+            if (raw_cmd[i] == '<')
+            {
+                if (data->infile)
+                    free(data->infile);
+                data->infile = ft_substr(raw_cmd, start, res);
+            }
             else if (raw_cmd[i] == '>') 
+            {
+                if(data->outfile)
+                    free(data->outfile);
         		data->outfile = ft_substr(raw_cmd, start, res);
-        }
+            }
+            i = stop;
+            } 
         i++;
     }
     // printf("%s\n", raw_cmd);

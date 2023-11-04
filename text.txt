@@ -187,5 +187,42 @@ main
     |->reset_term_fd
   }
   return (g_status.status);
-  
-            
+
+
+LEAKS
+
+leaks -atExit -- ./minishell           leaks
+
+echo                                    ok
+echo hola                               ok
+echo hola hola                          ok
+echo "hola"                             ok
+echo "hola hola"                        ok
+echo " hola hola "                      ok
+echo -n hola                            ok
+echo "hola " " hola"                    ok
+echo $PWD                               ok
+echo \n                                 ok
+echo -e "\n"                            ok        -e not working but not requested
+echo '"Bienvenue sur malekal.com"'      ok        return = Bienvenue sur malekal.com"' and must be: "Bienvenue sur malekal.com"
+echo \"hola\"                           ok        return = \"hola\" and must be: "hola"
+echo "'Bienvenue sur malekal.com'"      ok        return = hola'" and must be: 'hola'
+echo \'hola\'                           ok        return = \'hola\' and must be: 'hola'
+echo $'hola'                            ok        return = $'hola' and must be: hola
+echo text files are: *.txt              ok        return = text files are: *.txt and must be: text files are: text.txt test.txt
+echo "hola hola" > test.txt             ok        crash open: Bad address
+echo $PATH                              ok
+echo "$PATH"                            ok
+echo "rep and files on system: $(LS)"   ok        return = rep and files on system: $(LS) and mus be: text.txt
+                                                                                                    builtin
+                                                                                                    ...
+echo $?                                 ok
+
+exit                                    ok
+ctrl-C empty prompt                               crash 
+ctrl-D empty prompt                     ok
+ctrl-\ empty prompt                               crash  
+ctrl-C with text                                  crash  
+ctrl-D with text                        ok
+ctrl-\ with text                                  crash
+ctrl-C after cat

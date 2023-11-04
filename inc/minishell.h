@@ -53,6 +53,7 @@ typedef struct s_minishell{
 	char			*filename;
 	char			*infile;
 	char			*outfile;
+	char			*herdoc;
 
 	struct termios	old_settings;
 	struct termios	new_settings;
