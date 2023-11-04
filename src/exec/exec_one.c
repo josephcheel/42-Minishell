@@ -1,8 +1,8 @@
 #include "../../inc/minishell.h"
 
-void exec_one(t_minishell *data)
+void	exec_one(t_minishell *data)
 {
-	char *path;
+	char	*path;
 
 	if (!ft_isstralnum(data->cmd[0]))
 	{

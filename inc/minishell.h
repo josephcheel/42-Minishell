@@ -48,11 +48,11 @@ typedef struct s_minishell{
 	int				nbr_of_cmds;
 	int				status;
 	t_env			*lstenv;
-	int 			is_env_malloc;
+	int				is_env_malloc;
 
-	char 			*filename;
-	char 			*infile;
-	char 			*outfile;
+	char			*filename;
+	char			*infile;
+	char			*outfile;
 
 	struct termios	old_settings;
 	struct termios	new_settings;

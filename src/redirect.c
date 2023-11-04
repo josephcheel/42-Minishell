@@ -82,7 +82,7 @@ int ft_redirect(char	*raw_cmd, t_minishell data) // return int // control this c
     char *filename;
     filename = get_filename(raw_cmd, &data);
     data.filename = filename;  
-    //printf("%s", data.filename);
+    printf("%s", data.filename);
     
 	// access(filename, W_OK);
     while(raw_cmd[i])

@@ -7,7 +7,6 @@ void	ft_free_env(t_env *head)
 	temporary = head;
 	while (temporary != NULL)
 	{
-		
 		if (temporary->id)
 			free(temporary->id);
 		if (temporary->value)

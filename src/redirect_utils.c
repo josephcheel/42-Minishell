@@ -19,7 +19,7 @@ int i = 0;
     {
         if (raw_cmd[i] == '<' || raw_cmd[i] == '>') 
         {
-            start = i +1;
+            start = i + 1;
             while(raw_cmd[start] == ' ') // start + 1 // echo hola > ./text.txt
                 start++;
             stop = start;

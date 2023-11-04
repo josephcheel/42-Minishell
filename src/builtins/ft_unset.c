@@ -87,7 +87,6 @@ int	ft_unset(t_minishell *data, char **cmd)
 	}
 	if (g_status.status != 1)
 		g_status.status = 0;
-	
 	if (data->is_env_malloc)
 		ft_array_free(data->env, ft_array_size(data->env));
 	data->is_env_malloc = 1;
