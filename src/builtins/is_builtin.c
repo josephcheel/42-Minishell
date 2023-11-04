@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:07:54 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/31 14:48:45 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:19:48 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	is_builtin(t_minishell *data, char **cmd, int multiple_cmd)
 	char *decapitalize;
 	i = 0;
 
+	// ft_redirect(data->raw_cmd, data);
 	decapitalize = ft_strlwr(cmd[0]);
 	if (!ft_isstralnum(cmd[0]))
 		return (0);

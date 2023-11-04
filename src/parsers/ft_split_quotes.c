@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_quotes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:39:00 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/26 02:50:03 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:35:17 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/split_quotes.h"
-#include "../libft/inc/libft.h"
+
+#include "../../inc/split_quotes.h"
+#include "../../libft/inc/libft.h"
 #include <stdio.h>
 
 int	split_len(char *str)

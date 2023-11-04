@@ -5,8 +5,7 @@ char *get_filename(char *raw_cmd, t_minishell *data)
 unsigned int start;
 unsigned int stop;
 unsigned int res;
-// char *infile;
-// char *outfile;
+
 start = 0;
 stop = 0;
 res = 0;
@@ -14,10 +13,10 @@ int i = 0;
 // filename = NULL;
 
 // filename = malloc(sizeof(ft_strlen(start)) + 1 );
-
+// Avoid interpreting redirection in QUOTES  
     while (raw_cmd[i]) 
     {
-        if (raw_cmd[i] == '<' || raw_cmd[i] == '>') 
+        if (raw_cmd[i] == '<' || raw_cmd[i] == '>') // add >>
         {
             start = i +1;
             while(raw_cmd[start] == ' ') // start + 1 // echo hola > ./text.txt
@@ -27,9 +26,9 @@ int i = 0;
                 stop++;
             res = stop - start + 1;
             if (raw_cmd[i] == '<' )
-                data->infile = ft_substr(raw_cmd, start, res);
+            	data->infile = ft_substr(raw_cmd, start, res);
             else if (raw_cmd[i] == '>') 
-               data->outfile = ft_substr(raw_cmd, start, res);
+        		data->outfile = ft_substr(raw_cmd, start, res);
         }
         i++;
     }
@@ -44,7 +43,7 @@ int i = 0;
     if (data->infile)
         printf("INFILE %s\n", data->infile);
      if (data->outfile)
-         printf("OUTFILE %s\n", data->outfile);
+        printf("OUTFILE %s\n", data->outfile);
 //     if (filename == NULL)
 // {
 //     perror("malloc filename");

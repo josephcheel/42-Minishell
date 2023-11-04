@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 19:00:06 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/03 03:16:23 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:14:55 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int	main(int ac, char **av, char **env)
 		signal(SIGINT, signal_handler);
 		signal(SIGQUIT, SIG_IGN);
 		data.raw_cmd = display_prompt_msg();
-		// data.infile = NULL;
-		// data.outfile = NULL;
+		data.infile = NULL;
+		data.outfile = NULL;
 		if (!data.raw_cmd)
 			ft_ctrl_d();
 		if (!(ft_strlen(data.raw_cmd) > 0 && ft_isstrprint(data.raw_cmd) && !ft_isallspace(data.raw_cmd)))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:47:45 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/02 23:08:26 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:52:16 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ char	*ft_parse_variables(t_minishell *data);
 char	*ft_strchr_variable(char *raw_cmd);
 
 /* Redirections */
-int		ft_redirect(char	*raw_cmd, t_minishell data);
+int		ft_redirect(char	*raw_cmd, t_minishell *data); // t_minishell *data changes the data globally? t_minishell data not
 void	in_file_top(char *filename);
 void	in_file_bottom(char *filename);
 void	from_file_top(char *filename);
