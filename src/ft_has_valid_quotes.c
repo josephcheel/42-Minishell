@@ -2,16 +2,15 @@
 
 // NOT WORKING WHEN echo "\\" nos scaping double nackslash NOT WORKING echo adios"hola"
 
-int	ft_has_valid_quotes(char *str) 
+int	ft_has_valid_quotes(char *str)
 {
-	int i;
-	int simple_q;
+	int	i;
+	int	simple_q;
 	int	double_q;
-	
+
 	i = -1;
 	simple_q = 0;
 	double_q = 0;
-
 	if (ft_strlen(str) == 0)
 		return (1);
 	while (str[++i])
@@ -28,5 +27,5 @@ int	ft_has_valid_quotes(char *str)
 	if (double_q % 2 == 0 && simple_q % 2 == 0)
 		return (1);
 	else
-		return 0;
+		return (0);
 }

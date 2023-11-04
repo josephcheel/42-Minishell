@@ -12,20 +12,20 @@
 
 #include "../../inc/minishell.h"
 
-int ft_is_bigger_maxll(char *str)
+int	ft_is_bigger_maxll(char *str)
 {
-	int negative;
+	int	negative;
 
 	negative = 0;
-	while (str[0] == '-'  && str[1] == '-')
+	while (str[0] == '-' && str[1] == '-')
 		str++;
 	if (str[0] == '-')
 		negative = 1;
-	if  (ft_strcmp(str, "-9223372036854775808") == 0 )
+	if (ft_strcmp(str, "-9223372036854775808") == 0)
 		exit (0);
 	else if (ft_strcmp(str, "9223372036854775807") == 0)
 		exit (255);
-	else if  (ft_strcmp(str, "-9223372036854775808") > 0 && negative == 1)
+	else if (ft_strcmp(str, "-9223372036854775808") > 0 && negative == 1)
 		return (1);
 	else if (ft_strcmp(str, "9223372036854775807") > 0)
 		return (1);
@@ -34,7 +34,6 @@ int ft_is_bigger_maxll(char *str)
 
 // static void ft_exit_error_numeric_req();
 // {
-	
 // }
 
 int	ft_exit(char **cmd, int multiple_cmd)
@@ -68,7 +67,7 @@ int	ft_exit(char **cmd, int multiple_cmd)
 				ft_putstr_fd(": numeric argument required\n", 2);
 				exit (255);
 			}
-			else 
+			else
 				nbr = ft_atoll(cmd[1]);
 			// printf("NBR: %lld", nbr);
 			if (nbr == 0)

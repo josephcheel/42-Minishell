@@ -1,11 +1,10 @@
 #include "../../inc/minishell.h"
 
-char **ft_separate_cmds(t_minishell *data)
+char	**ft_separate_cmds(t_minishell *data)
 {
-	int i;
-	int len;
-	char **separate_cmds;
-	
+	int		i;
+	int		len;
+	char	**separate_cmds;
 
 	i = -1;
 	separate_cmds = ft_split_pipe(data->raw_cmd, '|');
@@ -14,16 +13,16 @@ char **ft_separate_cmds(t_minishell *data)
 	{
 		// if (separate_cmds[i])
 		// 	printf("[%d] %s\n", i, separate_cmds[i]);
-		if (ft_isstralnum(separate_cmds[i]) == 0 &&
-				(separate_cmds[len - 1] == separate_cmds[i]))
+		if (ft_isstralnum(separate_cmds[i]) == 0 && \
+			(separate_cmds[len - 1] == separate_cmds[i]))
 		{
 			ft_putstr_fd("pipe>\n", 2);
 			ft_array_free(separate_cmds, len);
 			return (NULL);
 		}
-		else if (ft_isstralnum(separate_cmds[i]) == 0
-				|| (ft_isstralnum(separate_cmds[i]) == 0
-				&& separate_cmds[0] == separate_cmds[i]))
+		else if (ft_isstralnum(separate_cmds[i]) == 0 \
+			|| (ft_isstralnum(separate_cmds[i]) == 0
+			&& separate_cmds[0] == separate_cmds[i]))
 		{
 			ft_array_free(separate_cmds, len);
 			ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
@@ -50,13 +49,12 @@ char **ft_separate_cmds(t_minishell *data)
 
 void	child_process(t_minishell *data, int nbr)
 {
-
 	// if (data->pid  == 0)
 	// {
-		if (nbr != data->nbr_of_cmds - 1)
-			dup2(data->fd[1], STDOUT_FILENO);
-		close(data->fd[1]);
-		close(data->fd[0]);
+	if (nbr != data->nbr_of_cmds - 1)
+		dup2(data->fd[1], STDOUT_FILENO);
+	close(data->fd[1]);
+	close(data->fd[0]);
 		
 		// exec_multiple(data, data->mul_cmds[nbr]);
 

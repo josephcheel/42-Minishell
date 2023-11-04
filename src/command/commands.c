@@ -3,7 +3,7 @@
 void	ft_init_data_one_cmd(t_minishell *data)
 {
 	data->cmd = ft_split_quotes(data->raw_cmd);
-	data->cmd_size= ft_cmdsize(data->cmd);
+	data->cmd_size = ft_cmdsize(data->cmd);
 	data->cmd_and_arguments_size = ft_array_size(data->cmd);
 }
 
@@ -21,12 +21,12 @@ int	ft_commands(t_minishell *data)
 		return (write(2, "quote>\n", 8));
 	data->nbr_of_cmds = ft_count_commands(data->raw_cmd);
 	if (data->nbr_of_cmds == 0)
-		return 0;
+		return (0);
 	while (ft_strchr_variable(data->raw_cmd))
 		data->raw_cmd = ft_parse_variables(data);
 	if (ft_isallspace(data->raw_cmd))
 		return (0);
-	if (data->nbr_of_cmds  == 1)
+	if (data->nbr_of_cmds == 1)
 	{
 		ft_init_data_one_cmd(data);
 		ft_one_command(data);
@@ -39,4 +39,3 @@ int	ft_commands(t_minishell *data)
 	}
 	return (0);
 }
-
