@@ -1,11 +1,10 @@
 #include "../../inc/minishell.h"
 
-char **ft_separate_cmds(t_minishell *data)
+char	**ft_separate_cmds(t_minishell *data)
 {
-	int i;
-	int len;
-	char **separate_cmds;
-	
+	int		i;
+	int		len;
+	char	**separate_cmds;
 
 	i = -1;
 	separate_cmds = ft_split(data->raw_cmd, '|');

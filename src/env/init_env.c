@@ -28,7 +28,7 @@ int	init_env(t_minishell *data, char **env)
 		split = ft_split_env(env[i]);
 		temp = ft_create_new_node(split[0], split[1]);
 		free(split);
-		ft_insert_at_end(&data->lstenv, temp);	
+		ft_insert_at_end(&data->lstenv, temp);
 		i++;
 	}
 	return (0);

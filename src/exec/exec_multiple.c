@@ -18,10 +18,10 @@
 // 	}
 // }
 
-void exec_multiple(t_minishell *data, char *cmd)
+void	exec_multiple(t_minishell *data, char *cmd)
 {
-	char *path;
-	char **splitted_cmd;
+	char	*path;
+	char	**splitted_cmd;
 
 	splitted_cmd = ft_split_quotes(cmd);
 	if (is_builtin(data, splitted_cmd, 1))
@@ -29,7 +29,7 @@ void exec_multiple(t_minishell *data, char *cmd)
 	else if (!cmd[0])
 		exit(0);
 	else
-	{	
+	{
 		if (!ft_isstralnum(splitted_cmd[0]))
 		{
 			ft_putstr_fd("minishell: ", 2);

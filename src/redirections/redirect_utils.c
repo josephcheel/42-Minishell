@@ -1,4 +1,4 @@
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 char *get_filename(char *raw_cmd, t_minishell *data) 
 {

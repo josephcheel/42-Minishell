@@ -1,6 +1,6 @@
 #include "../../inc/minishell.h"
 
-int ft_one_command(t_minishell *data)
+int	ft_one_command(t_minishell *data)
 {
 	int status;
 	// int redir_type;
@@ -22,9 +22,9 @@ int ft_one_command(t_minishell *data)
 		if (waitpid(data->pid, &status, 0) == -1)
 			;
 		if (WIFSIGNALED(status))
-			catch_signal(status + 128, 1);		
+			catch_signal(status + 128, 1);
 		else if (WIFEXITED(status))
-			g_status.status  = WEXITSTATUS(status);
+			g_status.status = WEXITSTATUS(status);
 	}
 	return (0);
 }

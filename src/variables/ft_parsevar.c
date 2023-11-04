@@ -18,7 +18,7 @@ char	*ft_get_export_id(char *variable)
 	char	*result;
 	char	*non_alphanum;
 	char	*size;
-	
+
 	if (variable[0] == '$')
 		variable++;
 	if (variable[0] == '?')
@@ -34,24 +34,24 @@ char	*ft_get_export_id(char *variable)
 
 char	*ft_strchr_variable(char *raw_cmd)
 {
-	int i;
-	int s_quote;
-	char *variable;
-	
+	int		i;
+	int		s_quote;
+	char	*variable;
+
 	i = 0;
 	s_quote = 0;
 	while (raw_cmd[i])
 	{
 		if (raw_cmd[i] == '\'')
 			s_quote++;
-		if ((raw_cmd[i] == '$' && ft_isalnum(raw_cmd[i+1]) && s_quote == 0))
+		if ((raw_cmd[i] == '$' && ft_isalnum(raw_cmd[i + 1]) && s_quote == 0))
 		{
 			variable = ft_get_export_id(&raw_cmd[i + 1]);
 			ft_check_var_rules(variable);
 			free(variable);
 			return (&raw_cmd[i]);
 		}
-		else if ((raw_cmd[i] == '$' && raw_cmd[i+1] == '?') && s_quote == 0)
+		else if ((raw_cmd[i] == '$' && raw_cmd[i + 1] == '?') && s_quote == 0)
 			return (&raw_cmd[i]);
 		if (s_quote == 2)
 			s_quote = 0;
@@ -60,10 +60,10 @@ char	*ft_strchr_variable(char *raw_cmd)
 	return (NULL);
 }
 
-char *ft_status_variable(t_minishell *data, char * variable)
+char	*ft_status_variable(t_minishell *data, char *variable)
 {
-	char *status;
-	char *result;
+	char	*status;
+	char	*result;
 
 	status = ft_itoa(g_status.status);
 	result = ft_replace_string(data->raw_cmd, variable, status);
