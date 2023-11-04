@@ -56,8 +56,8 @@ LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
 RFLAGS = /Users/${USER}/.brew/opt/readline/include
 
 # Flags for Campus Alex
- LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
- RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
+#  LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
+#  RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
 
 # Flags for Home Joseph
 # LDFLAGS	=/opt/homebrew/opt/readline/lib

@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:39:12 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/02 22:45:36 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/04 17:07:11 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+char **ft_malloc_env_array(char **env)
+{
+	int i;
+	char **array;
+
+	i = -1;
+	array = malloc(sizeof(char *) * ft_array_size(env) + 1);
+	while (env[++i])
+		array[i] = ft_strdup(env[i]);
+	array[i] = NULL;
+	return(array);
+}
+
 
 int	init_env(t_minishell *data, char **env)
 {
@@ -22,7 +36,7 @@ int	init_env(t_minishell *data, char **env)
 	i = 0;
 	count = ft_array_size(env);
 	data->lstenv = NULL;
-	data->env = env;
+	data->env = ft_malloc_env_array(env);
 	while (i < count)
 	{
 		split = ft_split_env(env[i]);
