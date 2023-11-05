@@ -20,6 +20,7 @@ void	exec_one(t_minishell *data)
 		exit(1);
 	}
 	ft_redirect(data->raw_cmd, data);
+	ft_clean_redir_cmd(data->raw_cmd);
 	execve(path, data->cmd, data->env);
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(data->cmd[0], 2);

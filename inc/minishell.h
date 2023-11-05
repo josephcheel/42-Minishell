@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:47:45 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/04 18:27:07 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/05 19:17:03 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ typedef struct s_minishell{
 	char			**cmd;
 	char			**mul_cmds;
 	char			*raw_cmd;
+	char 			*cleaned_cmd;
 
 	int				cmd_size;
 	int				cmd_and_arguments_size;
 	int				nbr_of_cmds;
 	int				status;
 	t_env			*lstenv;
-	int				is_env_malloc;
 
 	char			*filename;
 	char			*infile;
@@ -140,6 +140,7 @@ void	in_file_bottom(char *filename);
 void	from_file_top(char *filename);
 void	from_file_bottom(char *filename);
 char	*get_filename(char *raw_cmd, t_minishell *data);
+char *ft_clean_redir_cmd(char *str);
 
 char	**ft_split_pipe(char const *s, int c);
 

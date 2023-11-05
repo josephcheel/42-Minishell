@@ -2,7 +2,8 @@
 
 void	ft_init_data_one_cmd(t_minishell *data)
 {
-	data->cmd = ft_split_quotes(data->raw_cmd);
+	data->cleaned_cmd = ft_clean_redir_cmd(data->raw_cmd);
+	data->cmd = ft_split_quotes(data->cleaned_cmd);
 	data->cmd_size = ft_cmdsize(data->cmd);
 	data->cmd_and_arguments_size = ft_array_size(data->cmd);
 }
@@ -11,6 +12,8 @@ static void	ft_free_one(t_minishell *data)
 {
 	if (data->raw_cmd)
 		free(data->raw_cmd);
+	if (data->cleaned_cmd)
+		free(data->cleaned_cmd);
 	if (data->cmd)
 		ft_array_free(data->cmd, ft_array_size(data->cmd));
 }
