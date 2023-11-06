@@ -12,15 +12,14 @@ void    in_file_top(char *filename) // >
 		perror("open");
 		exit(1);
 	}
-    // ft_putnbr_fd(fd, 2);
-    close(fd);
+    // close(fd);
     
-    fd = open(filename, O_WRONLY );
-    if (fd == -1) 
-	{
-		perror("open");
-		exit(1);
-	}
+    // fd = open(filename, O_WRONLY );
+    // if (fd == -1) 
+	// {
+	// 	perror("open");
+	// 	exit(1);
+	// }
     if (dup2(fd, STDOUT_FILENO) == -1) 
 	{
 		perror("dup2");

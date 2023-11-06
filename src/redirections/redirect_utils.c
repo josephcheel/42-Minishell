@@ -71,6 +71,8 @@ res = 0;
         printf("INFILE %s\n", data->infile);
      if (data->outfile)
         printf("OUTFILE %s\n", data->outfile);
+    if (data->heredoc)
+        printf("HEREDOC %s\n", data->heredoc);
 //     if (filename == NULL)
 // {
 //     perror("malloc filename");

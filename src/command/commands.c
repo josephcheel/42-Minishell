@@ -19,6 +19,15 @@ static void	ft_free_one(t_minishell *data)
 		free(data->cleaned_cmd);
 	if (data->cmd)
 		ft_array_free(data->cmd, ft_array_size(data->cmd));
+	if (data->infile)
+		free(data->infile);
+	if (data->outfile)
+		free(data->outfile);
+	if (data->heredoc)
+		free(data->heredoc);
+	data->infile = NULL;
+	data->outfile = NULL;
+	data->heredoc = NULL;
 }
 
 int	ft_commands(t_minishell *data)

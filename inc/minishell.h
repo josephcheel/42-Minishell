@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:47:45 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/05 19:17:03 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/06 23:07:56 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_minishell{
 	char			*filename;
 	char			*infile;
 	char			*outfile;
-	char			*herdoc;
+	char			*heredoc;
 
 	struct termios	old_settings;
 	struct termios	new_settings;
