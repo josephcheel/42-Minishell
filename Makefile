@@ -20,7 +20,7 @@ NAME		=	minishell
 CC			=	gcc
 RLFLAGS		= 	-lreadline 
 CFLAGS		=	-Wall -Werror -Wextra
-#XFLAGS		=	-fsanitize=address -g2 -g
+XFLAGS		=	-fsanitize=address -g2 -g
 
 AR			=	ar rcs
 RM			=	rm -f

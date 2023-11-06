@@ -1,11 +1,21 @@
 #include "../../inc/minishell.h"
 
-void    in_file_top(char *filename)
+void    in_file_top(char *filename) // >
 {
     int fd;
 
-    printf("FILENAME $%s$\n", filename);
+    // printf("HOLA");
+    // printf("FILENAME $%s$\n", filename);
 	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    if (fd == -1) 
+	{
+		perror("open");
+		exit(1);
+	}
+    // ft_putnbr_fd(fd, 2);
+    close(fd);
+    
+    fd = open(filename, O_WRONLY );
     if (fd == -1) 
 	{
 		perror("open");
@@ -17,9 +27,10 @@ void    in_file_top(char *filename)
 		exit(1);
 	}
     close(fd);
+    
 }
 
-void in_file_bottom(char *filename)
+void in_file_bottom(char *filename) // >>
 {
     int fd;
 
@@ -37,11 +48,11 @@ void in_file_bottom(char *filename)
     close(fd);
 }
 
-void from_file_top(char *filename)
+void from_file_top(char *filename) // <
 {
     int fd;
 
-    printf("FILENAME $%s$\n", filename);
+    // printf("FILENAME $%s$\n", filename);
     fd = open(filename, O_RDONLY);
     if (fd == -1) 
     {
@@ -86,6 +97,7 @@ int ft_redirect(char	*raw_cmd, t_minishell *data) // return int // control this 
     //printf("%s", data.filename);
     
 	// access(filename, W_OK);
+    // return (0);
     while(raw_cmd[i])
     {
         if (raw_cmd[i] == '>' && raw_cmd[i + 1] != '>')

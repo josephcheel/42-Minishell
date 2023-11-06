@@ -18,7 +18,6 @@ int	ft_one_command(t_minishell *data)
 		data->pid = fork();
 		if (data->pid == 0)
 		{
-			
 			signal(SIGINT, signal_handler);
 			signal(SIGQUIT, signal_handler);
 			exec_one(data);
