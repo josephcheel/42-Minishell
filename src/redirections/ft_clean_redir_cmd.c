@@ -38,29 +38,18 @@ char *ft_remove_redir(char *str, int start)
 	len = ft_strlen(str);
 	end = get_end_redir(str, start);
 	if (start == 0)
-	{
-		// printf("FIRST");
 		cleaned = ft_substr(str, end, len);
-		// free(str);
-	}
 	else if (end == len)
-	{
-		// printf("SECOND");
 		cleaned = ft_substr(str, 0, start);
-		// free(str);
-	}
 	else // end in the middle
 	{
-		// printf("THIRD");
 		temp = ft_substr(str, 0, start);
 		temp2 = ft_substr(str, end, len);
 		cleaned = ft_strjoin(temp, temp2);
 		free(temp);
 		free(temp2);
 	}
-	// printf("str in remove %s\n", str);
-	// printf("cleaned %s\n", cleaned);
-	
+
 	if (str)
 		free(str);
 	return (cleaned);

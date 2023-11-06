@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:35:33 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 03:36:15 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/06 22:38:03 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	reset_term_fd(t_minishell *data)
 {
 	if (dup2(data->std_in, STDIN_FILENO) == -1)
 		return (1);
-	if (dup2(data->std_out, STDIN_FILENO) == -1)
+	if (dup2(data->std_out, STDOUT_FILENO) == -1)
 		return (1);
 	return (0);
 }
