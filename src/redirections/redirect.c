@@ -17,7 +17,6 @@ void    in_file_top(char *filename)
 		exit(1);
 	}
     close(fd);
-	// close();
 }
 
 void in_file_bottom(char *filename)
@@ -81,6 +80,7 @@ int ft_redirect(char	*raw_cmd, t_minishell *data) // return int // control this 
     i = 0;
     //ft_putstr_fd("is_redirect", 2);
     // char *filename;
+    // return 0;
     get_filename(raw_cmd, data);
     // data.filename = filename;  
     //printf("%s", data.filename);
