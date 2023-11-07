@@ -6,17 +6,20 @@
 /*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:07:54 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/04 18:44:53 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/07 17:08:28 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static int	ft_echo_type(t_minishell *data, char **cmd)
+static int	ft_echo_type(char **cmd)
 {
-	if (data->cmd_size == 1)
+	int cmd_size;
+
+	cmd_size = ft_cmdsize(cmd);
+	if (cmd_size == 1)
 		return (ft_echo(cmd, 0));
-	else if (data->cmd_size == 2 && ft_strcmp(cmd[1], "-n") == 0)
+	else if (cmd_size == 2 && ft_strcmp(cmd[1], "-n") == 0)
 		return (ft_echo(cmd, 1));
 	else
 		return (0);
@@ -65,7 +68,7 @@ int	exec_builtin(t_minishell *data, char **cmd, int multiple_cmd, int cmd_nbr)
 	i = 0;
 	// ft_redirect(data->raw_cmd, data);
 	if (cmd_nbr == 1)
-		i = ft_echo_type(data, cmd);
+		i = ft_echo_type(cmd);
 	else if (cmd_nbr == 2)
 		i = ft_cd(data, cmd);
 	else if (cmd_nbr == 3)

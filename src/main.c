@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 19:00:06 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/04 16:14:55 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/06 23:12:57 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ int	init_minishell(t_minishell *data, char **env)
 {
 	if (init_env(data, env))
 		return (1);
-	if (init_term(data))
-		return (1);
+	// if (init_term(data))
+	// 	return (1);
 	if (init_term_fd(data))
 		return (1);
+	data->infile = NULL;
+	data->outfile = NULL;
+	data->heredoc = NULL;
 	g_status.status = 0;
 	return (0);
 }
@@ -27,7 +30,7 @@ int	init_minishell(t_minishell *data, char **env)
 int	finish_minishell(t_minishell *data)
 {
 	close_term_fd(data);
-	restore_term(data);
+	// restore_term(data);
 	return (0);
 }
 
@@ -53,11 +56,9 @@ int	main(int ac, char **av, char **env)
 		signal(SIGINT, signal_handler);
 		signal(SIGQUIT, SIG_IGN);
 		data.raw_cmd = display_prompt_msg();
-		data.infile = NULL;
-		data.outfile = NULL;
 		if (!data.raw_cmd)
 			ft_ctrl_d();
-		if (!(ft_strlen(data.raw_cmd) > 0 && ft_isstrprint(data.raw_cmd) && !ft_isallspace(data.raw_cmd)))
+		if (ft_strlen(data.raw_cmd) < 0 && !ft_isstrprint(data.raw_cmd) && ft_isallspace(data.raw_cmd))
 			free(data.raw_cmd);
 		ft_commands(&data);
 		reset_term_fd(&data);

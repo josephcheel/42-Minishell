@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:31:25 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/03 03:03:18 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/07 01:06:59 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	ft_exit(char **cmd, int multiple_cmd)
 			}
 			else
 				nbr = ft_atoll(cmd[1]);
-			// printf("NBR: %lld", nbr);
 			if (nbr == 0)
 				exit (0);
 			while (nbr > 256)

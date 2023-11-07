@@ -156,8 +156,6 @@ int	ft_multiple_commands(t_minishell *data)
 	data->mul_cmds = ft_separate_cmds(data);
 	if (data->mul_cmds == NULL)
 		return (0);
-	// printf("mutl %s\n", data->mul_cmds[0]);
-	// printf("nbr cmds %d\n", data->nbr_of_cmds);
 	while (++nbr < data->nbr_of_cmds)
 	{
 		pipe(data->fd);
