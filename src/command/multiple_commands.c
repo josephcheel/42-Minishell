@@ -11,8 +11,6 @@ char	**ft_separate_cmds(t_minishell *data)
 	len = ft_array_size(separate_cmds);
 	while (separate_cmds[++i])
 	{
-		// if (separate_cmds[i])
-		// 	printf("[%d] %s\n", i, separate_cmds[i]);
 		if (ft_isstralnum(separate_cmds[i]) == 0 && \
 			(separate_cmds[len - 1] == separate_cmds[i]))
 		{
@@ -29,65 +27,27 @@ char	**ft_separate_cmds(t_minishell *data)
 			return (NULL);
 		}
 	}
-	// printf("SIZE: OF: %d\n", ft_array_size(separate_cmds));
-	// // printf("CMD NOT EXIST: %s$\n", separate_cmds[1]);
-	// return (NULL);
 	return (separate_cmds);	
 }
 
-// void	init_pipes(int **pipefd, int nbr_cmds)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while (i < nbr_cmds)
-// 	{
-// 		pipe(pipefd[i]);
-// 		i++;
-// 	}
-// }
-
 void	child_process(t_minishell *data, int nbr)
 {
-	// if (data->pid  == 0)
-	// {
 	if (nbr != data->nbr_of_cmds - 1)
 		dup2(data->fd[1], STDOUT_FILENO);
 	close(data->fd[1]);
 	close(data->fd[0]);
-		
-		// exec_multiple(data, data->mul_cmds[nbr]);
-
-	// }
-	// else if (data->pid  > 0)
-	// {
-	// 	close(data->fd[1]);
-	// 	dup2(data->fd[0], 0);
-	// 	close(data->fd[0]);
-	// }
-	// waitpid(data->pid , NULL, 0); 
 }
 
-// int type_of_cmd(t_minishell *data, char *raw_cmd)
+// void	signal_handler_mul(int sig)
 // {
-// 	char **cmd;
-
-// 	cmd = ft_split_quotes(raw_cmd);
-// 	if (is_builtin(data, cmd))
-// 		printf("ONE_COMMAND\n");
-// 	return (0);
+// 	if (sig == SIGQUIT)
+// 	{
+// 		// rl_replace_line("", 0);
+// 		// ft_putstr_fd("Quit: 3\n", STDOUT_FILENO);
+// 		rl_on_new_line();
+// 		rl_redisplay();
+// 	}
 // }
-
-void	signal_handler_mul(int sig)
-{
-	if (sig == SIGQUIT)
-	{
-		// rl_replace_line("", 0);
-		// ft_putstr_fd("Quit: 3\n", STDOUT_FILENO);
-		rl_on_new_line();
-		rl_redisplay();
-	}
-}
 
 int ft_check_pipe_sytax(t_minishell *data)
 {
@@ -151,8 +111,8 @@ int	ft_multiple_commands(t_minishell *data)
 	int nbr;
 	
 	nbr = -1;
-	if (ft_check_pipe_sytax(data))
-		return (0);
+	// if (ft_check_pipe_sytax(data))
+	// 	return (0);
 	data->mul_cmds = ft_separate_cmds(data);
 	if (data->mul_cmds == NULL)
 		return (0);

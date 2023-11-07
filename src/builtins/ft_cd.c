@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:14:54 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/31 16:56:25 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/07 18:36:42 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 static void	ft_chdir(t_minishell *data, char *dir)
 {
-	ft_set_directory(&data->lstenv, "OLDPWD");
 	if (ft_is_mode_permission_ok(dir))
 	{
+		// ft_set_directory(&data->lstenv, "OLDPWD");
 		if (chdir(dir) == 0)
-			ft_set_directory(&data->lstenv, "PWD");
+			;// ft_set_directory(&data->lstenv, "PWD");
 		else
 			perror("chdir");
+		(void)data;
 	}
 }
 

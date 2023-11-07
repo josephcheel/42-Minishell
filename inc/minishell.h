@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:47:45 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/06 23:07:56 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/07 19:14:52 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,9 @@ char	**ft_split_env(char *line);
 
 char	*ft_replace_string(char *str, char *replace, char *replacer);
 char	*ft_return_argument(t_minishell *data);
+int ft_check_pipe_sytax(t_minishell *data);
+int ft_check_redir_sytax(char *str); // return OK(0) NOT_OK(1)
+
 
 // EXECS
 void	exec_one(t_minishell *data);

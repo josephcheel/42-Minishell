@@ -6,6 +6,48 @@ infile < ls > outfile1 > outfile2 file
 ls file
 */
 
+int ft_check_redir_sytax(char *str) // return OK(0) NOT_OK(1)
+{
+	int i;
+	int redir_left;
+	int redir_right;
+	
+
+	i = 0;
+	redir_left = 0;
+	redir_right = 0;
+	while (str[i])
+	{
+		if (str[i] == '<' )
+			redir_left++;
+		else if ( str[i] == '>')
+			redir_right++;
+		
+		if (ft_isspace(str[i]))
+		{
+			redir_left = 0;
+			redir_right = 0;
+		}
+		if ((redir_left > 2 && !redir_right )||( redir_right > 2 && !redir_left))
+		{
+			ft_putstr_fd("minishell: syntax error near unexpected token `>'\n", 2);
+			return (1);
+		}
+		else if (redir_left && redir_right)
+		{
+			ft_putstr_fd("minishell: syntax error near unexpected token `>'\n", 2);
+			return (1);
+		}
+		i++;
+	}
+	if (str[ft_strlen(str) - 1] == '<' || str[ft_strlen(str) - 1] == '>')
+	{
+		ft_putstr_fd("minishell: syntax error near unexpected token `newline'\n", 2);
+		return (1);
+	}
+	return (0);
+}
+
 static int	get_end_redir(char *str, int start)
 {
 	while (str[start])
@@ -14,10 +56,12 @@ static int	get_end_redir(char *str, int start)
 			start++;
 		while (str[start] == ' ')
 			start++;
-		while (!ft_isspace(str[start]))
+		while (!ft_isspace(str[start]) && str[start+1] != '\0')
 			start++;
-		while (str[start] == ' ')
+		while (str[start] == ' ' && str[start+1] != '\0')
 			start++;
+		if (str[start+1] == '\0')
+			return (start+1);
 		if (str[start] == '<' || str[start] == '>')
 			start++;
 		else
@@ -78,12 +122,13 @@ char *ft_clean_redir_cmd(char *str)
 			simple_q = 0;
 		if ((cleaned[i] == '<' || cleaned[i] == '>' ) && !double_q && !simple_q)
 		{
+			if (cleaned[i+1] == '<' || cleaned[i+1] == '>' )
+				i++;
 			cleaned = ft_remove_redir(cleaned, i);
 			i = -1;
 		}
 		i++;
 	}
-
 	return (cleaned);
 }
 
