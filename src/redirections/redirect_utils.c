@@ -67,12 +67,12 @@ res = 0;
 	
     //  data->infile = NULL 
     //  data->outfile = NULL
-    if (data->infile)
-        printf("INFILE %s\n", data->infile);
-     if (data->outfile)
-        printf("OUTFILE %s\n", data->outfile);
-    if (data->heredoc)
-        printf("HEREDOC %s\n", data->heredoc);
+    // if (data->infile)
+    //     printf("INFILE %s\n", data->infile);
+    //  if (data->outfile)
+    //     printf("OUTFILE %s\n", data->outfile);
+    // if (data->heredoc)
+    //     printf("HEREDOC %s\n", data->heredoc);
 //     if (filename == NULL)
 // {
 //     perror("malloc filename");
