@@ -100,39 +100,54 @@ int ft_redirect(char	*raw_cmd, t_minishell *data) // return int // control this 
 
 	if (!data->infile && !data->out_files && !data->heredoc)
 		return (0);
+	
+	if (data->infile)
+		printf("INFILE : %s\n", data->infile);
+	if( data->outfile)
+		printf("OUTFILE : $%s$\n", data->outfile);
+	if (data->heredoc)
+		printf("HEREDOC : %s\n", data->heredoc);
 
-
-    while(raw_cmd[i])
-    {
+	(void)raw_cmd;
+	if (data->outfile && !data->is_append)
+		in_file_top(data->outfile);
+	else if (data->outfile && data->is_append)
+		in_file_bottom(data->outfile);
+	if (data->infile)
+		from_file_top(data->infile);
+	if (data->infile)
+		from_file_bottom(data->infile);
+    // while(raw_cmd[i])
+    // {
 		
-        if (raw_cmd[i] == '>' && raw_cmd[i + 1] != '>')
-		{
-			in_file_top(data->outfile);
-			// ft_putstr_fd("1", 2);
-			// return(1);
-		}
-        else if (raw_cmd[i] == '>' && raw_cmd[i + 1] == '>') //>>
-		{
-			i +=2 ;
-			// printf("DOUBEL >>\n");
-			in_file_bottom(data->outfile);
-			// ft_putstr_fd("2", 2);
-			// return(2);
-		}
-        else if (raw_cmd[i] == '<' && raw_cmd[i + 1] != '<')
-		{
-			from_file_top(data->infile);
-			// ft_putstr_fd("3", 2);
-			// return(3);
-		}
-        else if (raw_cmd[i] == '<'&& raw_cmd[i + 1] == '<')
-		{
-			from_file_bottom(data->infile);
-			// ft_putstr_fd("4", 2);
-			// return(4);
-		}
+    //     if (raw_cmd[i] == '>' && raw_cmd[i + 1] != '>')
+	// 	{
+	// 		in_file_top(data->outfile);
+	// 		// ft_putstr_fd("1", 2);
+	// 		// return(1);
+	// 	}
+    //     else if (raw_cmd[i] == '>' && raw_cmd[i + 1] == '>') //>>
+	// 	{
+	// 		i +=2 ;
+	// 		// printf("DOUBEL >>\n");
+	// 		in_file_bottom(data->outfile);
+	// 		// ft_putstr_fd("2", 2);
+	// 		// return(2);
+	// 	}
+    //     else if (raw_cmd[i] == '<' && raw_cmd[i + 1] != '<')
+	// 	{
+	// 		from_file_top(data->infile);
+	// 		// ft_putstr_fd("3", 2);
+	// 		// return(3);
+	// 	}
+    //     else if (raw_cmd[i] == '<'&& raw_cmd[i + 1] == '<')
+	// 	{
+	// 		from_file_bottom(data->infile);
+	// 		// ft_putstr_fd("4", 2);
+	// 		// return(4);
+	// 	}
         
-        i++;
-    }
+    //     i++;
+    // }
     return(0);
 }
