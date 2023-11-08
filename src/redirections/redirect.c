@@ -98,8 +98,13 @@ int ft_redirect(char	*raw_cmd, t_minishell *data) // return int // control this 
 	// printf("HOLA");
 	// get_filename(raw_cmd, data);
 
+	if (!data->infile && !data->out_files && !data->heredoc)
+		return (0);
+
+
     while(raw_cmd[i])
     {
+		
         if (raw_cmd[i] == '>' && raw_cmd[i + 1] != '>')
 		{
 			in_file_top(data->outfile);
@@ -129,5 +134,5 @@ int ft_redirect(char	*raw_cmd, t_minishell *data) // return int // control this 
         
         i++;
     }
-    return(i);
+    return(0);
 }
