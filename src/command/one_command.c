@@ -9,7 +9,7 @@ int	ft_one_command(t_minishell *data)
 	builtin = is_builtin(data->cmd);
 	if (builtin)
 	{
-		ft_redirect(data->raw_cmd, data);
+		ft_redirect(data);
 		exec_builtin(data, data->cmd, 0, builtin);
 		return (0);
 	}

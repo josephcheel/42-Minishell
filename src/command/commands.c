@@ -49,8 +49,7 @@ static int ft_syntax_errors(t_minishell *data)
 
 int	ft_commands(t_minishell *data)
 {
-	if (ft_isallspace(data->raw_cmd))
-		return (0);
+	
 	if (ft_syntax_errors(data))
 		return (0);
 	data->nbr_of_cmds = ft_count_commands(data->raw_cmd);
@@ -58,7 +57,8 @@ int	ft_commands(t_minishell *data)
 
 	while (ft_strchr_variable(data->raw_cmd))
 		data->raw_cmd = ft_parse_variables(data);
-	
+	if (ft_isallspace(data->raw_cmd))
+		return (0);
 	if (data->nbr_of_cmds == 1)
 	{
 		ft_init_data_one_cmd(data);
