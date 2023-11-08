@@ -1,10 +1,11 @@
 #include "../inc/minishell.h"
 
+// line = readline(GREEN "42-Minishell ~ % " RESET_COLOR);
 char	*display_prompt_msg(void)
 {
 	char	*line;
 
-	line = readline("\e[38;5;113m42-Minishell ~ % \e[0m");
+	line = readline("42-Minishell ~ % ");
 	if (ft_strlen(line) > 0)
 		add_history(line);
 	return (line);
