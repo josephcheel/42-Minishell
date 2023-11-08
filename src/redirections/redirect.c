@@ -86,8 +86,7 @@ void from_file_bottom(char *filename)
 
 int ft_redirect(char	*raw_cmd, t_minishell *data) // return int // control this case 'ls <<<' or 'ls >>>'
 {
-    int i;
-    i = 0;
+
     //ft_putstr_fd("is_redirect", 2);
     // char *filename;
     // return 0;
@@ -101,12 +100,12 @@ int ft_redirect(char	*raw_cmd, t_minishell *data) // return int // control this 
 	if (!data->infile && !data->out_files && !data->heredoc)
 		return (0);
 	
-	if (data->infile)
-		printf("INFILE : %s\n", data->infile);
-	if( data->outfile)
-		printf("OUTFILE : $%s$\n", data->outfile);
-	if (data->heredoc)
-		printf("HEREDOC : %s\n", data->heredoc);
+	// if (data->infile)
+	// 	printf("INFILE : %s\n", data->infile);
+	// if( data->outfile)
+	// 	printf("OUTFILE : $%s$\n", data->outfile);
+	// if (data->heredoc)
+	// 	printf("HEREDOC : %s\n", data->heredoc);
 
 	(void)raw_cmd;
 	if (data->outfile && !data->is_append)

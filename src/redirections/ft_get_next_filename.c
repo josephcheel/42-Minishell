@@ -2,17 +2,14 @@
 
 char *ft_get_next_filename(char *raw_cmd)
 {
-	int i;
 	char **split;
 	char *filename;
 
-
-	i = 0;
 	while (*raw_cmd == '<' || *raw_cmd == '>')
 		raw_cmd++;
 	// while (ft_isspace(raw_cmd[i]))
 	// 	i++;
-	printf("%s\n", raw_cmd);
+	// printf("%s\n", raw_cmd);
 //  return NULL;
 
 	split = ft_split_quotes(raw_cmd);
