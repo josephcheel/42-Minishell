@@ -5,7 +5,8 @@ void	ft_init_data_one_cmd(t_minishell *data)
 	data->cleaned_cmd = ft_clean_redir_cmd(data->raw_cmd);
 	// printf("%p\n", data->cleaned_cmd);
 	// printf("%p\n", data->raw_cmd);
-	printf("cleaned: %s\n raw %s", data->cleaned_cmd, data->raw_cmd);
+	ft_get_redit_value(data->raw_cmd, data);
+	// printf("cleaned: %s\n raw %s", data->cleaned_cmd, data->raw_cmd);
 	data->cmd = ft_split_quotes(data->cleaned_cmd);
 	data->cmd_size = ft_cmdsize(data->cmd);
 	data->cmd_and_arguments_size = ft_array_size(data->cmd);
@@ -28,6 +29,8 @@ static void	ft_free_one(t_minishell *data)
 	data->infile = NULL;
 	data->outfile = NULL;
 	data->heredoc = NULL;
+	data->in_files = NULL;
+	data->out_files = NULL;
 }
 
 

@@ -91,12 +91,13 @@ int ft_redirect(char	*raw_cmd, t_minishell *data) // return int // control this 
     //ft_putstr_fd("is_redirect", 2);
     // char *filename;
     // return 0;
-    get_filename(raw_cmd, data);
-    // data.filename = filename;  
-    //printf("%s", data.filename);
-    
-	// access(filename, W_OK);
-    // return (0);
+    if (ft_permission_files_in(&data->in_files))
+		return (1);
+	// if (ft_open_files_out())
+
+	// printf("HOLA");
+	// get_filename(raw_cmd, data);
+
     while(raw_cmd[i])
     {
         if (raw_cmd[i] == '>' && raw_cmd[i + 1] != '>')
@@ -105,8 +106,10 @@ int ft_redirect(char	*raw_cmd, t_minishell *data) // return int // control this 
 			// ft_putstr_fd("1", 2);
 			// return(1);
 		}
-        else if (raw_cmd[i] == '>' && raw_cmd[i + 1] == '>')
+        else if (raw_cmd[i] == '>' && raw_cmd[i + 1] == '>') //>>
 		{
+			i +=2 ;
+			// printf("DOUBEL >>\n");
 			in_file_bottom(data->outfile);
 			// ft_putstr_fd("2", 2);
 			// return(2);

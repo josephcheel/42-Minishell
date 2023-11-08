@@ -15,7 +15,7 @@ char *ft_get_next_filename(char *raw_cmd)
 	printf("%s\n", raw_cmd);
 //  return NULL;
 
-	split = ft_split(raw_cmd, ' ');
+	split = ft_split_quotes(raw_cmd);
 	if (!split)
 		return (NULL);
 	filename = ft_strdup(split[0]);

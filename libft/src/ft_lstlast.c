@@ -3,22 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.co  +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 17:37:04 by jcheel-n          #+#    #+#             */
-/*   Updated: 2022/02/21 19:16:55 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/08 17:15:41 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../inc/libft.h"
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	int	len;
+	t_list	*tmp;
 
-	len = ft_lstsize(lst);
-	if (!lst)
-		return (NULL);
-	while (--len > 0)
-		lst = lst->next;
-	return (lst);
+	tmp = lst;
+	while (tmp->next)
+	{
+		tmp = tmp->next;
+		if (tmp->next == NULL)
+			return (tmp);
+	}
+	return (tmp);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 19:00:06 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/06 23:12:57 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/08 17:19:21 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	init_minishell(t_minishell *data, char **env)
 	data->infile = NULL;
 	data->outfile = NULL;
 	data->heredoc = NULL;
+	data->in_files = NULL;
+	data->out_files = NULL;
 	g_status.status = 0;
 	return (0);
 }

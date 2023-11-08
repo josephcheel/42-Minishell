@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:47:45 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/08 15:29:16 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/08 18:06:37 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ typedef struct s_minishell{
 	char			*infile;
 	char			*outfile;
 	char			*heredoc;
+	int 			is_append;
+	int 			is_heredoc;
+
 	t_list			*in_files;
 	t_list			*out_files;
 
@@ -147,7 +150,10 @@ void	from_file_bottom(char *filename);
 char	*get_filename(char *raw_cmd, t_minishell *data);
 char *ft_clean_redir_cmd(char *str);
 
+char *ft_get_redit_value(char *raw_cmd, t_minishell *data);
 char	**ft_split_pipe(char const *s, int c);
+
+int ft_permission_files_in(t_list **head);
 
 
 #endif
