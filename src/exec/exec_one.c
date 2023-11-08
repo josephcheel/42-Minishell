@@ -19,7 +19,7 @@ void	exec_one(t_minishell *data)
 		ft_putstr_fd(": No such file or directory\n", 2);
 		exit(1);
 	}
-	if (ft_redirect(data->raw_cmd, data))
+	if (ft_redirect(data))
 		exit(1);
 	execve(path, data->cmd, data->env);
 	ft_putstr_fd("minishell: ", 2);

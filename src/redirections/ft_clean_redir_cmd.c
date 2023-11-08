@@ -22,7 +22,6 @@ int ft_check_redir_sytax(char *str) // return OK(0) NOT_OK(1)
 			redir_left++;
 		else if ( str[i] == '>')
 			redir_right++;
-		
 		if (ft_isspace(str[i]))
 		{
 			redir_left = 0;
