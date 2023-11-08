@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:47:45 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/07 19:14:52 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:29:16 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct s_minishell{
 	char			*infile;
 	char			*outfile;
 	char			*heredoc;
+	t_list			*in_files;
+	t_list			*out_files;
 
 	struct termios	old_settings;
 	struct termios	new_settings;
@@ -121,7 +123,7 @@ char	*ft_replace_string(char *str, char *replace, char *replacer);
 char	*ft_return_argument(t_minishell *data);
 int ft_check_pipe_sytax(t_minishell *data);
 int ft_check_redir_sytax(char *str); // return OK(0) NOT_OK(1)
-
+char *ft_get_next_filename(char *raw_cmd);
 
 // EXECS
 void	exec_one(t_minishell *data);
@@ -146,5 +148,6 @@ char	*get_filename(char *raw_cmd, t_minishell *data);
 char *ft_clean_redir_cmd(char *str);
 
 char	**ft_split_pipe(char const *s, int c);
+
 
 #endif
