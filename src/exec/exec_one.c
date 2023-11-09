@@ -4,7 +4,7 @@ void	exec_one(t_minishell *data)
 {
 	char	*path;
 
-	if (!ft_isstralnum(data->cmd[0]))
+	if (!ft_isstrprint(data->cmd[0]))
 	{
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(data->cmd[0], 2);

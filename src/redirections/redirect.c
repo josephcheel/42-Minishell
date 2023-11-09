@@ -3,7 +3,7 @@
 void    in_file_top(char *filename) // >
 {
     int fd;
-    
+
 	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (fd == -1) 
 	{
@@ -77,8 +77,8 @@ void from_file_bottom(char *filename)
 int ft_redirect(t_minishell *data) // return int // control this case 'ls <<<' or 'ls >>>'
 {
     if (ft_permission_files_in(&data->in_files))
-		return (1);
-	// if (ft_open_files_out())
+        return (1);
+    // if (ft_open_files_out())
 
 	if (!data->infile && !data->out_files && !data->heredoc)
 		return (0);
