@@ -51,9 +51,11 @@ typedef struct s_minishell{
 	t_env			*lstenv;
 
 	char			*filename;
+
 	char			*infile;
 	char			*outfile;
 	char			*heredoc;
+
 	int 			is_append;
 	int 			is_heredoc;
 
@@ -155,6 +157,7 @@ char *ft_get_redit_value(char *raw_cmd, t_minishell *data);
 char	**ft_split_pipe(char const *s, int c);
 
 int ft_permission_files_in(t_list **head);
+int ft_open_files_out(t_minishell *data);
 
 
 #endif

@@ -78,7 +78,8 @@ int ft_redirect(t_minishell *data) // return int // control this case 'ls <<<' o
 {
     if (ft_permission_files_in(&data->in_files))
         return (1);
-    // if (ft_open_files_out())
+    if (ft_open_files_out(data))
+        return (1);
 
 	// if (!data->infile && !data->out_files && !data->heredoc)
 	// 	return (0);
