@@ -31,8 +31,9 @@ static void	ft_free_one(t_minishell *data)
 	data->heredoc = NULL;
 	data->in_files = NULL;
 	data->out_files = NULL;
+	data->out_append = NULL;
 	// ft_lstclear(&data->in_files, free);
-	// ft_lstclear(&data->out_files, free);
+	// ft_lstclear(&data->out_files, free);c
 }
 
 

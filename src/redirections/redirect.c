@@ -80,8 +80,8 @@ int ft_redirect(t_minishell *data) // return int // control this case 'ls <<<' o
         return (1);
     // if (ft_open_files_out())
 
-	if (!data->infile && !data->out_files && !data->heredoc)
-		return (0);
+	// if (!data->infile && !data->out_files && !data->heredoc)
+	// 	return (0);
 	
 	// if (data->infile)
 	// 	printf("INFILE : %s\n", data->infile);
@@ -89,6 +89,16 @@ int ft_redirect(t_minishell *data) // return int // control this case 'ls <<<' o
 	// 	printf("OUTFILE : $%s$\n", data->outfile);
 	// if (data->heredoc)
 	// 	printf("HEREDOC : %s\n", data->heredoc);
+	// t_list *temp;
+	
+	// temp = data->out_append;
+
+	// while (temp)
+	// {
+	// 	printf("APPEND %s\n", (char *)temp->content);
+	// 	temp = temp->next;
+	// }
+	// printf("APPEND %s\n", data->outfile);
 	if (data->outfile && !data->is_append)
 		in_file_top(data->outfile);
 	else if (data->outfile && data->is_append)
@@ -97,5 +107,8 @@ int ft_redirect(t_minishell *data) // return int // control this case 'ls <<<' o
 		from_file_top(data->infile);
 	if (data->infile)
 		from_file_bottom(data->infile);
-    return(0);
+	if (data->heredoc && data->is_heredoc)
+	{
+	}
+	return(0);
 }

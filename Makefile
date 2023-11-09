@@ -50,16 +50,16 @@ LIBFT			=	libft/libft.a
 INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 
 # Flags for Campus Joseph
-# LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
-# RFLAGS = /Users/${USER}/.brew/opt/readline/include
+LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
+RFLAGS = /Users/${USER}/.brew/opt/readline/include
 
 # Flags for Campus Alex
 #  LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
 #  RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
 
 # # Flags for Home Joseph
-LDFLAGS	=/opt/homebrew/opt/readline/lib
-RFLAGS	= /opt/homebrew/opt/readline/include
+# LDFLAGS	=/opt/homebrew/opt/readline/lib
+# RFLAGS	= /opt/homebrew/opt/readline/include
 
 # Flags for Home alex
 #    LDFLAGS=/usr/local/opt/readline/lib
@@ -87,7 +87,6 @@ PARSERS			= 	ft_split_quotes.c ft_split_pipe.c ft_has_valid_quotes.c
 
 REDIR			= 	redirect.c redirect_utils.c ft_clean_redir_cmd.c ft_get_next_filename.c files_in.c  ft_get_redir_values.c
 
-#VARIABLES		= 	ft_replace_variable.c
 
 SRCS			+=	$(addprefix $(SRC_DIR), $(MS_SRCS))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(BUILTINS_DIR), $(BUILTINS)))

@@ -59,6 +59,7 @@ typedef struct s_minishell{
 
 	t_list			*in_files;
 	t_list			*out_files;
+	t_list			*out_append;
 
 	struct termios	old_settings;
 	struct termios	new_settings;

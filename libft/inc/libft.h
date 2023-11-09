@@ -12,7 +12,9 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
@@ -96,4 +98,6 @@ char			*ft_strpbrk(const char *s, const char *charset);
 int				ft_isspace(int c);
 int				ft_isstrspace(char *str);
 int				ft_isallspace(char *str);
+
+char			*get_next_line(int fd);
 #endif

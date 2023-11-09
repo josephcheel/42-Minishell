@@ -84,7 +84,7 @@ char *ft_get_redit_value(char *raw_cmd, t_minishell *data)
 			filename = ft_get_next_filename(&raw_cmd[i]);
 			if (filename)
 			{
-				ft_redir_value(filename, &data->out_files);
+				ft_redir_value(filename, &data->out_append);
 				data->outfile = filename;
 				data->is_append = 1;
 			}

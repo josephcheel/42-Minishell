@@ -25,6 +25,7 @@ int	init_minishell(t_minishell *data, char **env)
 	data->heredoc = NULL;
 	data->in_files = NULL;
 	data->out_files = NULL;
+	data->out_append = NULL;
 	g_status.status = 0;
 	return (0);
 }
