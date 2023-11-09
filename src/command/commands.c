@@ -3,8 +3,6 @@
 void	ft_init_data_one_cmd(t_minishell *data)
 {
 	data->cleaned_cmd = ft_clean_redir_cmd(data->raw_cmd);
-	// printf("%p\n", data->cleaned_cmd);
-	// printf("%p\n", data->raw_cmd);
 	ft_get_redit_value(data->raw_cmd, data);
 	// printf("cleaned: %s\n raw %s", data->cleaned_cmd, data->raw_cmd);
 	data->cmd = ft_split_quotes(data->cleaned_cmd);
@@ -32,8 +30,9 @@ static void	ft_free_one(t_minishell *data)
 	data->in_files = NULL;
 	data->out_files = NULL;
 	data->out_append = NULL;
-	// ft_lstclear(&data->in_files, free);
-	// ft_lstclear(&data->out_files, free);c
+	ft_lstclear(&data->out_files, free);
+	ft_lstclear(&data->out_append, free);
+	printf("free\n"); //
 }
 
 
@@ -60,6 +59,8 @@ int	ft_commands(t_minishell *data)
 		data->raw_cmd = ft_parse_variables(data);
 	if (ft_isallspace(data->raw_cmd))
 		return (0);
+
+	//one and multiple commands
 	if (data->nbr_of_cmds == 1)
 	{
 		ft_init_data_one_cmd(data);

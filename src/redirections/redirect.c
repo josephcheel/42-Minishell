@@ -110,6 +110,7 @@ int ft_redirect(t_minishell *data) // return int // control this case 'ls <<<' o
 		from_file_bottom(data->infile);
 	if (data->heredoc && data->is_heredoc)
 	{
+     //   ft_strcmp()
 	}
 	return(0);
 }
