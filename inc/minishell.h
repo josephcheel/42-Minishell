@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:47:45 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/08 23:54:30 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/10 23:39:57 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,13 @@ typedef struct s_minishell{
 
 	int 			is_append;
 	int 			is_heredoc;
+	int 			is_out_heredoc;
+
 
 	t_list			*in_files;
 	t_list			*out_files;
 	t_list			*out_append;
+	t_list			*heredocs;
 
 	struct termios	old_settings;
 	struct termios	new_settings;

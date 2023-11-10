@@ -6,6 +6,8 @@ void	ft_redir_value(char *filename, t_list **head)
 	t_list *temp;
 
 	temp = ft_lstnew((char *)filename);
+	if (!temp)
+		return ;
 	ft_lstadd_back(head, temp);
 }
 
@@ -54,7 +56,7 @@ char *ft_get_redit_value(char *raw_cmd, t_minishell *data)
 			{
 				ft_redir_value(filename, &data->in_files);
 				data->infile = filename;
-				data->is_heredoc = 0;
+				data->is_out_heredoc = 0;
 			}
 		}
 		else if (raw_cmd[i] == '<' &&  raw_cmd[i+1] == '<' && !d_quotes && !s_quotes) // <<
@@ -64,8 +66,11 @@ char *ft_get_redit_value(char *raw_cmd, t_minishell *data)
 			i += ft_move_next_redir(&raw_cmd[i]);
 			if (filename)
 			{
+				ft_redir_value(filename, &data->heredocs);
+				data->infile = ".heredoc.txt";
 				data->heredoc = filename;
 				data->is_heredoc = 1;
+				data->is_out_heredoc = 1;
 			}
 		}
 		else if (raw_cmd[i] == '>' &&  raw_cmd[i+1] != '>' && !d_quotes && !s_quotes) // >
