@@ -33,14 +33,20 @@ typedef struct s_status{
 	int	status;
 }t_status;
 
-typedef struct s_minishell{
+typedef struct s_minishell
+{	
 	pid_t			pid;
 	int				fd[2];
+
 	int				std_in;
 	int				std_out;
+	
 	char			**env;
+	t_env			*lstenv;
+	
 	char			**cmd;
 	char			**mul_cmds;
+	
 	char			*raw_cmd;
 	char 			*cleaned_cmd;
 
@@ -48,9 +54,6 @@ typedef struct s_minishell{
 	int				cmd_and_arguments_size;
 	int				nbr_of_cmds;
 	int				status;
-	t_env			*lstenv;
-
-	char			*filename;
 
 	char			*infile;
 	char			*outfile;
@@ -59,8 +62,6 @@ typedef struct s_minishell{
 	int 			is_append;
 	int 			is_heredoc;
 	int 			is_out_heredoc;
-
-
 	t_list			*in_files;
 	t_list			*out_files;
 	t_list			*out_append;
@@ -73,16 +74,21 @@ typedef struct s_minishell{
 
 t_status	g_status;
 
-// split bultin, one and multiple cmds
+
+
+char	*display_prompt_msg(void);
+
+/* Command Management */
 int		ft_commands(t_minishell *data);
 int		ft_one_command(t_minishell *data);
 int		ft_multiple_commands(t_minishell *data);
 char	**ft_separate_cmds(t_minishell *data);
-// Command utils 
+
+/* Command data */
 int		ft_cmdsize(char **command);
 int		ft_count_commands(char *raw_command);
 
-//builtin 
+/* builtins */
 int		is_builtin(char **cmd);
 int		exec_builtin(t_minishell *data, char **cmd, int multiple_cmd, int cmd_nbr);
 int		ft_echo(char **cmd, int n_option);
@@ -97,28 +103,31 @@ int		ft_cd(t_minishell *data, char **cmd);
 int		ft_cd_error_msg(char *arg, char *msg);
 int		ft_is_mode_permission_ok(char *file);
 void	ft_set_directory(t_env **lstenv, char *variable);
-//signals
+
+
+
+/* signals */
 void	signal_handler(int sig);
 void	catch_signal(int status, int set_status);
 
+/* Parsers */
 char	**ft_split_quotes(char *str);
-char	*display_prompt_msg(void);
+char	**ft_split_pipe(char const *s, int c);
+
+/* Environment variables */
 
 int		init_env(t_minishell *data, char **env);
 char	**ft_split_env(char *line);
 
 char	*ft_replace_variable(t_minishell *data, char *variable);
-char	*ft_return_argument(t_minishell *data);
+//char	*ft_return_argument(t_minishell *data);
 
 int		ft_is_variable_export(t_minishell *data, char *argument);
 int		ft_isvariable(t_env *head, char *id);
 
-char	**ft_split_quotes(char *str);
 
-// split bultin, one and multiple cmds
-// Command utils 
-int		ft_cmdsize(char **command);
-int		ft_count_commands(char *raw_command);
+/* Expansors */
+
 
 // Parsin one not-builtin command 
 int		commandline(char *str1, char *str2);
@@ -130,34 +139,41 @@ char	**ft_split_env(char *line);
 
 char	*ft_replace_string(char *str, char *replace, char *replacer);
 char	*ft_return_argument(t_minishell *data);
-int ft_check_pipe_sytax(t_minishell *data);
-int ft_check_redir_sytax(char *str); // return OK(0) NOT_OK(1)
+
 char *ft_get_next_filename(char *raw_cmd);
+
+/* Syntax Errors */
+int ft_check_pipe_sytax(t_minishell *data);
+int ft_check_redir_sytax(char *str);
 
 // EXECS
 void	exec_one(t_minishell *data);
 void	exec_multiple(t_minishell *data, char *cmd);
+
 /* Terminal settings */
+
 int		init_term(t_minishell *data);
 int		restore_term(t_minishell *data);
 int		init_term_fd(t_minishell *data);
 int		reset_term_fd(t_minishell *data);
 int		close_term_fd(t_minishell *data);
+
 /* Variables */
 char	*ft_parse_variables(t_minishell *data);
 char	*ft_strchr_variable(char *raw_cmd);
 
 /* Redirections */
-int		ft_redirect(t_minishell *data); // t_minishell *data changes the data globally? t_minishell data not
+char	*ft_get_redit_value(char *raw_cmd, t_minishell *data);
+int		ft_redirect(t_minishell *data);
+
 void	in_file_top(char *filename);
 void	in_file_bottom(char *filename);
 void	from_file_top(char *filename);
 void	from_file_bottom(char *filename);
-char	*get_filename(char *raw_cmd, t_minishell *data);
-char *ft_clean_redir_cmd(char *str);
 
-char *ft_get_redit_value(char *raw_cmd, t_minishell *data);
-char	**ft_split_pipe(char const *s, int c);
+char	*get_filename(char *raw_cmd, t_minishell *data);
+
+char	*ft_clean_redir_cmd(char *str);
 
 int ft_permission_files_in(t_list **head);
 int ft_open_files_out(t_minishell *data);

@@ -109,7 +109,7 @@ char	**ft_split_quotes(char *str)
 	int		x;
 
 	x = ft_count_words(str, 0);
-	split = malloc(sizeof(char *) * x + 1);
+	split = malloc(sizeof(char *) * (x + 1));
 	if (!split)
 		return (NULL);
 	split = alloc_split(split, str, x);

@@ -18,7 +18,7 @@ char	**ft_malloc_env_array(char **env)
 	char	**array;
 
 	i = -1;
-	array = malloc(sizeof(char *) * ft_array_size(env) + 1);
+	array = malloc(sizeof(char *) * (ft_array_size(env) + 1));
 	while (env[++i])
 		array[i] = ft_strdup(env[i]);
 	array[i] = NULL;
@@ -34,13 +34,18 @@ int	init_env(t_minishell *data, char **env)
 
 	i = 0;
 	count = ft_array_size(env);
+	if (!count)
+		return (write(2, "Init env Error\n", 16));
 	data->lstenv = NULL;
 	data->env = ft_malloc_env_array(env);
+	if (!data->env)
+		write(2, "Init env Error\n", 16);
 	while (i < count)
 	{
 		split = ft_split_env(env[i]);
 		temp = ft_create_new_node(split[0], split[1]);
-		free(split);
+		if (split)
+			free(split);
 		ft_insert_at_end(&data->lstenv, temp);
 		i++;
 	}
