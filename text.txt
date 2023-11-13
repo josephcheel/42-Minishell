@@ -191,7 +191,7 @@ main
 
 LEAKS
 
-leaks -atExit -- ./minishell           leaks
+leaks -atExit -- ./minishell           leaks       result
 
 echo                                    ok
 echo hola                               ok
@@ -200,22 +200,27 @@ echo "hola"                             ok
 echo "hola hola"                        ok
 echo " hola hola "                      ok
 echo -n hola                            ok
+echo hello -n                           ok
+echo -nnnnnnnn                          ok
+echo -nnnnnnnn a                        ok
+echo -nnnnnnnn -nnnnnnnn hello world    ok        on bash wrights hello world
 echo "hola " " hola"                    ok
 echo $PWD                               ok
 echo \n                                 ok
-echo -e "\n"                            ok        -e not working but not requested
 echo '"Bienvenue sur malekal.com"'      ok        return = Bienvenue sur malekal.com"' and must be: "Bienvenue sur malekal.com"
-echo \"hola\"                           ok        return = \"hola\" and must be: "hola"
 echo "'Bienvenue sur malekal.com'"      ok        return = hola'" and must be: 'hola'
-echo \'hola\'                           ok        return = \'hola\' and must be: 'hola'
 echo $'hola'                            ok        return = $'hola' and must be: hola
 echo text files are: *.txt              ok        return = text files are: *.txt and must be: text files are: text.txt test.txt
 echo "hola hola" > test.txt             ok        crash open: Bad address
 echo $PATH                              ok
 echo "$PATH"                            ok
 echo "rep and files on system: $(LS)"   ok        return = rep and files on system: $(LS) and mus be: text.txt
-                                                                                                    builtin
-                                                                                                    ...
+echo a "" b "" c                        ok
+echo a "$NO_SUCH_ENV" b $NO_SUCH_ENV c  
+unset NO_SUCH_ENV                       ok        not working like bash  
+echo tab                                          not working  
+echo "$ $ $ $ $ $ "                     ok                                                                                                  builtin
+echo $                                  ok                                                                                                ...
 echo $?                                 ok
 
 exit                                    ok
@@ -226,3 +231,116 @@ ctrl-C with text                                  crash
 ctrl-D with text                        ok
 ctrl-\ with text                                  crash
 ctrl-C after cat
+
+mkdir dir                               ok
+cd dir                                  ok
+pwd                                     ok
+cd ..                                   ok
+cd ./                                   ok
+cd ../../                               ok
+cd /                                    ok
+touch testfile                          ok
+cd testfile                             ok      minishell: cd: testfile: Permission denied
+cd NO_FILE                              ok      minishell: cd: NO_FILE: No such file or directory
+cd /bin                                 ok
+cd                                      ok
+cd /bin/../                             ok
+
+ENV
+
+export HOME=                            ok      
+unset HOME                              ok
+export HOME="./"                        ok
+export HOME="../../"                    ok
+export HOME=""                          ok
+export HOME="/BIN"                      ok
+export HOME=a                           ok
+export HOME=NO_SUCH_FILE                ok
+export CDPATH="/"                       ok
+
+exit                                    ok
+exit 0                                  ok
+exit 1                                  ok
+exit -1                                 ok
+exit 2147483647                         ok
+exit 2147483648                         ok
+exit -2147483648                        ok
+exit -2147483649                        ok
+exit -- 42                              ok
+exit "        42           "            ok
+exit -- -- 42                           ok
+exit --42                               ok
+exit ++42                               ok
+exit 42 42                              ok not totally the same than bash
+exit ab                                 ok
+exit 1a                                 ok
+exit +                                  ok
+exit -                                  ok
+exit "          "                       ok
+exit 0 0                                ok          "
+exit 0 0 | echo hello                   crash
+
+export HELLO=hello; echo $HELLO         ok
+export HELLO=hello; echo $hello         ok to check with bash
+export HELLO=hello; echo "$HELLO"       ok
+export TEST="echo hello"; $TEST         ok
+export abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890=hello
+echo $abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890            not working
+export TEST="export TEST=echo"; $TEST hello; $TEST hello                         not working
+
+export | grep -v -E '^declare -x _='    no end
+export 1 _+ _OK _2? _OK2=VAR =NG OK3=   is like bash
+
+> file                                  crash
+> file | cat < no_such_file             no end
+echo hello > out1.txt > out2.txt > out3.txt 2> err1.txt 2> err2.txt 2> err3.txt
+cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt  ok    hello 222?
+echo hello >> out1.txt >> out2.txt >> out3.txt 2>> err1.txt 2>> err2.txt 2>> err3.txt
+cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt  ok   not like bash
+ls > out1.txt > out2.txt > out3.txt 2> err1.txt 2> err2.txt 2> err3.txt
+cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt    ok        not good
+ls >> out1.txt >> out2.txt >> out3.txt 2>> err1.txt 2>> err2.txt 2>> err3.txt
+cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt    ok        not good
+ls no_such_file > out1.txt > out2.txt > out3.txt 2> err1.txt 2> err2.txt 2> err3.txt
+cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt       ok not good
+ls no_such_file >> out1.txt >> out2.txt >> out3.txt 2>> err1.txt 2>> err2.txt 2>> err3.txt
+cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt ok npt good
+echo a > out                            ok    not good    prints a        
+echo b >> out; echo c >> out; echo d >> out; cat out           ok
+echo a > out; echo b >> out; echo c >> out; echo d > out; cat out ok not good
+echo hello 2147483647 > file      ok       not working
+echo hello 2147483648 > file      ok       not working
+
+unset                             ok  
+unset; env | grep -v -E '^_=' | sort      no end
+unset A; echo $A, export A='test $A'       ok  ???
+unset _A1; echo $_A1, export _A1='test $_A1'  ok ???
+unset A B C; echo $A$B$C$D, export A=test B=multiple C=var D=hello      ok not working
+unset A B = invalid C; echo $A$B$C$D, export A=test B=multiple C=var D=hello  ???
+unset PWD; echo $PWD              ok
+unset OLDPWD; echo $OLDPWD        ok
+unset NO_SUCH_ENV; echo $?$NO_SUCH_ENV  ok   not good
+unset 1                           ok
+unset A=a; echo $A, export A=a    ok not a valid identifier
+unset ' \"$&`\n'                  ok not a valid identifier
+
+syntax error
+|                                   ok
+>                                   ok
+>>                                  ok
+>>>                                 ok
+<                                   ok change perror name
+< >                                 ok change perror name
+| echo                              ok
+echo | |                            ok not sure if good or not
+cat < >                             ok cahnge name
+echo '                              ok to check
+echo "                              ok to check
+
+
+
+
+
+
+
+

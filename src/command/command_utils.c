@@ -1,19 +1,5 @@
 #include "../../inc/minishell.h"
 
-char	*ft_return_argument(t_minishell *data)
-{
-	int		count;
-	char	*new_str;
-
-	count = data->cmd_size;
-	while (++count < data->cmd_and_arguments_size - 1)
-	{
-		new_str = ft_strjoinfree(new_str, data->cmd[count]);
-		new_str = ft_strjoinfree(new_str, " ");
-	}
-	return (new_str);
-}
-
 int	ft_count_commands(char *raw_command)
 {
 	int	i;
