@@ -21,6 +21,7 @@ void	ft_init_data_one_cmd(t_minishell *data)
 	data->out_append = NULL;
 	data->is_append = 0;
 	data->is_heredoc = 0;
+	data->is_out_heredoc = 0;
 	ft_get_redit_value(data->raw_cmd, data);
 }
 
