@@ -67,7 +67,7 @@ char *ft_get_redit_value(char *raw_cmd, t_minishell *data)
 			if (filename)
 			{
 				ft_redir_value(filename, &data->heredocs);
-				data->infile = ".heredoc.txt";
+				data->infile = HEREDOC_FILE;
 				data->heredoc = filename;
 				data->is_heredoc = 1;
 				data->is_out_heredoc = 1;
