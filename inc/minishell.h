@@ -29,6 +29,8 @@
 # include "variables.h"
 # include "split_quotes.h"
 
+# define HEREDOC_FILE ".heredoc"
+
 typedef struct s_status{
 	int	status;
 }t_status;
@@ -177,6 +179,8 @@ char	*ft_clean_redir_cmd(char *str);
 
 int ft_permission_files_in(t_list **head);
 int ft_open_files_out(t_minishell *data);
+
+int ft_heredoc(t_minishell *data);
 
 
 #endif

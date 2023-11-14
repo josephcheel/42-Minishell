@@ -281,7 +281,7 @@ exit 0 0                                ok          "
 exit 0 0 | echo hello                   crash
 
 export HELLO=hello; echo $HELLO         ok
-export HELLO=hello; echo $hello         ok to check with bash
+export HELLO=hello; echo $hello         ok
 export HELLO=hello; echo "$HELLO"       ok
 export TEST="echo hello"; $TEST         ok
 export abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890=hello
@@ -305,11 +305,11 @@ ls no_such_file > out1.txt > out2.txt > out3.txt 2> err1.txt 2> err2.txt 2> err3
 cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt       ok not good
 ls no_such_file >> out1.txt >> out2.txt >> out3.txt 2>> err1.txt 2>> err2.txt 2>> err3.txt
 cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt ok npt good
-echo a > out                            ok    not good    prints a        
+echo a > out                            ok        
 echo b >> out; echo c >> out; echo d >> out; cat out           ok
-echo a > out; echo b >> out; echo c >> out; echo d > out; cat out ok not good
-echo hello 2147483647 > file      ok       not working
-echo hello 2147483648 > file      ok       not working
+echo a > out; echo b >> out; echo c >> out; echo d > out; cat out ok
+echo hello 2147483647 > file      ok
+echo hello 2147483648 > file      ok
 
 unset                             ok  
 unset; env | grep -v -E '^_=' | sort      no end
