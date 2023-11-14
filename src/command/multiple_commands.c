@@ -98,11 +98,11 @@ static void	wait_childs(t_minishell *data)
 		if (nbr == 0 && WIFSIGNALED(status))
 		{
 			status += 128;
-			catch_signal(status, 0);
+			catch_signal(data, status, 0);
 		}
 		else if (pid == data->pid)
 			if (WIFEXITED(status))
-				g_status.status = WEXITSTATUS(status);
+				data->status = WEXITSTATUS(status);
 	}
 }
 

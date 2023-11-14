@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:47:45 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/10 23:39:57 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/13 23:11:35 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	ft_set_directory(t_env **lstenv, char *variable);
 
 /* signals */
 void	signal_handler(int sig);
-void	catch_signal(int status, int set_status);
+void	catch_signal(t_minishell *data, int status, int set_status);
 
 /* Parsers */
 char	**ft_split_quotes(char *str);
