@@ -101,13 +101,6 @@ int ft_redirect(t_minishell *data) // return int // control this case 'ls <<<' o
 	// printf("APPEND %s\n", data->outfile);
      if (data->is_heredoc)
          ft_heredoc(data);
-    if (data->outfile && !data->is_append && !data->is_out_heredoc)
-	{
-        // printf("OUTFILE : $%s$\n", data->outfile);
-        in_file_top(data->outfile);
-    }
-    else if (data->outfile && data->is_append && !data->is_heredoc)
-		in_file_bottom(data->outfile);
     if (data->infile)
     {
 		// printf("INFILE : %s\n", data->infile);
@@ -115,7 +108,13 @@ int ft_redirect(t_minishell *data) // return int // control this case 'ls <<<' o
         if (ft_strcmp(data->infile, HEREDOC_FILE) == 0)
             unlink(HEREDOC_FILE);
     }
-
+	if (data->outfile && !data->is_append && !data->is_out_heredoc)
+	{
+        // printf("OUTFILE : $%s$\n", data->outfile);
+        in_file_top(data->outfile);
+    }
+    else if (data->outfile && data->is_append && !data->is_heredoc)
+		in_file_bottom(data->outfile);
     // if (data->infile)
 	// 	from_file_bottom(data->infile);
 	return(0);
