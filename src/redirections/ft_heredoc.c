@@ -16,23 +16,22 @@ int ft_heredoc(t_minishell *data)
         return(1);
     }
 
+    // signal(SIGINT, SIG_IGN);
+    signal(SIGINT, signal_handler_heredoc);
+	signal(SIGQUIT, signal_handler_heredoc);
     while(temp)
     {
         line = readline("> ");
+        if (!line)
+            break;
         if (strcmp(line, temp->content) == 0)
         {
            
-            if (!line)
-                break;
+           
             close(fd);
             fd = open(HEREDOC_FILE, O_WRONLY | O_CREAT , 0644);
             line = temp->content;
             temp = temp->next;
-          //  printf("minishell HEREDOC %s\n", temp->content);
-          //  printf("minishell HEREDOC %s\n", (char *)temp->next->content);
-
-
-           
             free(line);
         }
         else
@@ -41,7 +40,8 @@ int ft_heredoc(t_minishell *data)
             ft_putstr_fd("\n", fd);
         }
     }
-     close(fd);
-    // unlink(HEREDOC_FILE);
+    close(fd);
+    // if (dup2(data->std_in, STDIN_FILENO) == -1)
+	// 	    return (1);
     return(0);
 }

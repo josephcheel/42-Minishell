@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:47:45 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/13 23:11:35 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/15 00:12:27 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_minishell
 
 	char			*infile;
 	char			*outfile;
-	char			*heredoc;
 
 	int 			is_append;
 	int 			is_heredoc;
@@ -110,6 +109,7 @@ void	ft_set_directory(t_env **lstenv, char *variable);
 
 /* signals */
 void	signal_handler(int sig);
+void	signal_handler_heredoc(int sig);
 void	catch_signal(t_minishell *data, int status, int set_status);
 
 /* Parsers */
