@@ -224,10 +224,10 @@ echo $                                  ok                                      
 echo $?                                 ok
 
 exit                                    ok
-ctrl-C empty prompt                               crash 
+ctrl-C empty prompt                     ok
 ctrl-D empty prompt                     ok
-ctrl-\ empty prompt                               crash  
-ctrl-C with text                                  crash  
+ctrl-\ empty prompt                     ok
+ctrl-C with text                        ok  
 ctrl-D with text                        ok
 ctrl-\ with text                                  crash
 ctrl-C after cat
@@ -271,7 +271,7 @@ exit "        42           "            ok
 exit -- -- 42                           ok
 exit --42                               ok
 exit ++42                               ok
-exit 42 42                              ok not totally the same than bash
+exit 42 42                              ok reprint exit
 exit ab                                 ok
 exit 1a                                 ok
 exit +                                  ok
@@ -336,6 +336,150 @@ echo | |                            ok not sure if good or not
 cat < >                             ok cahnge name
 echo '                              ok to check
 echo "                              ok to check
+
+
+
+Evaluation check
+
+- make -n                                         ko
+- compilation without error                       ok
+- no relink                                       ok
+
+- command with abolute path cd /users/mamita      ok
+- 1 global variable used                          ok
+g_status usefull to have it 
+in any circonstances 
+- global variable check                           ok 
+- empty command                                   ok
+- space and tabs                                  2 x tab has a different comportment on my computer
+- no crash                                        ok
+- working?                                        ok
+
+- absolute path with args cp text.txt txt.txt     ok
+ls -s                    
+- multiple time                                   ok
+- no crash                                        ok
+- working?                                        ok
+
+- echo                                            ok
+
+- exit                                            exit 1 1 reprints the exit
+
+- command + arg +  echo $?                        ok
+- check printed value                             ok
+- multiple and wrong                              ok
+- expr $? + $?                                    ok
+- no crash                                        ok
+- working?                                        ok
+
+- ctrl-C empty prompt                             ok
+- ctrl-\ empty prompt                             ok
+- ctrl-D empty prompt                             ok   (prints exit)
+- ctrl-C with text                                ok
+- enter                                           ok
+- ctrl-D with text                                ok
+- blocking command + ctrl-C                       ok   (prints ^C in bash)
+- blocking command + ctrl-\                       ok
+- blocking command + ctrl-D                       ok
+- multiple                                        ok
+- no crash                                        ok
+- working?                                        ok
+
+- double quotes                                   quote> not waiting if only one "
+- echo "cat lol.c | cat > lol.c"                  ok
+- anything except $                               ok
+- no crash                                        ok
+- working?                                        ok
+
+- simple quotes                                   quote> not waiting if only one '
+- empty argument ''                               blocked and crash if ctrl-C
+-  | >                                            ok
+- echo '$USER'                                    ok
+- no interpretation                               ok
+
+- env                                             ok
+
+- export HELLO=hello                              ok
+
+- export                                          ok
+- unset                                           ok
+- env                                             ok
+
+- cd                                              ok
+- multiple                                        ok
+- '.' '..'                                        ok
+
+- pwd                                             ok
+- multiple                                        ok
+
+- relative path                                   ok
+- cd ../../42/mini3/                              ok
+
+- ls, wc, awk                                     ok
+- unset PATH                                      ok
+- multiple path                                   to check
+
+- < >  echo hola > test.txt  cat < test.txt       ok
+- multiple and >> echo hola >> test.txt  cat < test.txt   ok
+- multiple same redirect                          ok
+- <<    cat <<END <<IN                            ok
+
+- grep "hola" test.txt | wc -l                    ok
+- cat test.txt | grep hola | more                 ok
+- multiple                                        ok
+- ls filethatdoesntexist | grep hola | more       ok
+- ls -l | grep "\.txt" > try.txt                  ko  doesnt't create the file if not present
+
+- command + ctr-C + enter                         ok
+- history up down exec                            ok
+- dsbksdgbksdghsd                                 ok
+- cat | cat | ls                                  ok
+- tar -czvf archive.tar.gz --exclude='*.log' --exclude='temp/' --exclude='backup/' ./test.txt   ok
+
+- echo $PATH                                      ok
+- check env variable                              ok
+- echo "$PATH"                                    to check
+- check user                                      ok
+- echo "$USER"                                    ok
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
