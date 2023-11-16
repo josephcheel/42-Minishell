@@ -1,22 +1,26 @@
 #include "../../inc/minishell.h"
 
-void exec_multiple(t_minishell *data, char *cmd)
+void exec_multiple(t_minishell *data, char *raw_cmd)
 {
 	char *path;
 	char **splitted_cmd;
+	char *cleaned_cmd;
 	int builtin;
 
-	splitted_cmd = ft_split_quotes(cmd);
+	ft_get_redit_value(raw_cmd, data);
+	cleaned_cmd = ft_clean_redir_cmd(raw_cmd);
+	splitted_cmd = ft_split_quotes(cleaned_cmd);
 	builtin = is_builtin(splitted_cmd);
 	if (builtin)
 	{
-		// ft_redirect(cmd, data);
+		if (ft_redirect(data))
+			exit (1);
 		exec_builtin(data, splitted_cmd, 1, builtin);
 		exit (0);
 	}
 	// if (exec_builtin(data, splitted_cmd, 1, is_builtin(splitted_cmd)))
 	// 	exit(0);
-	else if (!cmd[0])
+	else if (!raw_cmd[0])
 		exit(0);
 	else
 	{	
@@ -35,6 +39,8 @@ void exec_multiple(t_minishell *data, char *cmd)
 			ft_putstr_fd(": No such file or directory\n", 2);
 			exit(1);
 		}
+		if (ft_redirect(data))
+			exit (1); 
 		execve(path, splitted_cmd, data->env);
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(splitted_cmd[0], 2);

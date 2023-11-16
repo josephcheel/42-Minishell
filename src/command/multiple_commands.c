@@ -30,13 +30,7 @@ char	**ft_separate_cmds(t_minishell *data)
 	return (separate_cmds);	
 }
 
-void	child_process(t_minishell *data, int nbr)
-{
-	if (nbr != data->nbr_of_cmds - 1)
-		dup2(data->fd[1], STDOUT_FILENO);
-	close(data->fd[1]);
-	close(data->fd[0]);
-}
+
 
 // void	signal_handler_mul(int sig)
 // {
@@ -64,22 +58,31 @@ int ft_check_pipe_sytax(t_minishell *data)
 	return (0);
 }
 
-static void	parent(t_minishell *master)
+
+
+static void	parent(t_minishell *data)
 {
 	int	i;
 
 	i = 0;
-	if (dup2(master->fd[0], STDIN_FILENO) == -1)
+	if (dup2(data->fd[0], STDIN_FILENO) == -1)
 		i = 1;
-	if (close(master->fd[0]) == -1)
+	if (close(data->fd[0]) == -1)
 		i = 1;
-	if (close(master->fd[1]) == -1)
+	if (close(data->fd[1]) == -1)
 		i = 1;
 	(void)i;
 	// if (i)
 	// 	clean_free(master, 1);
 }
 
+void	child_process(t_minishell *data, int nbr)
+{
+	if (nbr != data->nbr_of_cmds - 1)
+		dup2(data->fd[1], STDOUT_FILENO);
+	close(data->fd[1]);
+	close(data->fd[0]);
+}
 
 static void	wait_childs(t_minishell *data)
 {
@@ -93,8 +96,6 @@ static void	wait_childs(t_minishell *data)
 	while (nbr--)
 	{
 		pid = waitpid(-1, &status, 0);
-		// if (pid == -1)
-		// 	clean_free(master, 1);
 		if (nbr == 0 && WIFSIGNALED(status))
 		{
 			status += 128;
@@ -111,8 +112,6 @@ int	ft_multiple_commands(t_minishell *data)
 	int nbr;
 	
 	nbr = -1;
-	// if (ft_check_pipe_sytax(data))
-	// 	return (0);
 	data->mul_cmds = ft_separate_cmds(data);
 	if (data->mul_cmds == NULL)
 		return (0);

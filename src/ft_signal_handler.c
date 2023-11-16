@@ -30,22 +30,9 @@ void	signal_handler(int sig)
 
 void signal_handler_heredoc(int sig)
 {
-	// int fd;
-
 	if (sig == SIGINT)
 	{
 		exit(0);
-		// rl_replace_line("", 0);
-		// write(STDOUT_FILENO, "> \n", 3);
-		// fd = open(HEREDOC_FILE, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		// close(fd);
-		
-		// close(STDIN_FILENO);
-		
-		// ft_putstr_fd("\n", STDOUT_FILENO);
-		// rl_on_new_line();
-		// rl_redisplay();
-		
 	}
 	else if (sig == SIGQUIT)
 	{
