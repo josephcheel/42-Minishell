@@ -34,7 +34,7 @@ static int ft_count_words(char *str)
 			quotes.dbl = 0;
 		if (str[i] == '\'' && quotes.simple == 2)
 			quotes.simple = str[i];
-		if (ft_isprint(str[i]) && str[i] != ' ')
+		if (ft_isprint(str[i]) && str[i] != ' ' && quotes.simple == 0 && quotes.dbl == 0)
 		{
 			len++;
 			while (((ft_isprint(str[i]) && str[i] != ' ') || str[i] == '\''  || str[i] == '\"')&& str[i+1] != '\0')
@@ -48,6 +48,7 @@ static int ft_count_words(char *str)
 static char *quotes_substr(char *str, int start, int len)
 {
 	char *new_str;
+
 	printf("START %d LEN %d\n", start, len);
 	while (str[start] == ' ')
 		start++;
@@ -57,24 +58,91 @@ static char *quotes_substr(char *str, int start, int len)
 
 static char **alloc_split_quotes(int size, char *str, char **split)
 {
-	int	i;
+	// int	i;
+	// int start;
+	// int count;
+	// t_quote quotes;
+
+
+	// i = 0;
+	// start = 0;
+	// count = 0;
+	// quotes.dbl = 0;
+	// quotes.simple = 0;
+
+	// while (str[i] == ' ')
+	// 		i++;
+	// start = i;
+	// while (str[i] != '\0')
+	// {
+	// 	if (str[i] == '\"' && quotes.simple == 0)
+	// 		quotes.dbl++;
+	// 	if (str[i] == '\'' && quotes.dbl == 0)
+	// 		quotes.simple++;
+	// 	if (quotes.dbl == 2)
+	// 		quotes.dbl = 0;
+	// 	if (quotes.simple == 2)
+	// 		quotes.simple = 0;
+	// 	printf("%s, simple %d double %d\n", &str[i], quotes.simple, quotes.dbl);
+	// 	if ((str[i] == ' ' || str[i+1] == '\0')  && quotes.simple == 0 && quotes.dbl == 0)
+	// 	{
+	// 		if (str[i+1] == '\0')
+	// 		{
+	// 			while (str[i] == ' ')
+	// 				i--;
+	// 			printf("EMPTY NEXT\n");
+	// 			split[count] = quotes_substr(str, start, i+1);
+	// 		}
+	// 		else if (str[i] == ' ')
+	// 		{
+	// 			printf("SPACE\n");
+	// 			split[count] = quotes_substr(str, start, i);
+	// 		}
+	// 		count++;
+	// 		if (size < count)
+	// 			break ;
+	// 		start = i;
+
+	// 	}
+	// 	else if ((str[i] == ' ' || str[i+1] == '\0') && (!quotes.simple && quotes.dbl || !quotes.dbl && quotes.dbl) )
+	// 	{
+	// 		printf("AAA%s, simple %d double %d\n", &str[i], quotes.simple, quotes.dbl);
+	// 		split[count] = quotes_substr(str, start, i);
+	// 		count++;
+	// 		// if (str[i+1] == '\0')
+	// 		// {
+	// 		// 	while (str[i] == ' ')
+	// 		// 		i--;
+	// 		// 	printf("EMPTY NEXT\n");
+	// 		// 	split[count] = quotes_substr(str, start, i+1);
+	// 		// }
+	// 		// else if (str[i] == ' ')
+	// 		// {
+	// 		// 	printf("SPACE\n");
+	// 		// 	split[count] = quotes_substr(str, start, i);
+	// 		// }
+	// 		// count++;
+	// 		// if (size < count)
+	// 		// 	break ;
+	// 		// start = i;
+	// 	}
+	// 	while (str[i] == ' ')
+	// 		i++;
+	// 	i++;
+	// }
+	// return (split);
+	int i;
 	int start;
 	int count;
 	t_quote quotes;
 
-
 	i = 0;
-	start = 0;
 	count = 0;
+	start = 0;
 	quotes.dbl = 0;
 	quotes.simple = 0;
-
-	while (str[i] == ' ')
-			i++;
-	start = i;
-	while (str[i] != '\0')
+	while (str[i])
 	{
-		
 		if (str[i] == '\"' && quotes.simple == 0)
 			quotes.dbl++;
 		if (str[i] == '\'' && quotes.dbl == 0)
@@ -83,22 +151,12 @@ static char **alloc_split_quotes(int size, char *str, char **split)
 			quotes.dbl = 0;
 		if (str[i] == '\'' && quotes.simple == 2)
 			quotes.simple = 0;
-		if ((str[i] == ' ' || str[i+1] == '\0' )  && quotes.dbl == 0 && quotes.simple == 0 )
+		if ((str[i] == '\"' && !quotes.simple ) || ( str[i] == '\'' && !quotes.dbl))
+			;
+		else
 		{
-			if (str[i+1] == '\0')
-			{
-				printf("EMPTY NEXT\n");
-				split[count] = quotes_substr(str, start, i+1);
-			}
-			else if (str[i] == ' ')
-			{
-				printf("SPACE\n");
-				split[count] = quotes_substr(str, start, i);
-			}
+			split[count] = ft_substr(str, start, i - start);
 			count++;
-			if (size <= count)
-				break ;
-			start = i+ 1;
 		}
 		i++;
 	}
@@ -207,6 +265,7 @@ char **ft_split_quotes(char *str)
 	split = malloc(sizeof(char *) * (size + 1));
 	if (!split)
 		return NULL;
+	split[size] = NULL;
 	// return (0);
 	split = alloc_split_quotes(size, str, split);
 	// new_split = ft_clean_split(split);
@@ -230,14 +289,19 @@ int main(int ac, char **av)
 	
 	split = ft_split_quotes(av[1]);
 	// return (0);
-	ft_clean_split(split);
-	printf("$%s$\n", split[0]);
-	printf("$%s$\n", split[1]);
-	printf("$%s$\n", split[2]);
-	printf("$%s$\n", split[3]);
+	// ft_clean_split(split);
+	int size = ft_array_size(split);
+	printf("size size %d\n", size);
+	if (size >= 0)
+		printf("$%s$\n", split[0]);
+	if (size >= 1)
+		printf("$%s$\n", split[1]);
+	if (size >= 2)
+		printf("$%s$\n", split[2]);
+	// printf("$%s$\n", split[3]);
 	// free(str);
 	// ft_array_free(split, ft_array_size(split));
-	// ft_array_free(cleaned, ft_array_size(cleaned));
+	ft_array_free(split, ft_array_size(split));
 	// if (split && split[0])
 	// 	printf("$%s$\n", split[0]);
 	return (0);
