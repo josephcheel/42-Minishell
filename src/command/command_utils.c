@@ -110,17 +110,23 @@ char	*find_command_route_env(t_env *lstenv, char **env, char *command)
 	char	*line;
 	char	**temp;
 	char	*str;
+	t_env	*envtemp;
 	int		i;
 
 	(void)env;
 	if (!ft_isstralnum(command))
 		return (NULL);
 	if (ft_isvariable(lstenv, "PATH"))
-		line = getenv("PATH");
+	{
+		envtemp = ft_find_id(lstenv, "PATH");//getenv("PATH");
+		line = envtemp->value;
+	}
 	else
 		return (NULL);
 	while (*line != '/')
 		line++;
+	if (!line)
+		return (NULL);
 	route = ft_split(line, ':');
 	temp = ft_split(command, ' ');
 	route = command_add(route, temp[0]);

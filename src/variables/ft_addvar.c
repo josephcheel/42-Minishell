@@ -15,10 +15,18 @@
 //Adds variable to list
 void	ft_add_variable(t_env **head, char *id, char *value)
 {
+	char **split;
+	char *value_splitted;
 	t_env	*temp;
 	t_env	*new_node;
 
-	new_node = ft_create_new_node(id, value);
+	split = ft_split_quotes(value);
+	if (split[0])
+		value_splitted = ft_strdup(split[0]);
+	else
+		value_splitted = value;
+	ft_array_free(split, ft_array_size(split));
+	new_node = ft_create_new_node(id, value_splitted);
 	if (!new_node)
 		return ;
 	temp = *head;
