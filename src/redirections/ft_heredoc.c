@@ -7,16 +7,12 @@ int ft_heredoc(t_minishell *data)
     t_list *temp;
 
     temp = data->heredocs;
-    // printf("HEREDOC %s\n", temp->content);
     fd = open(HEREDOC_FILE, O_WRONLY | O_CREAT , 0644);
-
     if (fd == -1) 
     {
         perror("open");
         return(1);
     }
-
-    // signal(SIGINT, SIG_IGN);
     signal(SIGINT, signal_handler_heredoc);
 	signal(SIGQUIT, signal_handler_heredoc);
     while(temp)
@@ -30,15 +26,19 @@ int ft_heredoc(t_minishell *data)
            
             close(fd);
             fd = open(HEREDOC_FILE, O_WRONLY | O_CREAT , 0644);
-            line = temp->content;
-            temp = temp->next;
-            free(line);
+           	if (fd == -1) 
+			{
+				perror("open");
+				return(1);
+			}
+			temp = temp->next;
         }
         else
         {
             ft_putstr_fd(line, fd);
             ft_putstr_fd("\n", fd);
         }
+		free(line);
     }
     close(fd);
     // if (dup2(data->std_in, STDIN_FILENO) == -1)

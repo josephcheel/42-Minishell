@@ -12,19 +12,19 @@ void	ft_redir_value(char *filename, t_list **head)
 }
 
 
-static int	ft_move_next_redir(char *raw_cmd)
-{
-	int i;
+// static int	ft_move_next_redir(char *raw_cmd)
+// {
+// 	int i;
 
-	i = 0;
-	while ((raw_cmd[i] == '<' || raw_cmd[i] == '>' )&& raw_cmd[i])
-		i++;
-	while (raw_cmd[i] == ' ' && raw_cmd[i])
-		i++;
-	while (!ft_isspace(raw_cmd[i]) && raw_cmd[i])
-		i++;
-	return (i);
-}
+// 	i = 0;
+// 	while ((raw_cmd[i] == '<' || raw_cmd[i] == '>' )&& raw_cmd[i])
+// 		i++;
+// 	while (raw_cmd[i] == ' ' && raw_cmd[i])
+// 		i++;
+// 	while (!ft_isspace(raw_cmd[i]) && raw_cmd[i])
+// 		i++;
+// 	return (i);
+// }
 
 char *ft_get_redit_value(char *raw_cmd, t_minishell *data)
 {
@@ -63,7 +63,7 @@ char *ft_get_redit_value(char *raw_cmd, t_minishell *data)
 		{
 			i += 1;
 			filename = ft_get_next_filename(&raw_cmd[i]);
-			i += ft_move_next_redir(&raw_cmd[i]);
+			// i += ft_move_next_redir(&raw_cmd[i]);
 			if (filename)
 			{
 				ft_redir_value(filename, &data->heredocs);

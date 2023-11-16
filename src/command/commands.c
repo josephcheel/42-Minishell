@@ -65,7 +65,7 @@ static int ft_syntax_errors(t_minishell *data)
 		free(data->raw_cmd);
 		return (write(2, "quote>\n", 8));
 	}
-	if (ft_check_pipe_sytax(data))
+	if (data->nbr_of_cmds > 1 && ft_check_pipe_sytax(data))
 	{
 		free(data->raw_cmd);
 		return (1);
@@ -80,11 +80,9 @@ static int ft_syntax_errors(t_minishell *data)
 
 int	ft_commands(t_minishell *data)
 {
-	
+	data->nbr_of_cmds = ft_count_commands(data->raw_cmd);
 	if (ft_syntax_errors(data))
 		return (0);
-	data->nbr_of_cmds = ft_count_commands(data->raw_cmd);
-	
 
 	while (ft_strchr_variable(data->raw_cmd))
 		data->raw_cmd = ft_parse_variables(data);
