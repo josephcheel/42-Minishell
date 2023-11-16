@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../inc/split_quotes.h"
 #include "../../libft/inc/libft.h"
 #include <stdio.h>

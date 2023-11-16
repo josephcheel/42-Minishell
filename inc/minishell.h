@@ -36,21 +36,21 @@ typedef struct s_status{
 }t_status;
 
 typedef struct s_minishell
-{	
+{
 	pid_t			pid;
 	int				fd[2];
 
 	int				std_in;
 	int				std_out;
-	
+
 	char			**env;
 	t_env			*lstenv;
-	
+
 	char			**cmd;
 	char			**mul_cmds;
-	
+
 	char			*raw_cmd;
-	char 			*cleaned_cmd;
+	char			*cleaned_cmd;
 
 	int				cmd_size;
 	int				cmd_and_arguments_size;
@@ -60,9 +60,9 @@ typedef struct s_minishell
 	char			*infile;
 	char			*outfile;
 
-	int 			is_append;
-	int 			is_heredoc;
-	int 			is_out_heredoc;
+	int				is_append;
+	int				is_heredoc;
+	int				is_out_heredoc;
 	t_list			*in_files;
 	t_list			*out_files;
 	t_list			*out_append;
@@ -74,8 +74,6 @@ typedef struct s_minishell
 }t_minishell;
 
 t_status	g_status;
-
-
 
 char	*display_prompt_msg(void);
 
@@ -91,7 +89,8 @@ int		ft_count_commands(char *raw_command);
 
 /* builtins */
 int		is_builtin(char **cmd);
-int		exec_builtin(t_minishell *data, char **cmd, int multiple_cmd, int cmd_nbr);
+int		exec_builtin(t_minishell *data, char **cmd, \
+int multiple_cmd, int cmd_nbr);
 int		ft_echo(char **cmd, int n_option);
 int		ft_pwd(char **cmd);
 int		ft_env(t_env *lstenv);
@@ -104,8 +103,6 @@ int		ft_cd(t_minishell *data, char **cmd);
 int		ft_cd_error_msg(char *arg, char *msg);
 int		ft_is_mode_permission_ok(char *file);
 void	ft_set_directory(t_env **lstenv, char *variable);
-
-
 
 /* signals */
 void	signal_handler(int sig);
@@ -127,9 +124,7 @@ char	*ft_replace_variable(t_minishell *data, char *variable);
 int		ft_is_variable_export(t_minishell *data, char *argument);
 int		ft_isvariable(t_env *head, char *id);
 
-
 /* Expansors */
-
 
 // Parsin one not-builtin command 
 int		commandline(char *str1, char *str2);
@@ -142,11 +137,11 @@ char	**ft_split_env(char *line);
 char	*ft_replace_string(char *str, char *replace, char *replacer);
 char	*ft_return_argument(t_minishell *data);
 
-char *ft_get_next_filename(char *raw_cmd);
+char	*ft_get_next_filename(char *raw_cmd);
 
 /* Syntax Errors */
-int ft_check_pipe_sytax(t_minishell *data);
-int ft_check_redir_sytax(char *str);
+int		ft_check_pipe_sytax(t_minishell *data);
+int		ft_check_redir_sytax(char *str);
 
 // EXECS
 void	exec_one(t_minishell *data);
@@ -177,10 +172,9 @@ char	*get_filename(char *raw_cmd, t_minishell *data);
 
 char	*ft_clean_redir_cmd(char *str);
 
-int ft_permission_files_in(t_list **head);
-int ft_open_files_out(t_minishell *data);
+int		ft_permission_files_in(t_list **head);
+int		ft_open_files_out(t_minishell *data);
 
-int ft_heredoc(t_minishell *data);
-
+int		ft_heredoc(t_minishell *data);
 
 #endif

@@ -1,19 +1,28 @@
-#include "../../inc/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_clean_redir_cmd.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ageiser <ageiser@student.42barcelona.com>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/16 19:47:25 by ageiser           #+#    #+#             */
+/*   Updated: 2023/11/16 19:47:27 by ageiser          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../../inc/minishell.h"
 
 /*
 infile < ls > outfile1 > outfile2 file
 ls file
 */
 
-int ft_check_redir_sytax(char *str) // return OK(0) NOT_OK(1)
+int	ft_check_redir_sytax(char *str)
 {
-	int i;
-
-	int len;
-	int redir_left;
-	int redir_right;
-	
+	int	i;
+	int	len;
+	int	redir_left;
+	int	redir_right;
 
 	i = 0;
 	len = ft_strlen(str) - 1;
@@ -23,14 +32,15 @@ int ft_check_redir_sytax(char *str) // return OK(0) NOT_OK(1)
 	{
 		if (str[i] == '<' )
 			redir_left++;
-		else if ( str[i] == '>')
+		else if (str[i] == '>')
 			redir_right++;
 		if (ft_isspace(str[i]))
 		{
 			redir_left = 0;
 			redir_right = 0;
 		}
-		if ((redir_left > 2 && !redir_right )||( redir_right > 2 && !redir_left))
+		if ((redir_left > 2 && !redir_right) || \
+		(redir_right > 2 && !redir_left))
 		{
 			ft_putstr_fd("minishell: syntax error near unexpected token `>'\n", 2);
 			return (1);
@@ -68,12 +78,12 @@ static int	get_end_redir(char *str, int start)
 			start++;
 		while (str[start] == ' ')
 			start++;
-		while (!ft_isspace(str[start]) && str[start+1] != '\0')
+		while (!ft_isspace(str[start]) && str[start + 1] != '\0')
 			start++;
-		while (str[start] == ' ' && str[start+1] != '\0')
+		while (str[start] == ' ' && str[start + 1] != '\0')
 			start++;
-		if (str[start+1] == '\0')
-			return (start+1);
+		if (str[start + 1] == '\0')
+			return (start + 1);
 		if (str[start] == '<' || str[start] == '>')
 			start++;
 		else
@@ -82,13 +92,13 @@ static int	get_end_redir(char *str, int start)
 	return (start);
 }
 
-char *ft_remove_redir(char *str, int start)
+char	*ft_remove_redir(char *str, int start)
 {
-	int len;
-	int end;
-	char *cleaned;
-	char *temp;
-	char *temp2;
+	int		len;
+	int		end;
+	char	*cleaned;
+	char	*temp;
+	char	*temp2;
 
 	end = 0;
 	len = ft_strlen(str);
@@ -97,7 +107,7 @@ char *ft_remove_redir(char *str, int start)
 		cleaned = ft_substr(str, end, len);
 	else if (end == len)
 		cleaned = ft_substr(str, 0, start);
-	else // end in the middle
+	else
 	{
 		temp = ft_substr(str, 0, start);
 		temp2 = ft_substr(str, end, len);
@@ -105,18 +115,17 @@ char *ft_remove_redir(char *str, int start)
 		free(temp);
 		free(temp2);
 	}
-
 	if (str)
 		free(str);
 	return (cleaned);
 }
 
-char *ft_clean_redir_cmd(char *str)
+char	*ft_clean_redir_cmd(char *str)
 {
-	int i;
-	int double_q;
-	int simple_q;
-	char *cleaned;
+	int		i;
+	int		double_q;
+	int		simple_q;
+	char	*cleaned;
 
 	i = 0;
 	double_q = 0;
@@ -129,12 +138,12 @@ char *ft_clean_redir_cmd(char *str)
 		else if (cleaned[i] == '\'')
 			simple_q += 1;
 		if (double_q == 2)
-			double_q  = 0;
+			double_q = 0;
 		else if (simple_q == 2)
 			simple_q = 0;
 		if ((cleaned[i] == '<' || cleaned[i] == '>' ) && !double_q && !simple_q)
 		{
-			if (cleaned[i+1] == '<' || cleaned[i+1] == '>' )
+			if (cleaned[i + 1] == '<' || cleaned[i + 1] == '>' )
 				i++;
 			cleaned = ft_remove_redir(cleaned, i);
 			i = -1;

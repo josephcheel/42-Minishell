@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   files_in.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ageiser <ageiser@student.42barcelona.com>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/16 19:39:58 by ageiser           #+#    #+#             */
+/*   Updated: 2023/11/16 19:40:00 by ageiser          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/minishell.h"
 
-int ft_permission_files_in(t_list **head) // return (0) OK return (1) FAIL
+int	ft_permission_files_in(t_list **head)
 {
-	t_list *temp;
+	t_list	*temp;
 
 	temp = *head;
 	while (temp)
@@ -26,5 +38,5 @@ int ft_permission_files_in(t_list **head) // return (0) OK return (1) FAIL
 		}
 		temp = temp->next;
 	}
-	return(0);
+	return (0);
 }

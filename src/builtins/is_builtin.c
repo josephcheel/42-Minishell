@@ -14,7 +14,7 @@
 
 static int	ft_echo_type(char **cmd)
 {
-	int cmd_size;
+	int	cmd_size;
 
 	cmd_size = ft_cmdsize(cmd);
 	if (cmd_size == 1)
@@ -38,11 +38,10 @@ int	is_builtin(char **cmd)
 	char	*decapitalize;
 
 	i = 0;
-
 	decapitalize = ft_strlwr(cmd[0]);
 	if (!ft_isstralnum(cmd[0]))
 		return (0);
-	if (ft_strncmp(decapitalize, "echo", 5) == 0) 
+	if (ft_strncmp(decapitalize, "echo", 5) == 0)
 		i = 1;
 	else if (ft_strncmp(cmd[0], "cd", 3) == 0)
 		i = 2;
@@ -59,7 +58,6 @@ int	is_builtin(char **cmd)
 	free(decapitalize);
 	return (i);
 }
-
 
 int	exec_builtin(t_minishell *data, char **cmd, int multiple_cmd, int cmd_nbr)
 {

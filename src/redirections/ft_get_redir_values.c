@@ -1,17 +1,26 @@
-#include "../../inc/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_get_redir_values.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ageiser <ageiser@student.42barcelona.com>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/16 20:02:47 by ageiser           #+#    #+#             */
+/*   Updated: 2023/11/16 20:02:49 by ageiser          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../../inc/minishell.h"
 
 void	ft_redir_value(char *filename, t_list **head)
 {
-	t_list *temp;
+	t_list	*temp;
 
 	temp = ft_lstnew((char *)filename);
 	if (!temp)
 		return ;
 	ft_lstadd_back(head, temp);
 }
-
-
 // static int	ft_move_next_redir(char *raw_cmd)
 // {
 // 	int i;
@@ -26,13 +35,14 @@ void	ft_redir_value(char *filename, t_list **head)
 // 	return (i);
 // }
 
-char *ft_get_redit_value(char *raw_cmd, t_minishell *data)
+char	*ft_get_redit_value(char *raw_cmd, t_minishell *data)
 {
-	int i;
-	char *filename = NULL;
+	int		i;
+	char	*filename;
 	int		d_quotes;
 	int		s_quotes;
 
+	filename = NULL;
 	d_quotes = 0;
 	s_quotes = 0;
 	i = 0;
@@ -48,10 +58,9 @@ char *ft_get_redit_value(char *raw_cmd, t_minishell *data)
 			d_quotes = 0;
 		if (raw_cmd[i] == '\'' && s_quotes == 2)
 			s_quotes = 0;
-
-		if (raw_cmd[i] == '<' && raw_cmd[i+1] != '<' && !d_quotes && !s_quotes) // < exists and can reads
+		if (raw_cmd[i] == '<' && raw_cmd[i + 1] != '<' && !d_quotes && !s_quotes)
 		{
-			filename = ft_get_next_filename(&raw_cmd[i]);	
+			filename = ft_get_next_filename(&raw_cmd[i]);
 			if (filename)
 			{
 				ft_redir_value(filename, &data->in_files);
@@ -59,7 +68,7 @@ char *ft_get_redit_value(char *raw_cmd, t_minishell *data)
 				data->is_out_heredoc = 1;
 			}
 		}
-		else if (raw_cmd[i] == '<' &&  raw_cmd[i+1] == '<' && !d_quotes && !s_quotes) // <<
+		else if (raw_cmd[i] == '<' && raw_cmd[i + 1] == '<' && !d_quotes && !s_quotes)
 		{
 			i += 1;
 			filename = ft_get_next_filename(&raw_cmd[i]);
@@ -72,9 +81,9 @@ char *ft_get_redit_value(char *raw_cmd, t_minishell *data)
 				// data->is_out_heredoc = 1;
 			}
 		}
-		else if (raw_cmd[i] == '>' &&  raw_cmd[i+1] != '>' && !d_quotes && !s_quotes) // >
+		else if (raw_cmd[i] == '>' && raw_cmd[i + 1] != '>' && !d_quotes && !s_quotes)
 		{
-			filename = ft_get_next_filename(&raw_cmd[i]);		
+			filename = ft_get_next_filename(&raw_cmd[i]);
 			if (filename)
 			{
 				ft_redir_value(filename, &data->out_files);
@@ -82,7 +91,7 @@ char *ft_get_redit_value(char *raw_cmd, t_minishell *data)
 				data->is_append = 0;
 			}
 		}
-		else if (raw_cmd[i] == '>' &&  raw_cmd[i+1] == '>' && !d_quotes && !s_quotes) // >> 
+		else if (raw_cmd[i] == '>' && raw_cmd[i + 1] == '>' && !d_quotes && !s_quotes)
 		{
 			i += 1;
 			filename = ft_get_next_filename(&raw_cmd[i]);
@@ -104,8 +113,8 @@ char *ft_get_redit_value(char *raw_cmd, t_minishell *data)
 // 	data->out_files = NULL;
 // 	data->in_files = NULL;
 // 	// data->heredoc = NULL;
-// 	char *str = ft_strdup("echo > \"outfile\" < infile >> doubleoutfile    <<END ");
-	
+// 	char *str = ft_strdup("echo > \"outfile\" < inf
+//ile >> doubleoutfile    <<END ");
 // 	ft_get_redit_value(str, data);
 // 	if (data->heredoc)
 // 		printf("%s\n", data->heredoc);

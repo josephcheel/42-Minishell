@@ -66,10 +66,10 @@ static char	*reader(int fd, char *recovery)
 	}
 	free(buf);
 	if (ret < 0)
-	{	
+	{
 		free(recovery);
 		return (NULL);
-	}	
+	}
 	return (recovery);
 }
 

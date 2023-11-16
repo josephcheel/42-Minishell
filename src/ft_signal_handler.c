@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_signal_handler.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ageiser <ageiser@student.42barcelona.com>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/16 19:29:06 by ageiser           #+#    #+#             */
+/*   Updated: 2023/11/16 19:29:10 by ageiser          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/minishell.h"
 
 void	catch_signal(t_minishell *data, int status, int set_status)
@@ -28,7 +40,7 @@ void	signal_handler(int sig)
 	}
 }
 
-void signal_handler_heredoc(int sig)
+void	signal_handler_heredoc(int sig)
 {
 	if (sig == SIGINT)
 	{
