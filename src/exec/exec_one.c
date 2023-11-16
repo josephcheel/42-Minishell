@@ -25,5 +25,7 @@ void	exec_one(t_minishell *data)
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(data->cmd[0], 2);
 	ft_putstr_fd(": command not found\n", 2);
+	free(path);
+	ft_array_free(data->cmd, ft_array_size(data->cmd));
 	exit (127);
 }

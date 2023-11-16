@@ -109,6 +109,7 @@ char	*find_command_route_env(t_env *lstenv, char **env, char *command)
 	char	**route;
 	char	*line;
 	char	**temp;
+	char	*str;
 	int		i;
 
 	(void)env;
@@ -123,12 +124,18 @@ char	*find_command_route_env(t_env *lstenv, char **env, char *command)
 	route = ft_split(line, ':');
 	temp = ft_split(command, ' ');
 	route = command_add(route, temp[0]);
-	free(temp);
+	ft_array_free(temp, ft_array_size(temp));
 	i = 0;
 	while (route[i] && access(route[i], F_OK) == -1) //access?
 		i++;
 	if (!route[i])
-		return (ft_strtrim(command, " "));
-	return (route[i]);
+	{
+		str = ft_strtrim(command, " ");
+		ft_array_free(route, ft_array_size(route));
+		return (str);	
+	}
+	str = ft_strdup(route[i]);
+	ft_array_free(route, ft_array_size(route));
+	return (str);
 //Don't understand this part
 }
