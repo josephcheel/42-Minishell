@@ -155,20 +155,24 @@ static char **alloc_split_quotes(int size, char *str, char **split)
 		if (ft_isprint(str[i]) && str[i] != ' ')// && quotes.simple != 1 && quotes.dbl != 1)// || quotes.simple == 1 && quotes.dbl == 1)
 		{
 			// start = i;
-			//  while ((ft_isprint(str[i]) && str[i] != ' ')||( str[i] == '\'' && !quotes.dbl)|| (str[i] == '\"' && !quotes.simple)&& str[i+1] != '\0')
-			while ((ft_isprint(str[i]) && str[i] != ' ') || ((str[i] == '\"' && !quotes.simple  || str[i] == '\''  && !quotes.dbl )) && str[i+1] != '\0')
+			// while ((ft_isprint(str[i]) && str[i] != ' ')||( str[i] == '\'' && !quotes.dbl)|| (str[i] == '\"' && !quotes.simple)&& str[i+1] != '\0')
+			// while ((ft_isprint(str[i]) && str[i] != ' ') || ((str[i] == '\"' && !quotes.simple  || str[i] == '\''  && !quotes.dbl )) && str[i+1] != '\0')
+			// printf("STRING : $");
+			while (((ft_isprint(str[i]) && str[i] != ' ' && (!quotes.simple && !quotes.dbl ))) || ft_isprint(str[i]) && (quotes.simple || quotes.dbl))
 			{
 				// printf("SIMPLE %d, DOUBLE %d\n", quotes.simple, quotes.dbl);
+				// printf("%c\n", str[i]);
 				if (str[i] == '\"' && quotes.simple == 0)
 					quotes.dbl++;
 				if (str[i] == '\'' && quotes.dbl == 0)
 					quotes.simple++;
-				// if (str[i] == '\"' && quotes.dbl == 2)
-				// 	quotes.dbl = 0;
-				// if (str[i] == '\'' && quotes.simple == 2)
-				// 	quotes.simple = 0;
+				if (str[i] == '\"' && quotes.dbl == 2)
+					quotes.dbl = 0;
+				if (str[i] == '\'' && quotes.simple == 2)
+					quotes.simple = 0;
 				i++;
 			}
+			printf("\n");
 			printf("start %c[%d] END %c[%d]\n", str[start], start, str[i], i);
 			if ((!ft_isstrprint(&str[i+1]) && str[i] != ' ')&& (str[start] == '\'' || str[start] == '\"'))
 			{
@@ -191,7 +195,7 @@ static char **alloc_split_quotes(int size, char *str, char **split)
 				if (str[i] == ' ')
 				{
 					printf("HOLAI\n");
-					split[j] = ft_substr(str, start, i - start);
+					split[j] = ft_substr(str, start+1, i - start-1);
 				}
 				else
 				{
@@ -208,10 +212,10 @@ static char **alloc_split_quotes(int size, char *str, char **split)
 			{
 				printf("SIMPLE %d, DOUBLE %d\n", quotes.simple, quotes.dbl);
 				printf("4 %d\n", j);
-				split[j] = ft_substr(str, start, i - start);
+				split[j] = ft_substr(str, start+1, i - start-1);
 			}
 			j++;
-			while (str[i] == ' ')
+			while (str[i+1] == ' ')
 				i++;
 			start = i;
 			if (str[i] == '\"' && quotes.dbl == 1)
