@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:07:54 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/07 17:08:28 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/18 12:28:39 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,23 @@ int	is_builtin(char **cmd)
 
 	i = 0;
 	decapitalize = ft_strlwr(cmd[0]);
+	if (!decapitalize)
+		return (0);
 	if (!ft_isstralnum(cmd[0]))
 		return (0);
-	if (ft_strncmp(decapitalize, "echo", 5) == 0)
+	if (ft_strcmp(decapitalize, "echo") == 0)
 		i = 1;
-	else if (ft_strncmp(cmd[0], "cd", 3) == 0)
+	else if (ft_strcmp(cmd[0], "cd") == 0)
 		i = 2;
-	else if (ft_strncmp(decapitalize, "pwd", 4) == 0)
+	else if (ft_strcmp(decapitalize, "pwd") == 0)
 		i = 3;
-	else if (ft_strncmp(cmd[0], "export", 7) == 0)
+	else if (ft_strcmp(cmd[0], "export") == 0)
 		i = 4;
-	else if (ft_strncmp(cmd[0], "unset", 6) == 0)
+	else if (ft_strcmp(cmd[0], "unset") == 0)
 		i = 5;
-	else if (ft_strncmp(decapitalize, "env", 4) == 0)
+	else if (ft_strcmp(decapitalize, "env") == 0)
 		i = 6;
-	else if (ft_strncmp(cmd[0], "exit", 5) == 0)
+	else if (ft_strcmp(cmd[0], "exit") == 0)
 		i = 7;
 	free(decapitalize);
 	return (i);
@@ -64,7 +66,7 @@ int	exec_builtin(t_minishell *data, char **cmd, int multiple_cmd, int cmd_nbr)
 	int		i;
 
 	i = 0;
-	// ft_redirect(data->raw_cmd, data);
+
 	if (cmd_nbr == 1)
 		i = ft_echo_type(cmd);
 	else if (cmd_nbr == 2)

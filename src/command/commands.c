@@ -94,6 +94,8 @@ int	ft_commands(t_minishell *data)
 	if (data->nbr_of_cmds == 1)
 	{
 		ft_init_data_one_cmd(data);
+		// if ( !data->cleaned_cmd || ft_isallspace(data->cleaned_cmd)) // gets only redirections 
+		// 	return (0);
 		ft_one_command(data);
 		ft_free_one(data);
 	}
