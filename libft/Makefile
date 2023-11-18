@@ -7,6 +7,7 @@ AR		= ar -rcs
 RM		= rm -f
 MD		= mkdir -p
 CP		= cp -f
+CLEAN_CAR	=	\033[2K\r
 
 SRC_DIR	= src/
 OBJ_DIR	= obj/
@@ -38,7 +39,8 @@ OBJS	=	$(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 DEPS	=	$(addsuffix .d, $(basename $(OBJS)))
 
 $(OBJ_DIR)%.o: %.c Makefile
-		@$(MD) $(dir $@) 
+		@$(MD) $(dir $@)
+		@printf "$(OK_COLOR)$(CLEAN_CAR)libft $(WARN_COLOR): Compiling $<$(NO_COLOR)"
 		@$(CC) -MT $@ -MMD $(CFLAGS) $(INCLUDE) -c $< -o $@
 		
 #echo "$(WARN_COLOR)Compiling: $<$(NO_COLOR)"
@@ -48,7 +50,7 @@ all:		$(NAME)
 
 $(NAME):	$(OBJS)
 			@$(AR) $(NAME) $(OBJS) 
-			@echo "$(OK_COLOR)Libft Compiled!$(NO_COLOR)"
+			@echo "$(OK_COLOR)$(CLEAN_CAR)Libft Compiled!$(NO_COLOR)"
 
 clean:
 			@$(RM) -r $(OBJ_DIR) 
