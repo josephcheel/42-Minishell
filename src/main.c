@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 19:00:06 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/18 21:00:07 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/18 22:45:43 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	init_minishell(t_minishell *data, char **env)
 {
 	if (init_env(data, env))
 		return (write(2, "Error initializing environment\n", 32));
-	if (init_term(data))
-		return (write(2, "Error initializing terminal settings\n", 38));
+	// if (init_term(data))
+	// 	return (write(2, "Error initializing terminal settings\n", 38));
 	if (init_term_fd(data))
 		return (write(2, "Error initializing terminal file descriptors\n", 46));
 	data->infile = NULL;

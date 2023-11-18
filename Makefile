@@ -50,6 +50,10 @@ LIBFT			=	libft/libft.a
 
 INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 
+#●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
+#•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧READLINE✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
+#●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
+
 # Flags for Campus Joseph
 #LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
 #RFLAGS = /Users/${USER}/.brew/opt/readline/include
