@@ -40,7 +40,7 @@ DEPS	=	$(addsuffix .d, $(basename $(OBJS)))
 
 $(OBJ_DIR)%.o: %.c Makefile
 		@$(MD) $(dir $@)
-		@printf "$(OK_COLOR)$(CLEAN_CAR)[libft Compiling] $(WARN_COLOR):$<$(NO_COLOR)"
+		@printf "$(OK_COLOR)$(CLEAN_CAR)[libft Compiling] $(BLUE_COLOR):$(WARN_COLOR) $<$(NO_COLOR)"
 		@$(CC) -MT $@ -MMD $(CFLAGS) $(INCLUDE) -c $< -o $@
 		
 #echo "$(WARN_COLOR)Compiling: $<$(NO_COLOR)"
@@ -75,6 +75,7 @@ NO_COLOR		=	\x1b[0m
 OK_COLOR		=	\x1b[32;01m
 ERROR_COLOR		=	\x1b[31;01m
 WARN_COLOR		=	\x1b[33;01m
+BLUE_COLOR		=	\x1b[34;01m
 
 OK_STRING		=	$(OK_COLOR)[OK]$(NO_COLOR)
 ERROR_STRING	=	$(ERROR_COLOR)[ERRORS]$(NO_COLOR)

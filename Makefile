@@ -111,7 +111,7 @@ DEPS			+=	$(addsuffix .d, $(basename $(OBJS)))
 $(OBJ_DIR)%.o : %.c Makefile 
 	@$(MD) $(dir $@)
 	@make -sC $(LIBFT_DIR)
-	@echo "$(WARN_COLOR)Compiling: $<$(NO_COLOR)"
+	@echo "$(OK_COLOR)Compiling $(NO_COLOR): $(WARN_COLOR)$<$(NO_COLOR)"
 	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -I$(RFLAGS) $(INCLUDE) $< -o $@ 
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
@@ -131,8 +131,8 @@ clean:
 
 fclean:		clean
 			@make fclean -sC $(LIBFT_DIR)
-			@$(RM) $(NAME) $(NAME_BONUS)
-			@echo "$(ERROR_COLOR)Programs removed$(NO_COLOR)"
+			@$(RM) $(NAME)
+			@echo "$(ERROR_COLOR)$(NAME) removed$(NO_COLOR)"
 
 re:			fclean all
 
@@ -160,6 +160,7 @@ NO_COLOR		=	\x1b[0m
 OK_COLOR		=	\x1b[32;01m
 ERROR_COLOR		=	\x1b[31;01m
 WARN_COLOR		=	\x1b[33;01m
+BLUE_COLOR		=	\x1b[34;01m
 
 OK_STRING		=	$(OK_COLOR)[OK]$(NO_COLOR)
 ERROR_STRING	=	$(ERROR_COLOR)[ERRORS]$(NO_COLOR)
