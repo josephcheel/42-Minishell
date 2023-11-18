@@ -111,7 +111,7 @@ DEPS			+=	$(addsuffix .d, $(basename $(OBJS)))
 $(OBJ_DIR)%.o : %.c Makefile 
 	@$(MD) $(dir $@)
 	@make -sC $(LIBFT_DIR)
-	@echo "$(OK_COLOR)Compiling $(NO_COLOR): $(WARN_COLOR)$<$(NO_COLOR)"
+	@echo "$(OK_COLOR)Compiling$(NO_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)"
 	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -I$(RFLAGS) $(INCLUDE) $< -o $@ 
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
