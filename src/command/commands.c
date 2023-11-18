@@ -1,30 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   commands.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/18 19:52:27 by jcheel-n          #+#    #+#             */
+/*   Updated: 2023/11/18 21:14:38 by jcheel-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/minishell.h"
-
-void	ft_init_data_one_cmd(t_minishell *data)
+/*
+** This function deletes all nodes of a list without
+*/
+void	ft_free_list(t_list **head)
 {
-	data->cleaned_cmd = ft_clean_redir_cmd(data->raw_cmd);
-	data->cmd = ft_split_quotes(data->cleaned_cmd);
-	data->cmd_size = ft_cmdsize(data->cmd);
-	data->cmd_and_arguments_size = ft_array_size(data->cmd);
-	
-	data->in_files = NULL;
-	data->out_files = NULL;
-	data->out_append = NULL;
-	data->heredocs = NULL;
-	data->infile = NULL;
-	data->outfile = NULL;
-	data->in_files = NULL;
-	data->out_files = NULL;
-	data->out_append = NULL;
-	data->is_append = 0;
-	data->is_heredoc = 0;
-	data->is_out_heredoc = 0;
-	ft_get_redit_value(data->raw_cmd, data);
-}
-
-void ft_free_list(t_list **head)
-{
-	t_list *temp;
+	t_list	*temp;
 
 	while (*head)
 	{
@@ -51,28 +43,22 @@ static void	ft_free_one(t_minishell *data)
 		ft_free_list(&data->out_append);
 	if (ft_lstsize(data->heredocs) > 0)
 		ft_free_list(&data->heredocs);
-	// printf("free\n"); //
 }
 
-
-static int ft_syntax_errors(t_minishell *data)
+static void	ft_free_multiple(t_minishell *data)
 {
-	if (ft_has_valid_quotes(data->raw_cmd) == 0)
-	{
+	if (data->raw_cmd)
 		free(data->raw_cmd);
-		return (write(2, "quote>\n", 8));
-	}
-	if (data->nbr_of_cmds > 1 && ft_check_pipe_sytax(data))
-	{
-		free(data->raw_cmd);
-		return (1);
-	}
-	if (ft_check_redir_sytax(data->raw_cmd))
-	{
-		free(data->raw_cmd);
-		return (1);
-	}
-	return (0);
+	if (data->mul_cmds)
+		ft_array_free(data->mul_cmds, ft_array_size(data->mul_cmds));
+	if (ft_lstsize(data->in_files) > 0)
+		ft_free_list(&data->in_files);
+	if (ft_lstsize(data->out_files) > 0)
+		ft_free_list(&data->out_files);
+	if (ft_lstsize(data->out_append) > 0)
+		ft_free_list(&data->out_append);
+	if (ft_lstsize(data->heredocs) > 0)
+		ft_free_list(&data->heredocs);
 }
 
 int	ft_commands(t_minishell *data)
@@ -80,29 +66,24 @@ int	ft_commands(t_minishell *data)
 	data->nbr_of_cmds = ft_count_commands(data->raw_cmd);
 	if (ft_syntax_errors(data))
 		return (0);
-
 	while (ft_strchr_variable(data->raw_cmd))
 		data->raw_cmd = ft_parse_variables(data);
-
 	if (ft_isallspace(data->raw_cmd))
 	{
- 		free(data->raw_cmd);
+		free(data->raw_cmd);
 		return (0);
 	}
-
-	//one and multiple commands
 	if (data->nbr_of_cmds == 1)
 	{
 		ft_init_data_one_cmd(data);
-		// if ( !data->cleaned_cmd || ft_isallspace(data->cleaned_cmd)) // gets only redirections 
-		// 	return (0);
 		ft_one_command(data);
 		ft_free_one(data);
 	}
 	else if (data->nbr_of_cmds > 1)
 	{
+		ft_init_data_multiple_cmds(data);
 		ft_multiple_commands(data);
-		free(data->raw_cmd);
+		ft_free_multiple(data);
 	}
 	return (0);
 }

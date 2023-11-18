@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   multiple_commands.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/18 20:24:10 by jcheel-n          #+#    #+#             */
+/*   Updated: 2023/11/18 21:05:45 by jcheel-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/minishell.h"
 
 char	**ft_separate_cmds(t_minishell *data)
@@ -20,42 +32,15 @@ char	**ft_separate_cmds(t_minishell *data)
 		}
 		else if (ft_isstralnum(separate_cmds[i]) == 0 \
 			|| (ft_isstralnum(separate_cmds[i]) == 0
-			&& separate_cmds[0] == separate_cmds[i]))
+				&& separate_cmds[0] == separate_cmds[i]))
 		{
 			ft_array_free(separate_cmds, len);
-			ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
+			ft_putstr_fd(
+				"minishell: syntax error near unexpected token `|'\n", 2);
 			return (NULL);
 		}
 	}
-	return (separate_cmds);	
-}
-
-
-
-// void	signal_handler_mul(int sig)
-// {
-// 	if (sig == SIGQUIT)
-// 	{
-// 		// rl_replace_line("", 0);
-// 		// ft_putstr_fd("Quit: 3\n", STDOUT_FILENO);
-// 		rl_on_new_line();
-// 		rl_redisplay();
-// 	}
-// }
-
-int ft_check_pipe_sytax(t_minishell *data)
-{
-	if (data->raw_cmd[0] == '|')
-	{
-		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
-		return (1);
-	}
-	if (data->raw_cmd[ft_strlen(data->raw_cmd) - 1] == '|')
-	{
-		ft_putstr_fd("pipe>\n", 2);
-		return (1);
-	}
-	return (0);
+	return (separate_cmds);
 }
 
 
@@ -109,10 +94,9 @@ static void	wait_childs(t_minishell *data)
 
 int	ft_multiple_commands(t_minishell *data)
 {
-	int nbr;
-	
+	int	nbr;
+
 	nbr = -1;
-	data->mul_cmds = ft_separate_cmds(data);
 	if (data->mul_cmds == NULL)
 		return (0);
 	while (++nbr < data->nbr_of_cmds)
@@ -126,7 +110,7 @@ int	ft_multiple_commands(t_minishell *data)
 			close(data->fd[0]);
 			exit (0);
 		}
-		if (data->pid  == 0)
+		if (data->pid == 0)
 		{
 			signal(SIGINT, signal_handler);
 			signal(SIGQUIT, signal_handler);
@@ -135,7 +119,6 @@ int	ft_multiple_commands(t_minishell *data)
 		}
 		parent(data);
 	}
-	ft_array_free(data->mul_cmds, ft_array_size(data->mul_cmds));
 	wait_childs(data);
 	return (0);
 }

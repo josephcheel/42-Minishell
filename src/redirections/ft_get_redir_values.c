@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_redir_values.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ageiser <ageiser@student.42barcelona.com>  +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 20:02:47 by ageiser           #+#    #+#             */
-/*   Updated: 2023/11/16 20:02:49 by ageiser          ###   ########.fr       */
+/*   Updated: 2023/11/18 19:53:21 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*ft_get_redit_value(char *raw_cmd, t_minishell *data)
 			{
 				ft_redir_value(filename, &data->in_files);
 				data->infile = filename;
-				data->is_out_heredoc = 1;
+				// data->is_out_heredoc = 1;
 			}
 		}
 		else if (raw_cmd[i] == '<' && raw_cmd[i + 1] == '<' && !d_quotes && !s_quotes)
@@ -78,7 +78,7 @@ char	*ft_get_redit_value(char *raw_cmd, t_minishell *data)
 				ft_redir_value(filename, &data->heredocs);
 				data->infile = HEREDOC_FILE;
 				data->is_heredoc = 1;
-				// data->is_out_heredoc = 1;
+				// // data->is_out_heredoc = 1;
 			}
 		}
 		else if (raw_cmd[i] == '>' && raw_cmd[i + 1] != '>' && !d_quotes && !s_quotes)

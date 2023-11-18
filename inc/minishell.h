@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:47:45 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/15 00:12:27 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/18 21:05:47 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ typedef struct s_minishell
 	char			*raw_cmd;
 	char			*cleaned_cmd;
 
-	int				cmd_size;
-	int				cmd_and_arguments_size;
 	int				nbr_of_cmds;
 	int				status;
 
@@ -82,7 +80,8 @@ int		ft_commands(t_minishell *data);
 int		ft_one_command(t_minishell *data);
 int		ft_multiple_commands(t_minishell *data);
 char	**ft_separate_cmds(t_minishell *data);
-
+void	ft_init_data_one_cmd(t_minishell *data);
+void	ft_init_data_multiple_cmds(t_minishell *data);
 /* Command data */
 int		ft_cmdsize(char **command);
 int		ft_count_commands(char *raw_command);
@@ -129,7 +128,7 @@ int		ft_isvariable(t_env *head, char *id);
 // Parsin one not-builtin command 
 int		commandline(char *str1, char *str2);
 char	**command_add(char **route, char *command);
-char	*find_command_route_env(t_env *lstenv, char **env, char *command);
+char	*find_command_route_env(t_env *lstenv, char *command);
 
 int		init_env(t_minishell *data, char **env);
 char	**ft_split_env(char *line);
@@ -140,6 +139,7 @@ char	*ft_return_argument(t_minishell *data);
 char	*ft_get_next_filename(char *raw_cmd);
 
 /* Syntax Errors */
+int		ft_syntax_errors(t_minishell *data);
 int		ft_check_pipe_sytax(t_minishell *data);
 int		ft_check_redir_sytax(char *str);
 

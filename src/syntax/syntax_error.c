@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_quotes.h                                     :+:      :+:    :+:   */
+/*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 12:59:19 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/18 20:42:32 by jcheel-n         ###   ########.fr       */
+/*   Created: 2023/11/18 21:01:50 by jcheel-n          #+#    #+#             */
+/*   Updated: 2023/11/18 21:09:05 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPLIT_QUOTES_H
-# define SPLIT_QUOTES_H
+#include "../../inc/minishell.h"
 
-#include "../../libft/inc/libft.h"
-
-typedef struct s_quote{
-	int dbl;
-	int	simple;
-	int long_malloc;
-}t_quote;
-
-int		ft_has_valid_quotes(char *str);
-
-#endif 
+int	ft_syntax_errors(t_minishell *data)
+{
+	if (ft_has_valid_quotes(data->raw_cmd) == 0)
+	{
+		free(data->raw_cmd);
+		return (write(2, "quote>\n", 8));
+	}
+	if (data->nbr_of_cmds > 1 && ft_check_pipe_sytax(data))
+	{
+		free(data->raw_cmd);
+		return (1);
+	}
+	if (ft_check_redir_sytax(data->raw_cmd))
+	{
+		free(data->raw_cmd);
+		return (1);
+	}
+	return (0);
+}

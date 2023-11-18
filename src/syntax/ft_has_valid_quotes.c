@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_has_valid_quotes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ageiser <ageiser@student.42barcelona.com>  +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:35:15 by ageiser           #+#    #+#             */
-/*   Updated: 2023/11/16 19:35:17 by ageiser          ###   ########.fr       */
+/*   Updated: 2023/11/18 21:06:56 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
 // NOT WORKING WHEN echo "\\" nos scaping double nackslash NOT WORKING echo adios"hola"
 int	ft_has_valid_quotes(char *str)
 {

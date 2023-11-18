@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_quotes.h                                     :+:      :+:    :+:   */
+/*   ft_check_pipe_syntax.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 12:59:19 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/18 20:42:32 by jcheel-n         ###   ########.fr       */
+/*   Created: 2023/11/18 21:03:27 by jcheel-n          #+#    #+#             */
+/*   Updated: 2023/11/18 21:09:19 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPLIT_QUOTES_H
-# define SPLIT_QUOTES_H
+#include "../../inc/minishell.h"
 
-#include "../../libft/inc/libft.h"
-
-typedef struct s_quote{
-	int dbl;
-	int	simple;
-	int long_malloc;
-}t_quote;
-
-int		ft_has_valid_quotes(char *str);
-
-#endif 
+int	ft_check_pipe_sytax(t_minishell *data)
+{
+	if (data->raw_cmd[0] == '|')
+	{
+		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
+		return (1);
+	}
+	if (data->raw_cmd[ft_strlen(data->raw_cmd) - 1] == '|')
+	{
+		ft_putstr_fd("pipe>\n", 2);
+		return (1);
+	}
+	return (0);
+}

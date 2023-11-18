@@ -31,13 +31,14 @@ CP			=	cp -f
 
 SRC_DIR			=	src/
 BUILTINS_DIR		=	builtins/
-ENV_DIR			=	env/
+ENV_DIR			=	environment/
 VAR_DIR			= 	variables/
-EXEC_DIR		=	exec/
+EXEC_DIR		=	executor/
 CMDS_DIR		= 	command/
 TERM_DIR		= 	terminal/
 PAR_DIR			= 	parsers/
 REDIR_DIR		= 	redirections/
+SYNTAX_DIR		= 	syntax/
 
 OBJ_DIR			=	build/
 
@@ -54,12 +55,12 @@ INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 #RFLAGS = /Users/${USER}/.brew/opt/readline/include
 
 # Flags for Campus Alex
-  LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
-  RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
+#   LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
+#   RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
 
 # # Flags for Home Joseph
-# LDFLAGS	=/opt/homebrew/opt/readline/lib
-# RFLAGS	= /opt/homebrew/opt/readline/include
+LDFLAGS	=/opt/homebrew/opt/readline/lib
+RFLAGS	= /opt/homebrew/opt/readline/include
 
 # Flags for Home alex
 # LDFLAGS=/usr/local/opt/readline/lib
@@ -77,16 +78,17 @@ ENV				=	init_env.c ft_split_env.c env_lstcreate.c env_lstutils.c env_lstprint.c
 
 EXEC			=	exec_one.c exec_multiple.c
 
-CMDS 			=	commands.c command_utils.c one_command.c multiple_commands.c
+CMDS 			=	commands.c command_utils.c one_command.c multiple_commands.c init_cmd_data.c
 
 VARIABLES		=	ft_isvar.c ft_addvar.c ft_setvar.c ft_parsevar.c ft_replacevar.c ft_get_variable.c ft_check_var_rules.c
 
 TERM			=	term_setting.c term_fd.c
 
-PARSERS			= 	ft_split_quotes.c ft_split_pipe.c ft_has_valid_quotes.c 
+PARSERS			= 	ft_split_quotes.c ft_split_pipe.c
 
 REDIR			= 	redirect.c ft_clean_redir_cmd.c ft_get_next_filename.c files_in.c  ft_get_redir_values.c files_out.c ft_heredoc.c
 
+SYNTAX			=	syntax_error.c ft_check_pipe_syntax.c ft_check_redir_syntax.c ft_has_valid_quotes.c
 
 SRCS			+=	$(addprefix $(SRC_DIR), $(MS_SRCS))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(BUILTINS_DIR), $(BUILTINS)))
@@ -97,7 +99,7 @@ SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(VAR_DIR), $(VARIABLES)))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(TERM_DIR), $(TERM)))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(PAR_DIR), $(PARSERS)))
 SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(REDIR_DIR), $(REDIR)))
-
+SRCS			+= 	$(addprefix $(SRC_DIR), $(addprefix $(SYNTAX_DIR), $(SYNTAX)))
 
 OBJS			=	$(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 DEPS			+=	$(addsuffix .d, $(basename $(OBJS)))

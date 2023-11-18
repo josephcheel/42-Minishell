@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:11:09 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/18 12:33:20 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/18 20:57:23 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char	*ft_strlwr(char *str)
 	int		i;
 	char	*new_str;
 
-	
 	i = -1;
 	if (!str)
 		return (NULL);

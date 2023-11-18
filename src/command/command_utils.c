@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   command_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/18 20:31:49 by jcheel-n          #+#    #+#             */
+/*   Updated: 2023/11/18 20:39:27 by jcheel-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/minishell.h"
 
 int	ft_count_commands(char *raw_command)
@@ -5,10 +17,10 @@ int	ft_count_commands(char *raw_command)
 	int	i;
 	int	nbr_cmd;
 	int	len_command;
-	int in_single;
-	int in_double;
+	int	in_single;
+	int	in_double;
+
 	i = -1;
-	
 	in_single = 0;
 	in_double = 0;
 	nbr_cmd = 1;
@@ -22,19 +34,15 @@ int	ft_count_commands(char *raw_command)
 			else if (raw_command[i] == '\'' && in_double == 0)
 				in_single++;
 			if (in_single == 2)
-			{
 				in_single = 0;
-			}
-			if	(in_double == 2)
-			{
+			if (in_double == 2)
 				in_double = 0;
-			}
 		}
 		if (raw_command[i] == '|' && in_double == 0 && in_single == 0)
 		{
-			if (raw_command[i+1] == '|')
+			if (raw_command[i + 1] == '|')
 			{
-				ft_putstr_fd("minishell: syntax error near unexpected token `|'\n",2);
+				ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
 				return (0);
 			}
 			nbr_cmd++;
@@ -43,7 +51,10 @@ int	ft_count_commands(char *raw_command)
 	return (nbr_cmd);
 }
 
-int ft_cmdsize(char **command) // counts the index from cmd and flags
+/*
+** counts the index from cmd and flags
+*/
+int	ft_cmdsize(char **command)
 {
 	int	size;
 	int	count;
@@ -51,7 +62,7 @@ int ft_cmdsize(char **command) // counts the index from cmd and flags
 	size = 0;
 	if (ft_strlen(command[0]) > 0)
 		size++;
-	else 
+	else
 		return (size);
 	count = ft_array_size(command);
 	while (size < count)
@@ -59,7 +70,7 @@ int ft_cmdsize(char **command) // counts the index from cmd and flags
 		if (command[size][0] == '-')
 			size++;
 		else
-			break;
+			break ;
 	}
 	return (size);
 }
@@ -85,18 +96,15 @@ char	**command_add(char **route, char *command)
 	i = 0;
 	copy = ft_strdup("/");
 	if (!copy)
-		return NULL;
-		// function_errors();
+		return (NULL);
 	copy = ft_strjoinfree(copy, command);
 	if (!copy)
-		return NULL;
-		// function_errors();
+		return (NULL);
 	while (route[i])
 	{
 		route[i] = ft_strjoinfree(route[i], copy);
 		if (!route[i])
-			return NULL;
-			//function_errors();
+			return (NULL);
 		i++;
 	}
 	route[i] = NULL;
@@ -104,21 +112,20 @@ char	**command_add(char **route, char *command)
 	return (route);
 }
 
-char	*find_command_route_env(t_env *lstenv, char **env, char *command)
+char	*find_command_route_env(t_env *lstenv, char *command)
 {
 	char	**route;
 	char	*line;
-	// char	**temp;
 	char	*str;
 	t_env	*envtemp;
 	int		i;
 
-	(void)env;
+	i = 0;
 	if (!ft_isstralnum(command))
 		return (NULL);
 	if (ft_isvariable(lstenv, "PATH"))
 	{
-		envtemp = ft_find_id(lstenv, "PATH");//getenv("PATH");
+		envtemp = ft_find_id(lstenv, "PATH");
 		line = envtemp->value;
 	}
 	else
@@ -128,21 +135,16 @@ char	*find_command_route_env(t_env *lstenv, char **env, char *command)
 	if (!line)
 		return (NULL);
 	route = ft_split(line, ':');
-	// temp = ft_split(command, ' ');
-	// route = command_add(route, temp[0]);
 	route = command_add(route, command);
-	// ft_array_free(temp, ft_array_size(temp));
-	i = 0;
-	while (route[i] && access(route[i], F_OK) == -1) //access?
+	while (route[i] && access(route[i], F_OK) == -1)
 		i++;
 	if (!route[i])
 	{
 		str = ft_strtrim(command, " ");
 		ft_array_free(route, ft_array_size(route));
-		return (str);	
+		return (str);
 	}
 	str = ft_strdup(route[i]);
 	ft_array_free(route, ft_array_size(route));
 	return (str);
-//Don't understand this part
 }
