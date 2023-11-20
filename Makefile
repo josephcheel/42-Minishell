@@ -19,6 +19,7 @@ CC			=	gcc
 RLFLAGS		= 	-lreadline 
 CFLAGS		=	-Wall -Werror -Wextra
 #XFLAGS		=	-fsanitize=address -g2 -g
+CLEAN_CAR	=	\033[2K\r
 
 AR			=	ar rcs
 RM			=	rm -f
@@ -115,7 +116,8 @@ DEPS			+=	$(addsuffix .d, $(basename $(OBJS)))
 $(OBJ_DIR)%.o : %.c Makefile 
 	@$(MD) $(dir $@)
 	@make -sC $(LIBFT_DIR)
-	@echo "$(OK_COLOR)Compiling$(NO_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)"
+	@printf "$(CLEAN_CAR)$(OK_COLOR)[minishell Compiling]$(BLUE_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)"
+#@echo "$(OK_COLOR)Compiling$(NO_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)"
 	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -I$(RFLAGS) $(INCLUDE) $< -o $@ 
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
@@ -126,15 +128,18 @@ all:		libft_link $(NAME)
 
 $(NAME):	$(LIBFT) $(OBJS) 
 			@$(CC) $(CFLAGS) $(RLFLAGS) -L$(LDFLAGS) $(XFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
-			@echo "$(OK_COLOR)$(NAME) Compiled!$(NO_COLOR)"
+			@sleep 0.2
+			@echo "$(CLEAN_CAR)$(OK_COLOR)Minishell Compiled!$(NO_COLOR)"
+			@echo "Use $(BLUE_COLOR)./minishell$(NO_COLOR) to launch the program"
 
 clean:
 			@make clean -sC $(LIBFT_DIR)
 			@$(RM) -r $(OBJ_DIR)
 			@echo "$(ERROR_COLOR)Dependencies and objects removed$(NO_COLOR)"
 
-fclean:		clean
+fclean:		
 			@make fclean -sC $(LIBFT_DIR)
+			@$(RM) -r $(OBJ_DIR)
 			@$(RM) $(NAME)
 			@echo "$(ERROR_COLOR)$(NAME) removed$(NO_COLOR)"
 
@@ -146,6 +151,12 @@ run:		all
 			@echo ""
 			@./minishell
 
+leak:		all
+			@echo ""
+			@echo "$(OK_COLOR)Launching Minishell...$(NO_COLOR)"
+			@echo ""
+			@leaks -atExit -- ./minishell
+
 libft_link:	
 			@make -sC $(LIBFT_DIR)
 
@@ -154,7 +165,7 @@ libft_link:
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○IGNORE○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
-.PHONY: all bonus clean fclean re run libft_link
+.PHONY: all bonus clean fclean re run leak libft_link
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─COLOR──✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
