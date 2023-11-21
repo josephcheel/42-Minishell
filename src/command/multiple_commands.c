@@ -12,57 +12,17 @@
 
 #include "../../inc/minishell.h"
 
-char	**ft_separate_cmds(t_minishell *data)
-{
-	int		i;
-	int		len;
-	char	**separate_cmds;
-
-	i = -1;
-	separate_cmds = ft_split_pipe(data->raw_cmd, '|');
-	len = ft_array_size(separate_cmds);
-	while (separate_cmds[++i])
-	{
-		if (ft_isstralnum(separate_cmds[i]) == 0 && \
-			(separate_cmds[len - 1] == separate_cmds[i]))
-		{
-			ft_putstr_fd("pipe>\n", 2);
-			ft_array_free(separate_cmds, len);
-			return (NULL);
-		}
-		else if (ft_isstralnum(separate_cmds[i]) == 0 \
-			|| (ft_isstralnum(separate_cmds[i]) == 0
-				&& separate_cmds[0] == separate_cmds[i]))
-		{
-			ft_array_free(separate_cmds, len);
-			ft_putstr_fd(
-				"minishell: syntax error near unexpected token `|'\n", 2);
-			return (NULL);
-		}
-	}
-	return (separate_cmds);
-}
-
-
-
 static void	parent(t_minishell *data)
 {
-	int	i;
-
-	i = 0;
-	if (dup2(data->fd[0], STDIN_FILENO) == -1)
-		i = 1;
-	if (close(data->fd[0]) == -1)
-		i = 1;
-	if (close(data->fd[1]) == -1)
-		i = 1;
-	(void)i;
-	// if (i)
-	// 	clean_free(master, 1);
+	dup2(data->fd[0], STDIN_FILENO);
+	close(data->fd[0]);
+	close(data->fd[1]);
 }
 
 void	child_process(t_minishell *data, int nbr)
 {
+	signal(SIGINT, signal_handler);
+	signal(SIGQUIT, signal_handler);
 	if (nbr != data->nbr_of_cmds - 1)
 		dup2(data->fd[1], STDOUT_FILENO);
 	close(data->fd[1]);
@@ -112,8 +72,6 @@ int	ft_multiple_commands(t_minishell *data)
 		}
 		if (data->pid == 0)
 		{
-			signal(SIGINT, signal_handler);
-			signal(SIGQUIT, signal_handler);
 			child_process(data, nbr);
 			exec_multiple(data, data->mul_cmds[nbr]);
 		}

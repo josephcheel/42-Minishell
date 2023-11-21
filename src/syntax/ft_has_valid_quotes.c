@@ -12,32 +12,29 @@
 
 #include "../../inc/minishell.h"
 
-// NOT WORKING WHEN echo "\\" nos scaping double nackslash NOT WORKING echo adios"hola"
 int	ft_has_valid_quotes(char *str)
 {
-	int	i;
-	int	simple_q;
-	int	double_q;
+	int		i;
+	t_quote	quotes;
 
 	i = -1;
-	simple_q = 0;
-	double_q = 0;
+	quotes.simple = 0;
+	quotes.dbl = 0;
 	if (ft_strlen(str) == 0)
 		return (1);
 	while (str[++i])
 	{
-		if ((double_q % 2 == 0 || (double_q == 0 && simple_q != 0)) && \
-		(str[i] == '\'') && (str[i - 1] != '\\'))
-			simple_q++;
-		else if ((simple_q % 2 == 0 || (simple_q == 0 && double_q != 0)) && \
-		str[i] == '\"' && str[i - 1] != '\\')
-			double_q++;
+		if ((quotes.dbl % 2 == 0 || (quotes.dbl == 0 && quotes.simple != 0))
+			&& (str[i] == '\'') && (str[i - 1] != '\\'))
+			quotes.simple++;
+		else if ((quotes.simple % 2 == 0 || \
+			(quotes.simple == 0 && quotes.dbl != 0))
+			&& str[i] == '\"' && str[i - 1] != '\\')
+			quotes.dbl++;
 	}
-	if (simple_q % 2 == 0 && double_q == 0)
-		return (1);
-	if (double_q % 2 == 0 && simple_q == 0)
-		return (1);
-	if (double_q % 2 == 0 && simple_q % 2 == 0)
+	if ((quotes.dbl % 2 == 0 && quotes.simple == 0)
+		|| (quotes.simple % 2 == 0 && quotes.dbl == 0)
+		||(quotes.dbl % 2 == 0 && quotes.simple % 2 == 0))
 		return (1);
 	else
 		return (0);

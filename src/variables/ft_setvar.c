@@ -26,6 +26,8 @@ void	ft_set_variable(t_env **head, char *id, char *value)
 		split = ft_split_quotes(value);
 		if (split[0])
 			temp->value = ft_strdup(split[0]);
+		else
+			temp->value = value;
 		ft_array_free(split, ft_array_size(split));
 	}
 	else
