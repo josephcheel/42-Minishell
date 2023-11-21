@@ -43,8 +43,6 @@ char	**ft_separate_cmds(t_minishell *data)
 	return (separate_cmds);
 }
 
-
-
 static void	parent(t_minishell *data)
 {
 	int	i;

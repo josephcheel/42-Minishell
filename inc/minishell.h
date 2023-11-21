@@ -129,6 +129,7 @@ int		ft_isvariable(t_env *head, char *id);
 int		commandline(char *str1, char *str2);
 char	**command_add(char **route, char *command);
 char	*find_command_route_env(t_env *lstenv, char *command);
+char    *ft_first_step(t_env *lstenv, char *command, char *line);
 
 int		init_env(t_minishell *data, char **env);
 char	**ft_split_env(char *line);
@@ -143,6 +144,7 @@ int		ft_syntax_errors(t_minishell *data);
 int		ft_check_pipe_sytax(t_minishell *data);
 int		ft_check_redir_sytax(char *str);
 int		ft_has_valid_quotes(char *str);
+void	ft_write_syntax_error(char *str, int i);
 
 // EXECS
 void	exec_one(t_minishell *data);

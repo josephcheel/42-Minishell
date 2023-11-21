@@ -60,12 +60,12 @@ INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 #RFLAGS = /Users/${USER}/.brew/opt/readline/include
 
 # Flags for Campus Alex
-#   LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
-#   RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
+  LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
+  RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
 
 # # Flags for Home Joseph
-LDFLAGS	=/opt/homebrew/opt/readline/lib
-RFLAGS	= /opt/homebrew/opt/readline/include
+# LDFLAGS	=/opt/homebrew/opt/readline/lib
+# RFLAGS	= /opt/homebrew/opt/readline/include
 
 # Flags for Home alex
 # LDFLAGS=/usr/local/opt/readline/lib
@@ -83,7 +83,7 @@ ENV				=	init_env.c ft_split_env.c env_lstcreate.c env_lstutils.c env_lstprint.c
 
 EXEC			=	exec_one.c exec_multiple.c
 
-CMDS 			=	commands.c command_utils.c one_command.c multiple_commands.c init_cmd_data.c
+CMDS 			=	commands.c command_utils.c one_command.c multiple_commands.c init_cmd_data.c command_utils2.c
 
 VARIABLES		=	ft_isvar.c ft_addvar.c ft_setvar.c ft_parsevar.c ft_replacevar.c ft_get_variable.c ft_check_var_rules.c
 
