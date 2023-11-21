@@ -14,37 +14,23 @@
 
 int	ft_count_commands(char *raw_command)
 {
-	int	i;
-	int	nbr_cmd;
-	int	len_command;
-	int	in_single;
-	int	in_double;
+	int		i;
+	int		nbr_cmd;
+	int		len_command;
+	t_quote	quotes;
 
 	i = -1;
-	in_single = 0;
-	in_double = 0;
+	quotes.simple = 0;
+	quotes.dbl = 0;
 	nbr_cmd = 1;
 	len_command = ft_strlen(raw_command);
 	while (++i < len_command)
 	{
 		if (raw_command[i] == '\"' || raw_command[i] == '\'')
+			quotes = ft_get_quotes_values(raw_command[i], quotes);
+		if (raw_command[i] == '|' && quotes.dbl == 0 && quotes.simple == 0)
 		{
-			if (raw_command[i] == '\"' && in_single == 0)
-				in_double++;
-			else if (raw_command[i] == '\'' && in_double == 0)
-				in_single++;
-			if (in_single == 2)
-				in_single = 0;
-			if (in_double == 2)
-				in_double = 0;
-		}
-		if (raw_command[i] == '|' && in_double == 0 && in_single == 0)
-		{
-			if (raw_command[i + 1] == '|')
-			{
-				ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
-				return (0);
-			}
+			ft_write_syntax_error(raw_command, i);
 			nbr_cmd++;
 		}
 	}
@@ -117,19 +103,11 @@ char	*find_command_route_env(t_env *lstenv, char *command)
 	char	**route;
 	char	*line;
 	char	*str;
-	t_env	*envtemp;
 	int		i;
 
+	line = NULL;
 	i = 0;
-	if (!ft_isstralnum(command))
-		return (NULL);
-	if (ft_isvariable(lstenv, "PATH"))
-	{
-		envtemp = ft_find_id(lstenv, "PATH");
-		line = envtemp->value;
-	}
-	else
-		return (NULL);
+	ft_first_step(lstenv, command, line);
 	while (*line != '/')
 		line++;
 	if (!line)
