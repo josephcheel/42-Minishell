@@ -78,7 +78,7 @@ int	ft_export(t_minishell *data, char **cmd)
 				ft_set_variable(&data->lstenv, variable[0], variable[1]);
 			else
 				ft_export_error_not_valid_id(cmd[i]);
-			free(variable);
+			ft_array_free(variable, ft_array_size(variable));
 		}
 		else
 			if (!ft_check_var_rules(cmd[i]))

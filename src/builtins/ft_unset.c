@@ -34,6 +34,7 @@ static void	ft_unset_logic(t_env **prev, t_env *node, t_env *node_next)
 	*prev = node_next;
 	free(node->id);
 	free(node->value);
+	free(node);
 }
 
 void	ft_unset_node(t_env **lstenv, char *id)
