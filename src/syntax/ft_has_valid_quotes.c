@@ -34,7 +34,7 @@ int	ft_has_valid_quotes(char *str)
 	}
 	if ((quotes.dbl % 2 == 0 && quotes.simple == 0)
 		|| (quotes.simple % 2 == 0 && quotes.dbl == 0)
-		||(quotes.dbl % 2 == 0 && quotes.simple % 2 == 0))
+		|| (quotes.dbl % 2 == 0 && quotes.simple % 2 == 0))
 		return (1);
 	else
 		return (0);

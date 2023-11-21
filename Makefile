@@ -26,6 +26,7 @@ RM			=	rm -f
 MD			=	mkdir -p
 CP			=	cp -f
 
+
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅DIRECTORIES✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
@@ -56,12 +57,12 @@ INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
 # Flags for Campus Joseph
-#LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
-#RFLAGS = /Users/${USER}/.brew/opt/readline/include
+LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
+RFLAGS = /Users/${USER}/.brew/opt/readline/include
 
 # Flags for Campus Alex
-  LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
-  RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
+#   LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
+#   RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
 
 # # Flags for Home Joseph
 # LDFLAGS	=/opt/homebrew/opt/readline/lib
@@ -83,7 +84,7 @@ ENV				=	init_env.c ft_split_env.c env_lstcreate.c env_lstutils.c env_lstprint.c
 
 EXEC			=	exec_one.c exec_multiple.c
 
-CMDS 			=	commands.c command_utils.c one_command.c multiple_commands.c init_cmd_data.c command_utils2.c
+CMDS 			=	commands.c command_utils.c one_command.c multiple_commands.c init_cmd_data.c command_utils2.c separate_cmds.c
 
 VARIABLES		=	ft_isvar.c ft_addvar.c ft_setvar.c ft_parsevar.c ft_replacevar.c ft_get_variable.c ft_check_var_rules.c
 
@@ -117,7 +118,6 @@ $(OBJ_DIR)%.o : %.c Makefile
 	@$(MD) $(dir $@)
 	@make -sC $(LIBFT_DIR)
 	@printf "$(CLEAN_CAR)$(OK_COLOR)[minishell Compiling]$(BLUE_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)"
-#@echo "$(OK_COLOR)Compiling$(NO_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)"
 	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -I$(RFLAGS) $(INCLUDE) $< -o $@ 
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
@@ -180,5 +180,3 @@ BLUE_COLOR		=	\x1b[34;01m
 OK_STRING		=	$(OK_COLOR)[OK]$(NO_COLOR)
 ERROR_STRING	=	$(ERROR_COLOR)[ERRORS]$(NO_COLOR)
 WARN_STRING		=	$(WARN_COLOR)[WARNINGS]$(NO_COLOR)
-
-
