@@ -6,17 +6,11 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:21:38 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/03 01:45:34 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/21 01:35:35 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-// static void ft_replace_string_free(char *before, char *after, char *new_str)
-// {
-// 	if (after)
-// 		free(after);
-// }
 
 char	*ft_replace_string(char *str, char *replace, char *replacer)
 {

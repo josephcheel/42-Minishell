@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:54:16 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/18 20:54:59 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/20 20:29:44 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	exec_multiple(t_minishell *data, char *raw_cmd)
 	else if (!raw_cmd[0])
 		exit(0);
 	else
-	{	
+	{
 		if (!ft_isstralnum(splitted_cmd[0]))
 		{
 			ft_putstr_fd("minishell: ", 2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 02:45:10 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/31 16:53:03 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/20 20:35:44 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	ft_set_directory(t_env **lstenv, char *variable)
 	path = (char *)malloc(sizeof(char) * 4097);
 	getcwd(path, 4097);
 	ft_set_variable(lstenv, variable, path);
-	free(path);
+	if (path)
+		free(path);
 }
 
 int	ft_cd_error_file_too_long(char *file)

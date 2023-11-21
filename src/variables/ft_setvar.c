@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:16:09 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/01 19:54:07 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/21 01:35:28 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ void	ft_set_variable(t_env **head, char *id, char *value)
 	if (ft_isvariable(*head, id))
 	{
 		temp = ft_find_id(*head, id);
-		free(temp->id);
-		free(temp->value);
-		temp->id = id;
+		if (temp->value)
+			free(temp->value);
 		split = ft_split_quotes(value);
 		if (split[0])
 			temp->value = ft_strdup(split[0]);

@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:14:17 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/20 11:15:13 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/21 01:32:56 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,10 @@
 //Adds variable to list
 void	ft_add_variable(t_env **head, char *id, char *value)
 {
-	char **split;
-	char *value_splitted;
 	t_env	*temp;
 	t_env	*new_node;
 
-	split = ft_split_quotes(value);
-	if (split[0])
-		value_splitted = ft_strdup(split[0]);
-	else
-		value_splitted = value;
-	ft_array_free(split, ft_array_size(split));
-	new_node = ft_create_new_node(id, value_splitted);
+	new_node = ft_create_new_node(id, value);
 	if (!new_node)
 		return ;
 	temp = *head;

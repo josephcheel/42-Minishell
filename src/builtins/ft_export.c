@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:00:04 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/04 17:07:52 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/21 01:27:51 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	ft_export(t_minishell *data, char **cmd)
 		if (ft_strchr(cmd[i], '='))
 		{
 			variable = ft_split_env(cmd[i]);
+			printf("variable[0] $%s$ variable[1] $%s$\n", variable[0], variable[1]);
 			if (ft_check_var_rules(variable[0]))
 				ft_set_variable(&data->lstenv, variable[0], variable[1]);
 			else

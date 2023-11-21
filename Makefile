@@ -18,7 +18,7 @@ NAME		=	minishell
 CC			=	gcc
 RLFLAGS		= 	-lreadline 
 CFLAGS		=	-Wall -Werror -Wextra
-#XFLAGS		=	-fsanitize=address -g2 -g
+XFLAGS		=	-fsanitize=address -g2 -g
 CLEAN_CAR	=	\033[2K\r
 
 AR			=	ar rcs

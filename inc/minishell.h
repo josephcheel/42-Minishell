@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:47:45 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/18 21:05:47 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/20 20:26:05 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ char	*ft_get_next_filename(char *raw_cmd);
 int		ft_syntax_errors(t_minishell *data);
 int		ft_check_pipe_sytax(t_minishell *data);
 int		ft_check_redir_sytax(char *str);
+int		ft_has_valid_quotes(char *str);
 
 // EXECS
 void	exec_one(t_minishell *data);

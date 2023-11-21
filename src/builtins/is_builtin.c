@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:07:54 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/18 12:28:39 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/20 21:47:08 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	exec_builtin(t_minishell *data, char **cmd, int multiple_cmd, int cmd_nbr)
 	int		i;
 
 	i = 0;
-
 	if (cmd_nbr == 1)
 		i = ft_echo_type(cmd);
 	else if (cmd_nbr == 2)
