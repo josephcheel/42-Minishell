@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_next_filename.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ageiser <ageiser@student.42barcelona.com>  +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 20:01:38 by ageiser           #+#    #+#             */
-/*   Updated: 2023/11/16 20:01:42 by ageiser          ###   ########.fr       */
+/*   Updated: 2023/11/20 20:27:52 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ char	*ft_get_next_filename(char *raw_cmd)
 
 	while (*raw_cmd == '<' || *raw_cmd == '>')
 		raw_cmd++;
-	// while (ft_isspace(raw_cmd[i]))
-	// 	i++;
-	// printf("%s\n", raw_cmd);
-//  return NULL;
 	split = ft_split_quotes(raw_cmd);
 	if (!split)
 		return (NULL);

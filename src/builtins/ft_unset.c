@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:18:03 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/04 17:08:10 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/20 21:46:47 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,9 @@ int	ft_unset(t_minishell *data, char **cmd)
 	while (cmd[i])
 	{
 		if (ft_check_var_rules(cmd[i]))
-		{
 			ft_unset_node(&data->lstenv, cmd[i]);
-		}
 		else
-		{
 			ft_unset_error_invalid_id(cmd[i]);
-		}
 		i++;
 	}
 	if (g_status.status != 1)

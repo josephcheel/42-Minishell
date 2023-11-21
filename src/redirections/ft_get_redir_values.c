@@ -6,13 +6,13 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 20:02:47 by ageiser           #+#    #+#             */
-/*   Updated: 2023/11/18 19:53:21 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/21 04:01:50 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	ft_redir_value(char *filename, t_list **head)
+void	ft_redir_add_list(char *filename, t_list **head)
 {
 	t_list	*temp;
 
@@ -21,90 +21,43 @@ void	ft_redir_value(char *filename, t_list **head)
 		return ;
 	ft_lstadd_back(head, temp);
 }
-// static int	ft_move_next_redir(char *raw_cmd)
-// {
-// 	int i;
 
-// 	i = 0;
-// 	while ((raw_cmd[i] == '<' || raw_cmd[i] == '>' )&& raw_cmd[i])
-// 		i++;
-// 	while (raw_cmd[i] == ' ' && raw_cmd[i])
-// 		i++;
-// 	while (!ft_isspace(raw_cmd[i]) && raw_cmd[i])
-// 		i++;
-// 	return (i);
-// }
+static void	get_values_loop(char *raw_cmd, int i, t_minishell *data,
+	t_quote quotes)
+{
+	while (raw_cmd[++i])
+	{
+		quotes = ft_get_quotes_values(raw_cmd[i], quotes);
+		if (raw_cmd[i] == '<' && raw_cmd[i + 1] != '<'
+			&& !quotes.dbl && !quotes.simple)
+			ft_get_value_infile(data, &raw_cmd[i]);
+		else if (raw_cmd[i] == '<' && raw_cmd[i + 1] == '<'
+			&& !quotes.dbl && !quotes.simple)
+		{
+			i += 1;
+			ft_get_value_heredoc(data, &raw_cmd[i]);
+		}
+		else if (raw_cmd[i] == '>' && raw_cmd[i + 1] != '>'
+			&& !quotes.dbl && !quotes.simple)
+			ft_get_value_outfile(data, &raw_cmd[i]);
+		else if (raw_cmd[i] == '>' && raw_cmd[i + 1] == '>'
+			&& !quotes.dbl && !quotes.simple)
+		{
+			i += 1;
+			ft_get_value_append(data, &raw_cmd[i]);
+		}
+	}
+}
 
-char	*ft_get_redit_value(char *raw_cmd, t_minishell *data)
+void	ft_get_redit_value(char *raw_cmd, t_minishell *data)
 {
 	int		i;
-	char	*filename;
-	int		d_quotes;
-	int		s_quotes;
+	t_quote	quotes;
 
-	filename = NULL;
-	d_quotes = 0;
-	s_quotes = 0;
-	i = 0;
-	while (raw_cmd[i])
-	{
-		if (!&raw_cmd[i])
-			break ;
-		if (raw_cmd[i] == '\"' && !s_quotes)
-			d_quotes++;
-		if (raw_cmd[i] == '\'' && !d_quotes)
-			s_quotes++;
-		if (raw_cmd[i] == '\"' && d_quotes == 2)
-			d_quotes = 0;
-		if (raw_cmd[i] == '\'' && s_quotes == 2)
-			s_quotes = 0;
-		if (raw_cmd[i] == '<' && raw_cmd[i + 1] != '<' && !d_quotes && !s_quotes)
-		{
-			filename = ft_get_next_filename(&raw_cmd[i]);
-			if (filename)
-			{
-				ft_redir_value(filename, &data->in_files);
-				data->infile = filename;
-				// data->is_out_heredoc = 1;
-			}
-		}
-		else if (raw_cmd[i] == '<' && raw_cmd[i + 1] == '<' && !d_quotes && !s_quotes)
-		{
-			i += 1;
-			filename = ft_get_next_filename(&raw_cmd[i]);
-			// i += ft_move_next_redir(&raw_cmd[i]);
-			if (filename)
-			{
-				ft_redir_value(filename, &data->heredocs);
-				data->infile = HEREDOC_FILE;
-				data->is_heredoc = 1;
-				// // data->is_out_heredoc = 1;
-			}
-		}
-		else if (raw_cmd[i] == '>' && raw_cmd[i + 1] != '>' && !d_quotes && !s_quotes)
-		{
-			filename = ft_get_next_filename(&raw_cmd[i]);
-			if (filename)
-			{
-				ft_redir_value(filename, &data->out_files);
-				data->outfile = filename;
-				data->is_append = 0;
-			}
-		}
-		else if (raw_cmd[i] == '>' && raw_cmd[i + 1] == '>' && !d_quotes && !s_quotes)
-		{
-			i += 1;
-			filename = ft_get_next_filename(&raw_cmd[i]);
-			if (filename)
-			{
-				ft_redir_value(filename, &data->out_append);
-				data->outfile = filename;
-				data->is_append = 1;
-			}
-		}
-		i++;
-	}
-	return (NULL);
+	i = -1;
+	quotes.dbl = 0;
+	quotes.simple = 0;
+	get_values_loop(raw_cmd, i, data, quotes);
 }
 
 // int main(void)

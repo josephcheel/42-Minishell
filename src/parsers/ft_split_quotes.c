@@ -6,11 +6,12 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:40:46 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/18 20:52:14 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/21 03:10:45 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/split_quotes.h"
+#include <stdio.h>
 
 static int	ft_count_words(char *str)
 {
@@ -24,21 +25,36 @@ static int	ft_count_words(char *str)
 	quotes.simple = 0;
 	while (str[i])
 	{
-		if (str[i] == '\"' && quotes.simple == 0)
-			quotes.dbl++;
-		if (str[i] == '\'' && quotes.dbl == 0)
-			quotes.simple++;
-		if (str[i] == '\"' && quotes.dbl == 2)
-			quotes.dbl = 0;
-		if (str[i] == '\'' && quotes.simple == 2)
-			quotes.simple = 0;
+		quotes = ft_get_quotes_values(str[i], quotes);
 		if (ft_isprint(str[i]) && str[i] != ' '
-			&& quotes.simple == 0 && quotes.dbl == 0)
+			&& quotes.simple != 1 && quotes.dbl != 1)
 		{
 			len++;
-			while (((ft_isprint(str[i]) && str[i] != ' ') || str[i] == '\''
-					|| str[i] == '\"') && str[i + 1] != '\0')
+			while ((ft_isprint(str[i]) && str[i] != ' ') && !quotes.simple && !quotes.dbl && str[i + 1] != '\0')
+			{
+				quotes = ft_get_quotes_values(str[i], quotes);
 				i++;
+				if (quotes.simple)
+				{
+					while (quotes.simple)
+					{
+						if (quotes.simple && str[i] == '\'')
+							quotes.simple = 0;
+						i++;
+					}
+				}
+				else if (quotes.dbl)
+				{
+					while (quotes.dbl)
+					{
+						if (quotes.dbl && str[i] == '\"')
+							quotes.dbl = 0;
+						i++;
+					}
+				}	
+			}
+			quotes.dbl = 0;
+			quotes.simple = 0;
 		}
 		i++;
 	}
@@ -168,6 +184,7 @@ static char	*ft_copy_word(char *str, int size)
 		i++;
 	}
 	new_str[size] = '\0';
+	// printf("new_str: %s\n", new_str);
 	return (new_str);
 }
 
@@ -200,6 +217,7 @@ char	**ft_split_quotes(char *str)
 	char	**split;
 
 	size = ft_count_words(str);
+	// printf("size count wo %d\n", size);
 	split = malloc(sizeof(char *) * (size + 1));
 	if (!split)
 		return (NULL);

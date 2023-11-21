@@ -18,7 +18,7 @@ NAME		=	minishell
 CC			=	gcc
 RLFLAGS		= 	-lreadline 
 CFLAGS		=	-Wall -Werror -Wextra
-#XFLAGS		=	-fsanitize=address -g2 -g
+XFLAGS		=	-fsanitize=address -g2 -g
 CLEAN_CAR	=	\033[2K\r
 
 AR			=	ar rcs
@@ -89,9 +89,9 @@ VARIABLES		=	ft_isvar.c ft_addvar.c ft_setvar.c ft_parsevar.c ft_replacevar.c ft
 
 TERM			=	term_setting.c term_fd.c
 
-PARSERS			= 	ft_split_quotes.c ft_split_pipe.c
+PARSERS			= 	ft_split_quotes.c ft_split_pipe.c ft_get_quotes_values.c
 
-REDIR			= 	redirect.c ft_clean_redir_cmd.c ft_get_next_filename.c files_in.c  ft_get_redir_values.c files_out.c ft_heredoc.c
+REDIR			= 	redirect.c ft_clean_redir_cmd.c ft_get_next_filename.c files_in.c  ft_get_redir_values.c files_out.c ft_heredoc.c ft_get_values.c
 
 SYNTAX			=	syntax_error.c ft_check_pipe_syntax.c ft_check_redir_syntax.c ft_has_valid_quotes.c
 
