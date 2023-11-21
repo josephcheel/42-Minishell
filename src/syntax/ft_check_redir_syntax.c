@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:04:38 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/18 21:04:39 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/21 04:15:55 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,9 @@ int	ft_check_redir_sytax(char *str)
 		}
 		if ((redir_left > 2 && !redir_right) || \
 		(redir_right > 2 && !redir_left))
-		{
-			ft_putstr_fd("minishell: syntax error near unexpected token `>'\n", 2);
-			return (1);
-		}
+			return (write(2, "minishell: syntax error near unexpected token `>'\n", 51));
 		else if (redir_left && redir_right)
-		{
-			ft_putstr_fd("minishell: syntax error near unexpected token `>'\n", 2);
-			return (1);
-		}
+			return(write(2, "minishell: syntax error near unexpected token `>'\n", 51));
 		i++;
 	}
 	if (str[len] == ' ')
@@ -52,15 +46,9 @@ int	ft_check_redir_sytax(char *str)
 		while (str[len] == ' ')
 			len--;
 		if (str[len] == '<' || str[len] == '>')
-		{
-			ft_putstr_fd("minishell: syntax error near unexpected token `newline'\n", 2);
-			return (1);
-		}
+			return (write(2, "minishell: syntax error near unexpected token `newline'\n", 57));
 	}
 	if (str[ft_strlen(str) - 1] == '<' || str[ft_strlen(str) - 1] == '>')
-	{
-		ft_putstr_fd("minishell: syntax error near unexpected token `newline'\n", 2);
-		return (1);
-	}
+		return (write(2, "minishell: syntax error near unexpected token `newline'\n", 57));
 	return (0);
 }
