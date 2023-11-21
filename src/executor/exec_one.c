@@ -6,11 +6,21 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:55:10 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/18 20:55:10 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/21 02:06:45 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+static void	exec_one_command_not_found(t_minishell *data, char *path)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(data->cmd[0], 2);
+	ft_putstr_fd(": command not found\n", 2);
+	free(path);
+	ft_array_free(data->cmd, ft_array_size(data->cmd));
+	exit (127);
+}
 
 void	exec_one(t_minishell *data)
 {
@@ -36,10 +46,5 @@ void	exec_one(t_minishell *data)
 	if (ft_redirect(data))
 		exit(1);
 	execve(path, data->cmd, data->env);
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(data->cmd[0], 2);
-	ft_putstr_fd(": command not found\n", 2);
-	free(path);
-	ft_array_free(data->cmd, ft_array_size(data->cmd));
-	exit (127);
+	exec_one_command_not_found(data, path);
 }

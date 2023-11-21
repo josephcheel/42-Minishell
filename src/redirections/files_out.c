@@ -3,44 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   files_out.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ageiser <ageiser@student.42barcelona.com>  +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:41:34 by ageiser           #+#    #+#             */
-/*   Updated: 2023/11/16 19:41:35 by ageiser          ###   ########.fr       */
+/*   Updated: 2023/11/21 02:26:20 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+static int	ft_open_outfiles_loop(t_list *outfiles)
+{
+	int	fd;
+
+	while (outfiles)
+	{
+		fd = open(outfiles->content, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (fd == -1)
+		{
+			perror ("open");
+			return (1);
+		}
+		close(fd);
+		outfiles = outfiles->next;
+	}
+	return (0);
+}
+
+static int	ft_open_append_loop(t_list *append)
+{
+	int	fd;
+
+	while (append)
+	{
+		fd = open(append->content, O_WRONLY | O_CREAT | O_APPEND, 0644);
+		if (fd == -1)
+		{
+			perror ("open");
+			return (1);
+		}
+		close(fd);
+		append = append->next;
+	}
+	return (0);
+}
+
 int	ft_open_files_out(t_minishell *data)
 {
-	int		fd;
-	t_list	*temp;
-	t_list	*tmp;
+	t_list	*outfiles;
+	t_list	*append;
 
-	temp = data->out_files;
-	tmp = data->out_append;
-	while (temp)
-	{
-		fd = open(temp->content, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		if (fd == -1)
-		{
-			perror ("open");
-			return (1);
-		}
-		temp = temp->next;
-		close(fd);
-	}
-	while (tmp)
-	{
-		fd = open(tmp->content, O_WRONLY | O_CREAT | O_APPEND, 0644);
-		if (fd == -1)
-		{
-			perror ("open");
-			return (1);
-		}
-		tmp = tmp->next;
-		close(fd);
-	}
+	outfiles = data->out_files;
+	append = data->out_append;
+	if (ft_open_outfiles_loop(outfiles) || ft_open_append_loop(append))
+		return (1);
 	return (0);
 }

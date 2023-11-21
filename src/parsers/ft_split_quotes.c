@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:40:46 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/21 01:25:45 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/21 03:10:45 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,14 @@ static int	ft_count_words(char *str)
 	quotes.simple = 0;
 	while (str[i])
 	{
-		if (str[i] == '\"' && quotes.simple == 0)
-			quotes.dbl++;
-		if (str[i] == '\'' && quotes.dbl == 0)
-			quotes.simple++;
-		if (str[i] == '\"' && quotes.dbl == 2)
-			quotes.dbl = 0;
-		if (str[i] == '\'' && quotes.simple == 2)
-			quotes.simple = 0;
+		quotes = ft_get_quotes_values(str[i], quotes);
 		if (ft_isprint(str[i]) && str[i] != ' '
 			&& quotes.simple != 1 && quotes.dbl != 1)
 		{
 			len++;
 			while ((ft_isprint(str[i]) && str[i] != ' ') && !quotes.simple && !quotes.dbl && str[i + 1] != '\0')
 			{
-				if (str[i] == '\"' && quotes.simple == 0)
-					quotes.dbl++;
-				if (str[i] == '\'' && quotes.dbl == 0)
-					quotes.simple++;
-				if (str[i] == '\"' && quotes.dbl == 2)
-					quotes.dbl = 0;
-				if (str[i] == '\'' && quotes.simple == 2)
-					quotes.simple = 0;
+				quotes = ft_get_quotes_values(str[i], quotes);
 				i++;
 				if (quotes.simple)
 				{
@@ -65,8 +51,10 @@ static int	ft_count_words(char *str)
 							quotes.dbl = 0;
 						i++;
 					}
-				}
+				}	
 			}
+			quotes.dbl = 0;
+			quotes.simple = 0;
 		}
 		i++;
 	}
