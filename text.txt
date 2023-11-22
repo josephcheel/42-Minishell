@@ -428,7 +428,7 @@ ls -s
 - cat test.txt | grep hola | more                 ok
 - multiple                                        ok
 - ls filethatdoesntexist | grep hola | more       ok
-- ls -l | grep "\.txt" > try.txt                  ko  doesnt't create the file if not present
+- ls -l | grep "\.txt" > try.txt                  ok
 
 - command + ctr-C + enter                         ok
 - history up down exec                            ok
