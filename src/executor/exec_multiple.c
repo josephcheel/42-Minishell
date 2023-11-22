@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:54:16 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/21 02:01:58 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:30:40 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	exec_generic_multiple(t_minishell *data, char **splitted_cmd)
 	if (!path)
 	{
 		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(data->cmd[0], 2);
+		ft_putstr_fd(splitted_cmd[0], 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
 		exit(1);
 	}

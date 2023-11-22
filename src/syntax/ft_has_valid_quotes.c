@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:35:15 by ageiser           #+#    #+#             */
-/*   Updated: 2023/11/18 21:06:56 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:33:45 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int	ft_has_valid_quotes(char *str)
 	while (str[++i])
 	{
 		if ((quotes.dbl % 2 == 0 || (quotes.dbl == 0 && quotes.simple != 0))
-			&& (str[i] == '\'') && (str[i - 1] != '\\'))
+			&& (str[i] == '\''))
 			quotes.simple++;
 		else if ((quotes.simple % 2 == 0 || \
 			(quotes.simple == 0 && quotes.dbl != 0))
-			&& str[i] == '\"' && str[i - 1] != '\\')
+			&& str[i] == '\"')
 			quotes.dbl++;
 	}
 	if ((quotes.dbl % 2 == 0 && quotes.simple == 0)

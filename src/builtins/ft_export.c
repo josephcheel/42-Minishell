@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:00:04 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/21 04:10:49 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:33:11 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	ft_export(t_minishell *data, char **cmd)
 		{
 			variable = ft_split_env(cmd[i]);
 			if (ft_check_var_rules(variable[0]))
-				ft_set_variable(&data->lstenv, variable[0], variable[1]);
+				ft_set_variable(&data->lstenv, ft_strdup(variable[0]), ft_strdup(variable[1]));
 			else
 				ft_export_error_not_valid_id(cmd[i]);
 			ft_array_free(variable, ft_array_size(variable));

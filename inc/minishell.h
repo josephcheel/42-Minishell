@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:47:45 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/21 04:01:20 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/22 00:14:54 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int		ft_isvariable(t_env *head, char *id);
 int		commandline(char *str1, char *str2);
 char	**command_add(char **route, char *command);
 char	*find_command_route_env(t_env *lstenv, char *command);
-char    *ft_first_step(t_env *lstenv, char *command, char *line);
+char	*ft_first_step(t_env *lstenv, char *command, char *line);
 
 int		init_env(t_minishell *data, char **env);
 char	**ft_split_env(char *line);

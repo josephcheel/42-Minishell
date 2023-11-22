@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ageiser <ageiser@student.42barcelona.com>  +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:36:11 by ageiser           #+#    #+#             */
-/*   Updated: 2023/11/21 19:36:13 by ageiser          ###   ########.fr       */
+/*   Updated: 2023/11/22 00:02:06 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,3 @@ char	*ft_first_step(t_env *lstenv, char *command, char *line)
 	else
 		return (NULL);
 }
-
