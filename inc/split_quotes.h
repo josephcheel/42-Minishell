@@ -20,6 +20,6 @@ typedef struct s_quote{
 	int	simple;
 }t_quote;
 
-// t_quote	ft_get_quotes_values(char c, t_quote quotes);
-void ft_get_quotes_values(char c, t_quote *quotes);
+void	ft_get_quotes_values(char c, t_quote *quotes);
+
 #endif 

@@ -73,7 +73,7 @@ static int	ft_count_words(char *str)
 	quotes.simple = 0;
 	while (str[i])
 	{
-		quotes = ft_get_quotes_values(str[i], quotes);
+		ft_get_quotes_values(str[i], &quotes);
 		if (ft_isprint(str[i]) && str[i] != ' '
 			&& quotes.simple != 1 && quotes.dbl != 1)
 		{
@@ -81,13 +81,13 @@ static int	ft_count_words(char *str)
 			while ((ft_isprint(str[i]) && str[i] != ' ') && quotes.simple != -1 && quotes.dbl != -1 && str[i + 1] != '\0')
 			{	
 				i++;
-				quotes = ft_get_quotes_values(str[i], quotes);
+				ft_get_quotes_values(str[i], &quotes);
 				if (quotes.simple)
 				{
 					while (quotes.simple && str[i])
 					{
 						i++;
-						quotes = ft_get_quotes_values(str[i], quotes);
+						ft_get_quotes_values(str[i], &quotes);
 					}
 				}
 				else if (quotes.dbl)
@@ -97,7 +97,7 @@ static int	ft_count_words(char *str)
 					{
 						i++;
 						// printf("%s\n", &str[i]);
-						quotes = ft_get_quotes_values(str[i], quotes);
+						ft_get_quotes_values(str[i], &quotes);
 						// printf("INSIDE %d\n", quotes.dbl);
 					}
 				}	

@@ -40,7 +40,6 @@ static int	ft_count_words_move_end(char *str, int i, t_quote *quotes)
 	return (i);
 }
 
-
 static int	ft_count_words(char *str)
 {
 	int		i;
@@ -59,28 +58,6 @@ static int	ft_count_words(char *str)
 		{
 			len++;
 			i = ft_count_words_move_end(str, i, &quotes);
-			// while ((ft_isprint(str[i]) && str[i] != ' ') && quotes.simple != -1
-			// 	&& quotes.dbl != -1 && str[i + 1] != '\0')
-			// {
-			// 	i++;
-			// 	quotes = ft_get_quotes_values(str[i], quotes);
-			// 	if (quotes.simple)
-			// 	{
-			// 		while (quotes.simple && str[i])
-			// 		{
-			// 			i++;
-			// 			quotes = ft_get_quotes_values(str[i], quotes);
-			// 		}
-			// 	}
-			// 	else if (quotes.dbl)
-			// 	{
-			// 		while (quotes.dbl && str[i])
-			// 		{
-			// 			i++;
-			// 			quotes = ft_get_quotes_values(str[i], quotes);
-			// 		}
-			// 	}
-			// }
 		}
 	}
 	return (len);
