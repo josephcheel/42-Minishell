@@ -38,34 +38,29 @@ static void	ft_change_home(t_minishell *data)
 		ft_cd_error_msg("", "HOME not set\n", data);
 }
 
-static void	ft_change_oldpwd(t_minishell *data)
-{
-	char	*value;
+// static void	ft_change_oldpwd(t_minishell *data)
+// {
+// 	char	*value;
 
-	if (ft_isvariable(data->lstenv, "OLDPWD"))
-	{
-		value = ft_get_variable(&data->lstenv, "OLDPWD");
-		printf("%s\n", value);
-		ft_chdir(data, value);
-	}
-	else
-		ft_cd_error_msg("", "OLDPWD not set\n", data);
-}
+// 	if (ft_isvariable(data->lstenv, "OLDPWD"))
+// 	{
+// 		value = ft_get_variable(&data->lstenv, "OLDPWD");
+// 		printf("%s\n", value);
+// 		ft_chdir(data, value);
+// 	}
+// 	else
+// 		ft_cd_error_msg("", "OLDPWD not set\n", data);
+// }
 
-static int	ft_cd_flags(t_minishell *data, char *flag)
-{
-	if (ft_strcmp(flag, "-") == 0)
-	{
-		ft_change_oldpwd(data);
-		return (1);
-	}
-	else if (ft_strcmp(flag, "~") == 0)
-	{
-		ft_change_home(data);
-		return (1);
-	}
-	return (0);
-}
+// static int	ft_cd_flags(t_minishell *data, char *flag)
+// {
+// 	if (ft_strcmp(flag, "-") == 0)
+// 	{
+// 		ft_change_oldpwd(data);
+// 		return (1);
+// 	}
+// 	return (0);
+// }
 
 int	ft_cd(t_minishell *data, char **cmd)
 {
@@ -74,8 +69,6 @@ int	ft_cd(t_minishell *data, char **cmd)
 	else if (cmd[1])
 	{
 		if (ft_strlen(cmd[1]) == 0)
-			return (1);
-		if (ft_cd_flags(data, cmd[1]))
 			return (1);
 		ft_chdir(data, cmd[1]);
 	}
