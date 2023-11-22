@@ -6,33 +6,34 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:40:46 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/22 21:44:55 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/23 00:41:28 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/split_quotes.h"
+#include <stdio.h>
 
-static char	**alloc_split_quotes(int size, char *str, char **split)
+static char	**alloc_split_quotes(int size, char *str,
+	char **split, t_quote *quotes)
 {
 	int		i;
 	int		j;
 	int		start;
-	t_quote	quotes;
 
 	i = 0;
 	j = -1;
 	start = 0;
-	quotes.dbl = 0;
-	quotes.simple = 0;
 	while (str[i] == ' ')
 		i++;
 	start = i;
 	while (str[i] && ++j < size)
 	{
-		if (ft_isprint(str[i]) && str[i] != ' ')
+		if (!ft_isspace(str[i]))
 		{
-			i = ft_get_final_quote(str, i, &quotes);
+			i = ft_get_final_quote(str, i, quotes);
 			split[j] = ft_substr_split_quotes(str, i, start, j);
+			while (str[i + 1] == ' ')
+				i++;
 			start = i;
 		}
 		i++;
@@ -117,13 +118,16 @@ char	**ft_split_quotes(char *str)
 {
 	int		size;
 	char	**split;
+	t_quote	quotes;
 
+	quotes.dbl = 0;
+	quotes.simple = 0;
 	size = ft_count_words(str);
 	split = malloc(sizeof(char *) * (size + 1));
 	if (!split)
 		return (NULL);
 	split[size] = NULL;
-	split = alloc_split_quotes(size, str, split);
+	split = alloc_split_quotes(size, str, split, &quotes);
 	ft_clean_split(split);
 	return (split);
 }

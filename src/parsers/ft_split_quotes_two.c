@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:40:46 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/22 22:50:55 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/23 00:41:38 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ char	*ft_substr_split_quotes(char *str, int i, int start, int j)
 
 int	ft_get_final_quote(char *str, int i, t_quote *quotes)
 {
-	while (((ft_isprint(str[i]) && str[i] != ' ' && (!quotes->simple
-					&& !quotes->dbl))) || (ft_isprint(str[i])
+	while (((!ft_isspace(str[i]) && str[i] != ' ' && (!quotes->simple
+					&& !quotes->dbl))) || (!ft_isspace(str[i])
 			&& (quotes->simple || quotes->dbl)))
 	{
 		ft_get_quotes_values(str[i], quotes);
