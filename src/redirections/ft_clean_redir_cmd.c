@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:47:25 by ageiser           #+#    #+#             */
-/*   Updated: 2023/11/22 23:02:17 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/23 00:21:30 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	get_end_redir(char *str, int start)
 {
 	while (str[start])
 	{
-		if (str[start] != '<' || str[start] != '>')
+		while (str[start] == '<' || str[start] == '>')
 			start++;
 		while (str[start] == ' ')
 			start++;
@@ -49,6 +49,7 @@ char	*ft_remove_redir(char *str, int start)
 
 	end = 0;
 	len = ft_strlen(str);
+	// printf("%s\n", &str[start]);
 	end = get_end_redir(str, start);
 	if (start == 0)
 		cleaned = ft_substr(str, end, len);
@@ -83,8 +84,8 @@ char	*ft_clean_redir_cmd(char *str)
 		if ((cleaned[i] == '<' || cleaned[i] == '>' )
 			&& !quotes.dbl && !quotes.simple)
 		{
-			if (cleaned[i + 1] == '<' || cleaned[i + 1] == '>' )
-				i++;
+			// if (cleaned[i + 1] == '<' || cleaned[i + 1] == '>' )
+			// 	i++;
 			cleaned = ft_remove_redir(cleaned, i);
 			i = -1;
 		}
