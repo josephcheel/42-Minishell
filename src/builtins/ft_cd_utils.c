@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 02:45:10 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/20 20:35:44 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:36:59 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ static int	ft_file_permissions(char *file, t_minishell *data)
 			else
 			{
 				if (ft_strlen(ft_strrchr(file, '/')) > 255)
-					return (ft_cd_error_msg(file, ": File name too long\n", data));
+					return (ft_cd_error_msg(file,
+							": File name too long\n", data));
 				ft_cd_error_msg(file, ": Not a directory\n", data);
 			}
 		}

@@ -6,12 +6,11 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 20:07:49 by ageiser           #+#    #+#             */
-/*   Updated: 2023/11/21 02:16:33 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:35:38 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
 
 static void	ft_remove_heredoc_file(void)
 {
@@ -44,7 +43,7 @@ static void	ft_heredoc_loop(t_list *temp, int fd)
 			if (temp->next)
 			{
 				ft_remove_heredoc_file();
-				fd = open(HEREDOC_FILE, O_WRONLY | O_CREAT | O_TRUNC , 0644);
+				fd = open(HEREDOC_FILE, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 				if (fd == -1)
 					return (perror ("open"));
 			}

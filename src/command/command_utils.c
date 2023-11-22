@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:31:49 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/22 14:37:54 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:37:45 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,6 @@ char	*find_command_route_env(t_env *lstenv, char *command)
 	line = ft_first_step(lstenv, command, line);
 	if (!line)
 		return (NULL);
-	// while (*line != '/')
-	// 	line++;
 	route = ft_split(line, ':');
 	route = command_add(route, command);
 	while (route[i] && access(route[i], F_OK) == -1)

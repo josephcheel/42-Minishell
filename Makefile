@@ -57,16 +57,16 @@ INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
 # Flags for Campus Joseph
-LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
-RFLAGS = /Users/${USER}/.brew/opt/readline/include
+# LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
+# RFLAGS = /Users/${USER}/.brew/opt/readline/include
 
 # Flags for Campus Alex
 #   LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
 #   RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
 
 # # Flags for Home Joseph
-# LDFLAGS	=/opt/homebrew/opt/readline/lib
-# RFLAGS	= /opt/homebrew/opt/readline/include
+LDFLAGS	=/opt/homebrew/opt/readline/lib
+RFLAGS	= /opt/homebrew/opt/readline/include
 
 # Flags for Home alex
 # LDFLAGS=/usr/local/opt/readline/lib
@@ -76,24 +76,15 @@ RFLAGS = /Users/${USER}/.brew/opt/readline/include
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─SORCES─✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
-MS_SRCS			=	main.c display_prompt.c ft_signal_handler.c 
-
+MS_SRCS			=	main.c display_prompt.c ft_signal_handler.c
 BUILTINS	 	=	is_builtin.c ft_echo.c ft_pwd.c ft_cd.c  ft_cd_utils.c ft_env.c ft_export.c ft_unset.c ft_exit.c
-
 ENV				=	init_env.c ft_split_env.c env_lstcreate.c env_lstutils.c env_lstprint.c ft_env_to_array.c free_env.c
-
 EXEC			=	exec_one.c exec_multiple.c
-
 CMDS 			=	commands.c command_utils.c one_command.c multiple_commands.c init_cmd_data.c command_utils2.c separate_cmds.c
-
 VARIABLES		=	ft_isvar.c ft_addvar.c ft_setvar.c ft_parsevar.c ft_replacevar.c ft_get_variable.c ft_check_var_rules.c
-
 TERM			=	term_setting.c term_fd.c
-
-PARSERS			= 	ft_split_quotes_utils.c ft_split_pipe.c ft_get_quotes_values.c
-
+PARSERS			= 	ft_split_quotes.c ft_split_quotes_two.c ft_split_pipe.c ft_get_quotes_values.c
 REDIR			= 	redirect.c ft_clean_redir_cmd.c ft_get_next_filename.c files_in.c  ft_get_redir_values.c files_out.c ft_heredoc.c ft_get_values.c
-
 SYNTAX			=	syntax_error.c ft_check_pipe_syntax.c ft_check_redir_syntax.c ft_has_valid_quotes.c
 
 SRCS			+=	$(addprefix $(SRC_DIR), $(MS_SRCS))

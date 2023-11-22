@@ -6,30 +6,55 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:04:38 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/21 04:15:55 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/22 23:10:43 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+static int	ft_check_redir_ends(char *str)
+{
+	int	len;
+
+	len = ft_strlen(str) - 1;
+	if (str[len] == ' ')
+	{
+		while (str[len] == ' ')
+			len--;
+		if (str[len] == '<' || str[len] == '>')
+		{
+			write(2, "minishell: syntax error near unexpected token `newline'\n", 57);
+			return (1);
+		}
+	}
+	if (str[ft_strlen(str) - 1] == '<' || str[ft_strlen(str) - 1] == '>')
+	{
+			write(2, "minishell: syntax error near unexpected token `newline'\n", 57);
+			return (1);
+	}
+	return (0);
+}
+
 int	ft_check_redir_sytax(char *str)
 {
 	int	i;
-	int	len;
 	int	redir_left;
 	int	redir_right;
+	t_quote	quotes;
 
 	i = 0;
-	len = ft_strlen(str) - 1;
+	quotes.dbl = 0;
+	quotes.simple = 0;
 	redir_left = 0;
 	redir_right = 0;
 	while (str[i])
 	{
-		if (str[i] == '<' )
+		ft_get_quotes_values(str[i], &quotes);
+		if (str[i] == '<' && !quotes.dbl && !quotes.simple)
 			redir_left++;
-		else if (str[i] == '>')
+		else if (str[i] == '>' && !quotes.dbl && !quotes.simple)
 			redir_right++;
-		if (ft_isspace(str[i]))
+		if (ft_isspace(str[i]) && !quotes.dbl && !quotes.simple)
 		{
 			redir_left = 0;
 			redir_right = 0;
@@ -41,14 +66,7 @@ int	ft_check_redir_sytax(char *str)
 			return(write(2, "minishell: syntax error near unexpected token `>'\n", 51));
 		i++;
 	}
-	if (str[len] == ' ')
-	{
-		while (str[len] == ' ')
-			len--;
-		if (str[len] == '<' || str[len] == '>')
-			return (write(2, "minishell: syntax error near unexpected token `newline'\n", 57));
-	}
-	if (str[ft_strlen(str) - 1] == '<' || str[ft_strlen(str) - 1] == '>')
-		return (write(2, "minishell: syntax error near unexpected token `newline'\n", 57));
+	if (ft_check_redir_ends(str))
+		return (1);
 	return (0);
 }

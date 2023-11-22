@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:47:25 by ageiser           #+#    #+#             */
-/*   Updated: 2023/11/18 21:04:14 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/22 23:02:17 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,25 +70,18 @@ char	*ft_remove_redir(char *str, int start)
 char	*ft_clean_redir_cmd(char *str)
 {
 	int		i;
-	int		double_q;
-	int		simple_q;
+	t_quote	quotes;
 	char	*cleaned;
 
 	i = 0;
-	double_q = 0;
-	simple_q = 0;
+	quotes.dbl = 0;
+	quotes.simple = 0;
 	cleaned = ft_strdup(str);
 	while (cleaned[i])
 	{
-		if (cleaned[i] == '\"')
-			double_q += 1;
-		else if (cleaned[i] == '\'')
-			simple_q += 1;
-		if (double_q == 2)
-			double_q = 0;
-		else if (simple_q == 2)
-			simple_q = 0;
-		if ((cleaned[i] == '<' || cleaned[i] == '>' ) && !double_q && !simple_q)
+		ft_get_quotes_values(cleaned[i], &quotes);
+		if ((cleaned[i] == '<' || cleaned[i] == '>' )
+			&& !quotes.dbl && !quotes.simple)
 		{
 			if (cleaned[i + 1] == '<' || cleaned[i + 1] == '>' )
 				i++;
