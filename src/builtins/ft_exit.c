@@ -36,7 +36,7 @@ int	ft_is_bigger_maxll(char *str)
 // {
 // }
 
-int	ft_exit(char **cmd, int multiple_cmd)
+int	ft_exit(char **cmd, int multiple_cmd, t_minishell *data)
 {
 	long long	nbr;
 
@@ -79,8 +79,8 @@ int	ft_exit(char **cmd, int multiple_cmd)
 	}
 	if (multiple_cmd)
 	{
-		g_status.status = 0;
+		data->status = 0;
 		return (1);
 	}
-	exit(g_status.status);
+	exit(data->status);
 }

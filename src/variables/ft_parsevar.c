@@ -65,7 +65,7 @@ char	*ft_status_variable(t_minishell *data, char *variable)
 	char	*status;
 	char	*result;
 
-	status = ft_itoa(g_status.status);
+	status = ft_itoa(data->status);
 	result = ft_replace_string(data->raw_cmd, variable, status);
 	free(status);
 	free(data->raw_cmd);

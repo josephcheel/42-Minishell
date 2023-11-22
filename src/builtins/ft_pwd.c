@@ -20,9 +20,9 @@ static int	ft_pwd_error_msg(char *arg, char *msg)
 	return (0);
 }
 
-static int	ft_pwd_errors(char **cmd)
+static int	ft_pwd_errors(char **cmd, t_minishell *data)
 {
-	g_status.status = 1;
+	data->status = 1;
 	if (ft_isstrupper(cmd[0]) && ft_array_size(cmd) > 1)
 	{
 		if (ft_strlen(cmd[1]) >= 1)
@@ -43,16 +43,16 @@ static int	ft_pwd_errors(char **cmd)
 	return (0);
 }
 
-int	ft_pwd(char **cmd)
+int	ft_pwd(char **cmd, t_minishell *data)
 {
 	char	*path;
 
-	if (ft_pwd_errors(cmd))
+	if (ft_pwd_errors(cmd, data))
 		return (1);
 	path = (char *)malloc(sizeof(char) * 4097);
 	getcwd(path, 4097);
 	printf("%s\n", path);
 	free(path);
-	g_status.status = 0;
+	data->status = 0;
 	return (1);
 }

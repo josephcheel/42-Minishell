@@ -45,7 +45,7 @@ int	ft_one_command(t_minishell *data)
 		if (WIFSIGNALED(status))
 			catch_signal(data, status + 128, 1);
 		else if (WIFEXITED(status))
-			g_status.status = WEXITSTATUS(status);
+			data->status = WEXITSTATUS(status);
 	}
 	return (0);
 }

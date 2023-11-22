@@ -12,24 +12,24 @@
 
 #include "../../inc/minishell.h"
 
-static int	ft_echo_type(char **cmd)
+static int	ft_echo_type(char **cmd, t_minishell *data)
 {
 	int	cmd_size;
 
 	cmd_size = ft_cmdsize(cmd);
 	if (cmd_size == 1)
-		return (ft_echo(cmd, 0));
+		return (ft_echo(cmd, 0, data));
 	else if (cmd_size == 2 && ft_strcmp(cmd[1], "-n") == 0)
-		return (ft_echo(cmd, 1));
+		return (ft_echo(cmd, 1, data));
 	else
 		return (0);
 }
 
-static int	ft_exit_type(char **cmd, int multiple_cmd)
+static int	ft_exit_type(char **cmd, int multiple_cmd, t_minishell *data)
 {
 	if (multiple_cmd)
-		return (ft_exit(cmd, 1));
-	return (ft_exit(cmd, 0));
+		return (ft_exit(cmd, 1, data));
+	return (ft_exit(cmd, 0, data));
 }
 
 int	is_builtin(char **cmd)
@@ -67,18 +67,18 @@ int	exec_builtin(t_minishell *data, char **cmd, int multiple_cmd, int cmd_nbr)
 
 	i = 0;
 	if (cmd_nbr == 1)
-		i = ft_echo_type(cmd);
+		i = ft_echo_type(cmd, data);
 	else if (cmd_nbr == 2)
 		i = ft_cd(data, cmd);
 	else if (cmd_nbr == 3)
-		i = ft_pwd(cmd);
+		i = ft_pwd(cmd, data);
 	else if (cmd_nbr == 4)
 		i = ft_export(data, cmd);
 	else if (cmd_nbr == 5)
 		i = ft_unset(data, cmd);
 	else if (cmd_nbr == 6)
-		i = ft_env(data->lstenv);
+		i = ft_env(data->lstenv, data);
 	else if (cmd_nbr == 7)
-		i = ft_exit_type(cmd, multiple_cmd);
+		i = ft_exit_type(cmd, multiple_cmd, data);
 	return (i);
 }

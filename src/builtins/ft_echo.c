@@ -12,7 +12,7 @@
 
 #include "../../inc/minishell.h"
 
-int	ft_echo(char **cmd, int n_option)
+int	ft_echo(char **cmd, int n_option, t_minishell *data)
 {
 	int	i;
 	int	count;
@@ -32,6 +32,6 @@ int	ft_echo(char **cmd, int n_option)
 	}
 	if (n_option == 0)
 		printf("\n");
-	g_status.status = 0;
+	data->status = 0;
 	return (1);
 }

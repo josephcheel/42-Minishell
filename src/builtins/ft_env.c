@@ -12,7 +12,7 @@
 
 #include "../../inc/minishell.h"
 
-int	ft_env(t_env *lstenv)
+int	ft_env(t_env *lstenv, t_minishell *data)
 {
 	t_env	*temp;
 
@@ -24,6 +24,6 @@ int	ft_env(t_env *lstenv)
 		printf("%s\n", temp->value);
 		temp = temp->next;
 	}
-	g_status.status = 0;
+	data->status = 0;
 	return (1);
 }

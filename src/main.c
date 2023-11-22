@@ -26,7 +26,7 @@ int	init_minishell(t_minishell *data, char **env)
 	data->out_files = NULL;
 	data->out_append = NULL;
 	data->status = 0;
-	g_status.status = 0;
+	data->status = 0;
 	return (0);
 }
 

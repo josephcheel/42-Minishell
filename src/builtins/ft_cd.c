@@ -14,7 +14,7 @@
 
 static void	ft_chdir(t_minishell *data, char *dir)
 {
-	if (ft_is_mode_permission_ok(dir))
+	if (ft_is_mode_permission_ok(dir, data))
 	{
 		ft_set_directory(&data->lstenv, "OLDPWD");
 		if (chdir(dir) == 0)
@@ -35,7 +35,7 @@ static void	ft_change_home(t_minishell *data)
 		ft_chdir(data, value);
 	}
 	else
-		ft_cd_error_msg("", "HOME not set\n");
+		ft_cd_error_msg("", "HOME not set\n", data);
 }
 
 static void	ft_change_oldpwd(t_minishell *data)
@@ -49,7 +49,7 @@ static void	ft_change_oldpwd(t_minishell *data)
 		ft_chdir(data, value);
 	}
 	else
-		ft_cd_error_msg("", "OLDPWD not set\n");
+		ft_cd_error_msg("", "OLDPWD not set\n", data);
 }
 
 static int	ft_cd_flags(t_minishell *data, char *flag)

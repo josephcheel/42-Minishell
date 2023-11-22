@@ -12,12 +12,12 @@
 
 #include "../../inc/minishell.h"
 
-int	ft_cd_error_msg(char *arg, char *msg)
+int	ft_cd_error_msg(char *arg, char *msg, t_minishell *data)
 {
 	ft_putstr_fd("minishell: cd: ", 2);
 	ft_putstr_fd(arg, 2);
 	ft_putstr_fd(msg, 2);
-	g_status.status = 1;
+	data->status = 1;
 	return (0);
 }
 
@@ -32,7 +32,7 @@ void	ft_set_directory(t_env **lstenv, char *variable)
 		free(path);
 }
 
-int	ft_cd_error_file_too_long(char *file)
+int	ft_cd_error_file_too_long(char *file, t_minishell *data)
 {
 	char	*filename;
 
@@ -41,7 +41,7 @@ int	ft_cd_error_file_too_long(char *file)
 	{
 		if (ft_strlen(filename) > 255)
 		{
-			ft_cd_error_msg(file, ": File name too long\n");
+			ft_cd_error_msg(file, ": File name too long\n", data);
 			return (1);
 		}
 	}
@@ -49,14 +49,14 @@ int	ft_cd_error_file_too_long(char *file)
 	{
 		if (ft_strlen(file) > 255)
 		{
-			ft_cd_error_msg(file, ": File name too long\n");
+			ft_cd_error_msg(file, ": File name too long\n", data);
 			return (1);
 		}
 	}
 	return (0);
 }
 
-static int	ft_file_permissions(char *file)
+static int	ft_file_permissions(char *file, t_minishell *data)
 {
 	struct stat	buffer;
 
@@ -69,30 +69,30 @@ static int	ft_file_permissions(char *file)
 			else
 			{
 				if (ft_strlen(ft_strrchr(file, '/')) > 255)
-					return (ft_cd_error_msg(file, ": File name too long\n"));
-				ft_cd_error_msg(file, ": Not a directory\n");
+					return (ft_cd_error_msg(file, ": File name too long\n", data));
+				ft_cd_error_msg(file, ": Not a directory\n", data);
 			}
 		}
 		else
 			perror("stat");
 	}
 	else
-		ft_cd_error_msg(file, ": Permission denied\n");
+		ft_cd_error_msg(file, ": Permission denied\n", data);
 	return (0);
 }
 
-int	ft_is_mode_permission_ok(char *file)
+int	ft_is_mode_permission_ok(char *file, t_minishell *data)
 {
 	if (access(file, F_OK) != -1)
 	{
-		if (ft_file_permissions(file))
+		if (ft_file_permissions(file, data))
 			return (1);
 	}
 	else
 	{
-		if (ft_cd_error_file_too_long(file))
+		if (ft_cd_error_file_too_long(file, data))
 			return (0);
-		ft_cd_error_msg(file, ": No such file or directory\n");
+		ft_cd_error_msg(file, ": No such file or directory\n", data);
 	}
 	return (0);
 }

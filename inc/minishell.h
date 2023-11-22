@@ -90,17 +90,17 @@ int		ft_count_commands(char *raw_command);
 int		is_builtin(char **cmd);
 int		exec_builtin(t_minishell *data, char **cmd, \
 int multiple_cmd, int cmd_nbr);
-int		ft_echo(char **cmd, int n_option);
-int		ft_pwd(char **cmd);
-int		ft_env(t_env *lstenv);
+int		ft_echo(char **cmd, int n_option, t_minishell *data);
+int		ft_pwd(char **cmd, t_minishell *data);
+int		ft_env(t_env *lstenv, t_minishell *data);
 int		ft_export(t_minishell *data, char **cmd);
 int		ft_unset(t_minishell *data, char **cmd);
-int		ft_exit(char **cmd, int multiple_cmd);
+int		ft_exit(char **cmd, int multiple_cmd, t_minishell *data);
 int		ft_cd(t_minishell *data, char **cmd);
 
 //cd utils
-int		ft_cd_error_msg(char *arg, char *msg);
-int		ft_is_mode_permission_ok(char *file);
+int		ft_cd_error_msg(char *arg, char *msg, t_minishell *data);
+int		ft_is_mode_permission_ok(char *file, t_minishell *data);
 void	ft_set_directory(t_env **lstenv, char *variable);
 
 /* signals */
