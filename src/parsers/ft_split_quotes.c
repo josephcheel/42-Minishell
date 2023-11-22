@@ -6,12 +6,60 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:40:46 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/21 03:10:45 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:23:05 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/split_quotes.h"
 #include <stdio.h>
+
+// static int	ft_count_words(char *str)
+// {
+// 	int		i;
+// 	int		len;
+// 	t_quote	quotes;
+
+// 	i = 0;
+// 	len = 0;
+// 	quotes.dbl = 0;
+// 	quotes.simple = 0;
+// 	while (str[i])
+// 	{
+// 		quotes = ft_get_quotes_values(str[i], quotes);
+// 		if (ft_isprint(str[i]) && str[i] != ' '
+// 			&& quotes.simple != 1 && quotes.dbl != 1)
+// 		{
+// 			len++;
+// 			while ((ft_isprint(str[i]) && str[i] != ' ') && quotes.simple != -1 && quotes.dbl != -1 && str[i + 1] != '\0')
+// 			{
+// 				quotes = ft_get_quotes_values(str[i], quotes);
+// 				i++;
+// 				if (quotes.simple)
+// 				{
+// 					while (quotes.simple)
+// 					{
+// 						if (quotes.simple && str[i] == '\'')
+// 							quotes.simple = 0;
+// 						i++;
+// 					}
+// 				}
+// 				else if (quotes.dbl)
+// 				{
+// 					while (quotes.dbl)
+// 					{
+// 						if (quotes.dbl && str[i] == '\"')
+// 							quotes.dbl = 0;
+// 						i++;
+// 					}
+// 				}	
+// 			}
+// 			quotes.dbl = 0;
+// 			quotes.simple = 0;
+// 		}
+// 		i++;
+// 	}
+// 	return (len);
+// }
 
 static int	ft_count_words(char *str)
 {
@@ -30,31 +78,32 @@ static int	ft_count_words(char *str)
 			&& quotes.simple != 1 && quotes.dbl != 1)
 		{
 			len++;
-			while ((ft_isprint(str[i]) && str[i] != ' ') && !quotes.simple && !quotes.dbl && str[i + 1] != '\0')
-			{
-				quotes = ft_get_quotes_values(str[i], quotes);
+			while ((ft_isprint(str[i]) && str[i] != ' ') && quotes.simple != -1 && quotes.dbl != -1 && str[i + 1] != '\0')
+			{	
 				i++;
+				quotes = ft_get_quotes_values(str[i], quotes);
 				if (quotes.simple)
 				{
-					while (quotes.simple)
+					while (quotes.simple && str[i])
 					{
-						if (quotes.simple && str[i] == '\'')
-							quotes.simple = 0;
 						i++;
+						quotes = ft_get_quotes_values(str[i], quotes);
 					}
 				}
 				else if (quotes.dbl)
 				{
-					while (quotes.dbl)
+					// printf("%d\n", quotes.dbl);
+					while (quotes.dbl && str[i])
 					{
-						if (quotes.dbl && str[i] == '\"')
-							quotes.dbl = 0;
 						i++;
+						// printf("%s\n", &str[i]);
+						quotes = ft_get_quotes_values(str[i], quotes);
+						// printf("INSIDE %d\n", quotes.dbl);
 					}
 				}	
 			}
-			quotes.dbl = 0;
-			quotes.simple = 0;
+			// quotes.dbl = 0;
+			// quotes.simple = 0;
 		}
 		i++;
 	}
