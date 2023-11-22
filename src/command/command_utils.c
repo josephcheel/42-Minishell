@@ -27,7 +27,7 @@ int	ft_count_commands(char *raw_command)
 	while (++i < len_command)
 	{
 		if (raw_command[i] == '\"' || raw_command[i] == '\'')
-			quotes = ft_get_quotes_values(raw_command[i], quotes);
+			ft_get_quotes_values(raw_command[i], &quotes);
 		if (raw_command[i] == '|' && quotes.dbl == 0 && quotes.simple == 0)
 		{
 			ft_write_syntax_error(raw_command, i);

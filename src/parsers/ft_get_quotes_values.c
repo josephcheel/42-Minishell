@@ -12,15 +12,14 @@
 
 #include "../../inc/split_quotes.h"
 
-t_quote	ft_get_quotes_values(char c, t_quote quotes)
+void ft_get_quotes_values(char c, t_quote *quotes)
 {
-	if (c == '\"' && !quotes.simple)
-		quotes.dbl++;
-	if (c == '\'' && !quotes.dbl)
-		quotes.simple++;
-	if (c == '\"' && quotes.dbl == 2)
-		quotes.dbl = 0;
-	if (c == '\'' && quotes.simple == 2)
-		quotes.simple = 0;
-	return (quotes);
+	if (c == '\"' && !quotes->simple)
+		quotes->dbl++;
+	if (c == '\'' && !quotes->dbl)
+		quotes->simple++;
+	if (c == '\"' && quotes->dbl == 2)
+		quotes->dbl = 0;
+	if (c == '\'' && quotes->simple == 2)
+		quotes->simple = 0;
 }

@@ -27,7 +27,7 @@ static void	get_values_loop(char *raw_cmd, int i, t_minishell *data,
 {
 	while (raw_cmd[++i])
 	{
-		quotes = ft_get_quotes_values(raw_cmd[i], quotes);
+		ft_get_quotes_values(raw_cmd[i], &quotes);
 		if (raw_cmd[i] == '<' && raw_cmd[i + 1] != '<'
 			&& !quotes.dbl && !quotes.simple)
 			ft_get_value_infile(data, &raw_cmd[i]);
