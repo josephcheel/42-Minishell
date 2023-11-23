@@ -46,7 +46,8 @@ static void	ft_declare_export(t_env *lstenv, t_minishell *data)
 	data->status = 0;
 }
 
-static int	ft_check_cases(char **cmd, int cmdsize, t_env *lstenv, t_minishell *data)
+static int	ft_check_cases(char **cmd, int cmdsize,
+	t_env *lstenv, t_minishell *data)
 {
 	if (cmdsize == 1 && ft_array_size(cmd) == 1)
 	{
@@ -66,16 +67,17 @@ int	ft_export(t_minishell *data, char **cmd)
 	int		i;
 	char	**variable;
 
-	i = ft_cmdsize(cmd);
+	i = ft_cmdsize(cmd) - 1;
 	if (!ft_check_cases(cmd, i, data->lstenv, data))
 		return (1);
-	while (cmd[i])
+	while (cmd[++i])
 	{
 		if (ft_strchr(cmd[i], '='))
 		{
 			variable = ft_split_env(cmd[i]);
 			if (ft_check_var_rules(variable[0]))
-				ft_set_variable(&data->lstenv, ft_strdup(variable[0]), ft_strdup(variable[1]));
+				ft_set_variable(&data->lstenv, variable[0],
+					variable[1]);
 			else
 				ft_export_error_not_valid_id(cmd[i], data);
 			ft_array_free(variable, ft_array_size(variable));
@@ -83,9 +85,7 @@ int	ft_export(t_minishell *data, char **cmd)
 		else
 			if (!ft_check_var_rules(cmd[i]))
 				ft_export_error_not_valid_id(cmd[i], data);
-		i++;
 	}
-	data->status = 0;
 	ft_array_free(data->env, ft_array_size(data->env));
 	data->env = ft_env_to_array(data->lstenv);
 	return (1);

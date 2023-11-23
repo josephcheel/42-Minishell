@@ -71,6 +71,12 @@ typedef struct s_minishell
 
 }t_minishell;
 
+typedef struct s_redir
+{
+	int		redir_left;
+	int		redir_right;
+}t_redir;
+
 t_status	g_status;
 
 char	*display_prompt_msg(void);
