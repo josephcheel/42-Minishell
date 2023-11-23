@@ -27,7 +27,7 @@ void	ft_set_directory(t_env **lstenv, char *variable)
 
 	path = (char *)malloc(sizeof(char) * 4097);
 	getcwd(path, 4097);
-	ft_set_variable(lstenv, variable, path);
+	ft_set_variable(*lstenv, variable, path);
 	if (path)
 		free(path);
 }

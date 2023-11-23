@@ -76,7 +76,7 @@ int	ft_export(t_minishell *data, char **cmd)
 		{
 			variable = ft_split_env(cmd[i]);
 			if (ft_check_var_rules(variable[0]))
-				ft_set_variable(&data->lstenv, variable[0],
+				ft_set_variable(data->lstenv, variable[0],
 					variable[1]);
 			else
 				ft_export_error_not_valid_id(cmd[i], data);

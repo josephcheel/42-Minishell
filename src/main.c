@@ -41,6 +41,8 @@ static int	ft_ctrl_d(t_minishell *data)
 {
 	if (isatty(STDIN_FILENO))
 		write(2, "exit\n", 6);
+	ft_free_env(data->lstenv);
+	ft_array_free(data->env, ft_array_size(data->env));
 	exit (data->status);
 }
 
