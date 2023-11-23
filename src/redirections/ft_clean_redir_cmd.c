@@ -49,7 +49,6 @@ char	*ft_remove_redir(char *str, int start)
 
 	end = 0;
 	len = ft_strlen(str);
-	// printf("%s\n", &str[start]);
 	end = get_end_redir(str, start);
 	if (start == 0)
 		cleaned = ft_substr(str, end, len);
@@ -84,8 +83,6 @@ char	*ft_clean_redir_cmd(char *str)
 		if ((cleaned[i] == '<' || cleaned[i] == '>' )
 			&& !quotes.dbl && !quotes.simple)
 		{
-			// if (cleaned[i + 1] == '<' || cleaned[i + 1] == '>' )
-			// 	i++;
 			cleaned = ft_remove_redir(cleaned, i);
 			i = -1;
 		}
