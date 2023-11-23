@@ -61,12 +61,12 @@ INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 # RFLAGS = /Users/${USER}/.brew/opt/readline/include
 
 # Flags for Campus Alex
-#   LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
-#   RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
+   LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
+   RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
 
 # # Flags for Home Joseph
-LDFLAGS	=/opt/homebrew/opt/readline/lib
-RFLAGS	= /opt/homebrew/opt/readline/include
+ #LDFLAGS	=/opt/homebrew/opt/readline/lib
+ #RFLAGS	= /opt/homebrew/opt/readline/include
 
 # Flags for Home alex
 # LDFLAGS=/usr/local/opt/readline/lib
@@ -109,6 +109,7 @@ $(OBJ_DIR)%.o : %.c Makefile
 	@$(MD) $(dir $@)
 	@make -sC $(LIBFT_DIR)
 	@printf "$(CLEAN_CAR)$(OK_COLOR)[minishell Compiling]$(BLUE_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)"
+	
 	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -I$(RFLAGS) $(INCLUDE) $< -o $@ 
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
