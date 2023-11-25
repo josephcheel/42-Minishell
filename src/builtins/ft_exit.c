@@ -21,6 +21,17 @@ static void	ft_print_num_arg(char **cmd)
 	exit (255);
 }
 
+void ft_normin(char **cmd, long long int	nbr)
+{
+	nbr = ft_atoll(cmd[1]);
+		if (nbr == 0)
+			exit (0);
+		while (nbr > 256)
+			nbr = nbr - 256;
+		ft_array_free(cmd, ft_array_size(cmd));
+		exit(nbr);
+}
+
 int	ft_is_bigger_maxll(char *str)
 {
 	int	negative;
@@ -43,6 +54,7 @@ int	ft_exit(char **cmd, int multiple_cmd, t_minishell *data)
 {
 	long long int	nbr;
 
+	nbr = 0;
 	if (!multiple_cmd)
 		ft_putstr_fd("exit\n", 2);
 	if (cmd[1] && ft_is_bigger_maxll(cmd[1]) == 1)
@@ -57,15 +69,7 @@ int	ft_exit(char **cmd, int multiple_cmd, t_minishell *data)
 		else if (!ft_isnumeric(cmd[1]))
 			ft_print_num_arg(&cmd[1]);
 		else if (ft_isnumeric(cmd[1]))
-		{
-			nbr = ft_atoll(cmd[1]);
-			if (nbr == 0)
-				exit (0);
-			while (nbr > 256)
-				nbr = nbr - 256;
-			ft_array_free(cmd, ft_array_size(cmd));
-			exit(nbr);
-		}
+			ft_normin(&cmd[1], nbr);
 	}
 	if (multiple_cmd)
 	{
