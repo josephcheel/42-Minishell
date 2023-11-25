@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:31:25 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/07 01:06:59 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/24 21:00:00 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_exit(char **cmd, int multiple_cmd, t_minishell *data)
 
 	if (!multiple_cmd)
 		ft_putstr_fd("exit\n", 2);
-	if (ft_is_bigger_maxll(cmd[1]) == 1)
+	if (cmd[1] && ft_is_bigger_maxll(cmd[1]) == 1)
 		ft_print_num_arg(&cmd[1]);
 	if (ft_array_size(cmd) >= 2)
 	{
