@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:31:25 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/24 21:00:00 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/25 22:56:47 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,17 @@ static void	ft_print_num_arg(char **cmd)
 	exit (255);
 }
 
-void ft_normin(char **cmd, long long int	nbr)
+void	ft_normin(char **cmd)
 {
-	nbr = ft_atoll(cmd[1]);
-		if (nbr == 0)
-			exit (0);
-		while (nbr > 256)
-			nbr = nbr - 256;
-		ft_array_free(cmd, ft_array_size(cmd));
-		exit(nbr);
+	long long int	tmp_nbr;
+	long long int	nbr;
+
+	tmp_nbr = ft_atoll(cmd[1]);
+	if (tmp_nbr == 0)
+		exit (0);
+	nbr = (uint8_t)tmp_nbr;
+	ft_array_free(cmd, ft_array_size(cmd));
+	exit(nbr);
 }
 
 int	ft_is_bigger_maxll(char *str)
@@ -52,24 +54,22 @@ int	ft_is_bigger_maxll(char *str)
 
 int	ft_exit(char **cmd, int multiple_cmd, t_minishell *data)
 {
-	long long int	nbr;
-
-	nbr = 0;
 	if (!multiple_cmd)
 		ft_putstr_fd("exit\n", 2);
 	if (cmd[1] && ft_is_bigger_maxll(cmd[1]) == 1)
-		ft_print_num_arg(&cmd[1]);
+		ft_print_num_arg(cmd);
 	if (ft_array_size(cmd) >= 2)
 	{
 		if (ft_isnumeric(cmd[1]) && ft_array_size(cmd) >= 3)
 		{
 			ft_putstr_fd("minishell: exit: too many arguments\n", 2);
+			data->status = 1;
 			return (1);
 		}
 		else if (!ft_isnumeric(cmd[1]))
-			ft_print_num_arg(&cmd[1]);
+			ft_print_num_arg(cmd);
 		else if (ft_isnumeric(cmd[1]))
-			ft_normin(&cmd[1], nbr);
+			ft_normin(cmd);
 	}
 	if (multiple_cmd)
 	{
