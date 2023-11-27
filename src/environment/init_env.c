@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:39:12 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/04 17:31:28 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/25 23:20:55 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	init_env(t_minishell *data, char **env)
 	count = ft_array_size(env);
 	if (!count)
 		return (write(2, "Init env Error\n", 16));
-	data->lstenv = NULL;
+	data->lstenv = malloc(sizeof(t_env));
 	data->env = ft_malloc_env_array(env);
 	if (!data->env)
 		write(2, "Init env Error\n", 16);
@@ -44,9 +44,10 @@ int	init_env(t_minishell *data, char **env)
 	{
 		split = ft_split_env(env[i]);
 		temp = ft_create_new_node(split[0], split[1]);
-		if (split)
-			free(split);
-		ft_insert_at_end(&data->lstenv, temp);
+		if (temp)
+			ft_insert_at_end(data->lstenv, temp);
+		// if (split)
+		// 	free(split);
 		i++;
 	}
 	return (0);
