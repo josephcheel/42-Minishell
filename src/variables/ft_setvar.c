@@ -23,9 +23,8 @@ void	ft_set_variable(t_env *head, char *id, char *value)
 		temp = ft_find_id(head, id);
 		if (temp->value)
 			free(temp->value);
-		// split = ft_split_quotes(value);
-		// if (split[0])
 		temp->value = ft_strdup(value);
+		// temp->value = ft_strdup(value);
 		// ft_array_free(split, ft_array_size(split));
 	}
 	else

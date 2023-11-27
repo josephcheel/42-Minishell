@@ -17,6 +17,6 @@ void	ft_add_variable(t_env *head, char *id, char *value)
 {
 	t_env	*new_node;
 
-	new_node = ft_create_new_node(id, value);
-	ft_insert_at_end(head, new_node);
+	new_node = ft_envnew(id, value);
+	ft_envadd_back(&head, new_node);
 }

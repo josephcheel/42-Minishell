@@ -36,18 +36,17 @@ int	init_env(t_minishell *data, char **env)
 	count = ft_array_size(env);
 	if (!count)
 		return (write(2, "Init env Error\n", 16));
-	data->lstenv = malloc(sizeof(t_env));
+	data->lstenv = NULL;
 	data->env = ft_malloc_env_array(env);
 	if (!data->env)
 		write(2, "Init env Error\n", 16);
 	while (i < count)
 	{
 		split = ft_split_env(env[i]);
-		temp = ft_create_new_node(split[0], split[1]);
+		temp = ft_envnew(split[0], split[1]);
 		if (temp)
-			ft_insert_at_end(data->lstenv, temp);
-		// if (split)
-		// 	free(split);
+			ft_envadd_back(&data->lstenv, temp);
+		ft_array_free(split, ft_array_size(split));
 		i++;
 	}
 	return (0);
