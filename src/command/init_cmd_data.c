@@ -14,8 +14,6 @@
 
 void	ft_init_data_one_cmd(t_minishell *data)
 {
-	data->cleaned_cmd = ft_clean_redir_cmd(data->raw_cmd);
-	data->cmd = ft_split_quotes(data->cleaned_cmd);
 	data->in_files = NULL;
 	data->out_files = NULL;
 	data->out_append = NULL;
@@ -28,6 +26,11 @@ void	ft_init_data_one_cmd(t_minishell *data)
 	data->is_append = 0;
 	data->is_heredoc = 0;
 	ft_get_redit_value(data->raw_cmd, data);
+	if (data->in_files || data->out_files || data->out_append || data->heredocs)
+		data->cleaned_cmd = ft_clean_redir_cmd(data->raw_cmd);
+	else
+		data->cleaned_cmd = ft_strdup(data->raw_cmd);
+	data->cmd = ft_split_quotes(data->cleaned_cmd);
 }
 
 void	ft_init_data_multiple_cmds(t_minishell *data)
