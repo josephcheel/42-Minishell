@@ -12,28 +12,14 @@
 
 #include "../../inc/minishell.h"
 
-// static t_list	*ft_lstfind(t_list *head, char *find)
-// {
-// 	t_list	*tmp;
-
-// 	tmp = head;
-// 	while (tmp != NULL)
-// 	{
-// 		if (ft_strcmp(tmp->content, find) == 0)
-// 			return (tmp);
-// 		tmp = tmp->next;
-// 	}
-// 	return (NULL);
-// }
-
-int	ft_permission_files_in(t_list **head) //, t_list **outfiles)
+int	ft_permission_files_in(t_list **head)
 {
 	t_list	*temp;
 
 	temp = *head;
 	while (temp)
 	{
-		if (access(temp->content, F_OK) == 0)// || ft_lstfind(outfiles, ))
+		if (access(temp->content, F_OK) == 0)
 		{
 			if (access(temp->content, W_OK) != 0)
 			{
