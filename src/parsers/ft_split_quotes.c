@@ -32,8 +32,10 @@ static char	**alloc_split_quotes(int size, char *str,
 		{
 			i = ft_get_final_quote(str, i, quotes);
 			split[j] = ft_substr_split_quotes(str, i, start, j);
-			while (str[i + 1] == ' ')
+			while (ft_strlen(str) > (size_t)i && str[i + 1] == ' ')
 				i++;
+			if (!str[i])
+				return (split);
 			start = i;
 		}
 		i++;

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../inc/split_quotes.h"
-
+#include <stdio.h>
 static int	ft_count_words_move_end(char *str, int i, t_quote *quotes)
 {
 	while ((ft_isprint(str[i]) && str[i] != ' ') && quotes->simple != -1
@@ -66,23 +66,36 @@ char	*ft_substr_split_quotes(char *str, int i, int start, int j)
 {
 	char	*new_str;
 
-	if ((!ft_isstrprint(&str[i + 1]) && str[i] != ' ')
-		&& (str[start] == '\'' || str[start] == '\"'))
-		new_str = ft_substr(str, start, i - start + 1);
-	else if (str[i + 1] == '\0' && !ft_isstrprint(&str[i + 1])
-		&& (str[start] == '\'' || str[start] == '\"'))
-		new_str = ft_substr(str, start, i - start);
-	else if (j == 0)
-		new_str = ft_substr(str, start, i - start);
-	else if (str[i + 1] == '\0')
+	// if ((!ft_isstrprint(&str[i + 1]) && str[i] != ' ')
+	// 	&& (str[start] == '\'' || str[start] == '\"'))
+	// {
+	// 	printf("1\n");
+	// 	new_str = ft_substr(str, start, i - start + 1);
+	// }
+	// else if (str[i + 1] == '\0' && !ft_isstrprint(&str[i + 1])
+	// 	&& (str[start] == '\'' || str[start] == '\"'))
+	// {
+	// 	printf("2\n");
+	// 	new_str = ft_substr(str, start, i - start);
+	// }
+	if (j == 0)
 	{
+		printf("3\n");
+		new_str = ft_substr(str, start, i - start);
+	}
+	else if (ft_strlen(str) > (size_t)(i +1) && str[i + 1] == '\0')
+	{
+		printf("4\n");
 		if (str[i] == ' ')
 			new_str = ft_substr(str, start + 1, i - start - 1);
 		else
 			new_str = ft_substr(str, start + 1, i - 1);
 	}
 	else
+	{
+		printf("5\n");
 		new_str = ft_substr(str, start + 1, i - start - 1);
+	}
 	return (new_str);
 }
 
