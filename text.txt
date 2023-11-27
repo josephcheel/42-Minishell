@@ -207,11 +207,11 @@ echo -nnnnnnnn -nnnnnnnn hello world    ok        on bash wrights hello world
 echo "hola " " hola"                    ok
 echo $PWD                               ok
 echo \n                                 ok
-echo '"Bienvenue sur malekal.com"'      ok        return = Bienvenue sur malekal.com"' and must be: "Bienvenue sur malekal.com"
-echo "'Bienvenue sur malekal.com'"      ok        return = hola'" and must be: 'hola'
+echo '"Bienvenue sur malekal.com"'      ok        
+echo "'Bienvenue sur malekal.com'"      ok        
 echo $'hola'                            ok        return = $'hola' and must be: hola
 echo text files are: *.txt              ok        return = text files are: *.txt and must be: text files are: text.txt test.txt
-echo "hola hola" > test.txt             ok        crash open: Bad address
+echo "hola hola" > test.txt             ok        
 echo $PATH                              ok
 echo "$PATH"                            ok
 echo "rep and files on system: $(LS)"   ok        return = rep and files on system: $(LS) and mus be: text.txt
@@ -339,19 +339,17 @@ echo "                              ok to check
 
 
 
-Evaluation check
+Evaluation check                                                                                                        second try
 
 - make -n                                         ko
 - compilation without error                       ok
 - no relink                                       ok
 
-- command with abolute path cd /users/mamita      ok
-- 1 global variable used                          ok
-g_status usefull to have it 
-in any circonstances 
+- command with abolute path cd /users/mamita      ok                                                                               
+- no global variable used  
 - global variable check                           ok 
-- empty command                                   ok
-- space and tabs                                  2 x tab has a different comportment on my computer
+- empty command                                   ok                                                                      
+- space and tabs                                                                                   2 x tab has a different comportment
 - no crash                                        ok
 - working?                                        ok
 
@@ -363,7 +361,7 @@ ls -s
 
 - echo                                            ok
 
-- exit                                            exit 1 1 reprints the exit
+- exit                                            ok
 
 - command + arg +  echo $?                        ok
 - check printed value                             ok
@@ -441,4 +439,5 @@ ls -s
 - echo "$PATH"                                    to check
 - check user                                      ok
 - echo "$USER"                                    ok
+
 
