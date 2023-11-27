@@ -25,5 +25,4 @@ void	ft_free_env(t_env *head)
 			free(temporary->value);
 		temporary = temporary->next;
 	}
-	
 }
