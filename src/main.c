@@ -16,8 +16,8 @@ int	init_minishell(t_minishell *data, char **env)
 {
 	if (init_env(data, env))
 		return (write(2, "Error initializing environment\n", 32));
-	// if (init_term(data))
-	// 	return (write(2, "Error initializing terminal settings\n", 38));
+	if (init_term(data))
+		return (write(2, "Error initializing terminal settings\n", 38));
 	if (init_term_fd(data))
 		return (write(2, "Error initializing terminal file descriptors\n", 46));
 	data->infile = NULL;
@@ -33,7 +33,7 @@ int	init_minishell(t_minishell *data, char **env)
 int	finish_minishell(t_minishell *data)
 {
 	close_term_fd(data);
-	// restore_term(data);
+	restore_term(data);
 	return (0);
 }
 
