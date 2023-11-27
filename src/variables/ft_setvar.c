@@ -15,7 +15,6 @@
 // Adds or change the variable value with the id
 void	ft_set_variable(t_env *head, char *id, char *value)
 {
-	// char	**split;
 	t_env	*temp;
 
 	if (ft_isvariable(head, id))
@@ -24,8 +23,6 @@ void	ft_set_variable(t_env *head, char *id, char *value)
 		if (temp->value)
 			free(temp->value);
 		temp->value = ft_strdup(value);
-		// temp->value = ft_strdup(value);
-		// ft_array_free(split, ft_array_size(split));
 	}
 	else
 		ft_add_variable(head, id, value);
