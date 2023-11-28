@@ -68,7 +68,7 @@ int	ft_export(t_minishell *data, char **cmd)
 	char	**variable;
 
 	i = ft_cmdsize(cmd) - 1;
-	if (!ft_check_cases(cmd, i, data->lstenv, data))
+	if (!ft_check_cases(cmd, i + 1, data->lstenv, data))
 		return (1);
 	while (cmd[++i])
 	{

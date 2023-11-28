@@ -40,11 +40,13 @@ char	*ft_strchr_variable(char *raw_cmd)
 
 	i = 0;
 	s_quote = 0;
-	while (raw_cmd[i])
+	while (raw_cmd[i++])
 	{
 		if (raw_cmd[i] == '\'')
 			s_quote++;
-		if ((raw_cmd[i] == '$' && (ft_isalnum(raw_cmd[i + 1]) || raw_cmd[i + 1] == '\'' || raw_cmd[i + 1] == '\"' || raw_cmd[i + 1] == '_') && s_quote == 0))
+		if (raw_cmd[i] == '$' && (ft_isalnum(raw_cmd[i + 1]) || raw_cmd[i + 1] \
+		== '\'' || raw_cmd[i + 1] == '\"' || raw_cmd[i + 1] == '_')
+			&& s_quote == 0)
 		{
 			variable = ft_get_export_id(&raw_cmd[i + 1]);
 			ft_check_var_rules(variable);
@@ -55,7 +57,6 @@ char	*ft_strchr_variable(char *raw_cmd)
 			return (&raw_cmd[i]);
 		if (s_quote == 2)
 			s_quote = 0;
-		i++;
 	}
 	return (NULL);
 }

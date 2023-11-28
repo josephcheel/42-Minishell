@@ -24,7 +24,8 @@ int	ft_syntax_errors(t_minishell *data)
 		free(data->raw_cmd);
 		return (1);
 	}
-	if (ft_check_redir_sytax(data->raw_cmd))
+	if ((ft_strchr(data->raw_cmd, '>') || ft_strchr(data->raw_cmd, '<'))
+		&& ft_check_redir_sytax(data->raw_cmd))
 	{
 		free(data->raw_cmd);
 		return (1);
