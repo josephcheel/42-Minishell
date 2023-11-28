@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:40:46 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/11/23 00:58:08 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/11/28 02:05:09 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,12 @@ char	*ft_substr_split_quotes(char *str, int i, int start, int j)
 	// }
 	if (j == 0)
 	{
-		printf("3\n");
+		// printf("3\n");
 		new_str = ft_substr(str, start, i - start);
 	}
 	else if (ft_strlen(str) > (size_t)(i +1) && str[i + 1] == '\0')
 	{
-		printf("4\n");
+		// printf("4\n");
 		if (str[i] == ' ')
 			new_str = ft_substr(str, start + 1, i - start - 1);
 		else
@@ -93,7 +93,7 @@ char	*ft_substr_split_quotes(char *str, int i, int start, int j)
 	}
 	else
 	{
-		printf("5\n");
+		// printf("5\n");
 		new_str = ft_substr(str, start + 1, i - start - 1);
 	}
 	return (new_str);
