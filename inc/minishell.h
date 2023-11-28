@@ -12,15 +12,15 @@
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-# include <sys/stat.h> //fstat(), lstat(), and stat() struct
-# include <sys/wait.h> // constants for use with waitpid()
+# include <sys/stat.h>
+# include <sys/wait.h>
 # include <unistd.h>
-# include <signal.h> //why not usefull?
+# include <signal.h>
 # include <stddef.h>
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <termios.h> //tcsetattr()
+# include <termios.h> 
 # include <sys/errno.h>
 # include <fcntl.h>
 
@@ -30,10 +30,6 @@
 # include "split_quotes.h"
 
 # define HEREDOC_FILE ".heredoc"
-
-typedef struct s_status{
-	int	status;
-}t_status;
 
 typedef struct s_minishell
 {
@@ -76,8 +72,6 @@ typedef struct s_redir
 	int		redir_left;
 	int		redir_right;
 }t_redir;
-
-t_status	g_status;
 
 char	*display_prompt_msg(void);
 
