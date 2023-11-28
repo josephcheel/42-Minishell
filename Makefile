@@ -18,7 +18,7 @@ NAME		=	minishell
 CC			=	gcc
 RLFLAGS		= 	-lreadline 
 CFLAGS		=	-Wall -Werror -Wextra
-XFLAGS		=	-fsanitize=address -g2 -g
+#XFLAGS		=	-fsanitize=address -g2 -g
 CLEAN_CAR	=	\033[2K\r
 
 AR			=	ar rcs
@@ -57,12 +57,12 @@ INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
 # Flags for Campus Joseph
-# LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
-# RFLAGS = /Users/${USER}/.brew/opt/readline/include
+LDFLAGS = /Users/${USER}/.brew/opt/readline/lib
+RFLAGS = /Users/${USER}/.brew/opt/readline/include
 
 # Flags for Campus Alex
-   LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
-   RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
+#    LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/lib
+#    RFLAGS = /System/Volumes/Data/sgoinfre/Perso/ageiser/homebrew/opt/readline/include
 
 # # Flags for Home Joseph
  #LDFLAGS	=/opt/homebrew/opt/readline/lib
@@ -153,11 +153,10 @@ libft_link:
 			@make -sC $(LIBFT_DIR)
 
 -include $(DEPS)
--include $(DEPS_BONUS)
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○IGNORE○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 
-.PHONY: all bonus clean fclean re run leak libft_link
+.PHONY: all clean fclean re run leak libft_link
 
 #●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
 #•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─COLOR──✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
